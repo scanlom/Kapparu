@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
 	HttpClientModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    BrowserAnimationsModule,
+	MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
