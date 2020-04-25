@@ -1,0 +1,94 @@
+export interface Income {
+  id: number;
+  ticker: string;
+  simfinId: number;
+  ccy: string;
+  fiscalYear: number;
+  fiscalPeriod: string;
+  reportDate: string;
+  publishDate: string;
+  sharesBasic: number;
+  sharesDiluted: number;
+  revenue: number;
+  costRevenue: number;
+  grossProfit: number;
+  operatingExpenses: number;
+  sellingGenAdmin: number;
+  researchDev: number;
+  deprAmor: number;
+  operatingIncome: number;
+  nonOperatingIncome: number;
+  interestExpNet: number;
+  pretaxIncomeLossAdj: number;
+  abnormGainLoss: number;
+  pretaxIncomeLoss: number;
+  incomeTax: number;
+  incomeContOp: number;
+  netExtrGainLoss: number;
+  netIncome: number;
+  netIncomeCommon: number;
+}
+
+export interface Balance {
+  id: number;
+  ticker: string;
+  simfinId: number;
+  ccy: string;
+  fiscalYear: number;
+  fiscalPeriod: string;
+  reportDate: string;
+  publishDate: string;
+  sharesBasic: number;
+  sharesDiluted: number;
+  cashEquivStInvest: number;
+  accNotesRecv: number;
+  inventories: number;
+  totalCurAssets: number;
+  propPlantEquipNet: number;
+  ltInvestRecv: number;
+  otherLtAssets: number;
+  totalNoncurAssets: number;
+  totalAssets: number;
+  payablesAccruals: number;
+  stDebt: number;
+  totalCurLiab: number;
+  ltDebt: number;
+  totalNoncurLiab: number;
+  totalLiabilities: number;
+  shareCapitalAdd: number;
+  treasuryStock: number;
+  retainedEarnings: number;
+  totalEquity: number;
+  totalLiabEquity: number;
+}
+
+export interface Cashflow {
+  id: number;
+  ticker: string;
+  simfinId: number;
+  ccy: string;
+  fiscalYear: number;
+  fiscalPeriod: string;
+  reportDate: string;
+  publishDate: string;
+  sharesBasic: number;
+  sharesDiluted: number;
+  netIncomeStart: number;
+  deprAmor: number;
+  nonCashItems: number;
+  chgWorkingCapital: number;
+  chgAccountsRecv: number;
+  chgInventories: number;
+  chgAccPayable: number;
+  chgOther: number;
+  netCashOps: number;
+  chgFixAssetsInt: number;
+  netChgLtInvest: number;
+  netCashAcqDivest: number;
+  netCashInv: number;
+  dividendsPaid: number;
+  cashRepayDebt: number;
+  cashRepurchaseEquity: number;
+  netCashFin: number;
+  netChgCash: number;
+}
