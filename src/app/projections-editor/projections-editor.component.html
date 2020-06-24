@@ -1,0 +1,60 @@
+<table><tr><td>
+  <mat-form-field appearance="outline">
+    <mat-label>refDataId</mat-label>
+    <input type="number" matInput [(ngModel)]="refDataId">
+  </mat-form-field>
+</td><td>  
+<mat-form-field appearance="outline">
+    <mat-label>date</mat-label>
+    <input type="text" matInput [(ngModel)]="date">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>eps</mat-label>
+    <input type="number" matInput [(ngModel)]="eps">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>dps</mat-label>
+    <input type="number" matInput [(ngModel)]="dps">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>growth</mat-label>
+    <input type="number" matInput [(ngModel)]="growth">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>peTerminal</mat-label>
+    <input type="number" matInput [(ngModel)]="peTerminal">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>payout</mat-label>
+    <input type="number" matInput [(ngModel)]="payout">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>book</mat-label>
+    <input type="number" matInput [(ngModel)]="book">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>roe</mat-label>
+    <input type="number" matInput [(ngModel)]="roe">
+  </mat-form-field>
+</td></tr><tr><td>
+  <mat-form-field appearance="outline">
+    <mat-label>epsYr1</mat-label>
+    <input type="number" matInput [(ngModel)]="epsYr1">
+  </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>epsYr2</mat-label>
+    <input type="number" matInput [(ngModel)]="epsYr2">
+  </mat-form-field>
+</td></tr></table>
+<p>
+  <button (click)="addProjections()">Add Projections</button>
+</p>
+

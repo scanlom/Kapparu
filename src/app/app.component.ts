@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Projections } from './projections';
+import { Headline } from './headline';
 import * as moment from 'moment';
 
 export enum CurrentDisplay {
@@ -21,10 +24,29 @@ export class AppComponent {
 
 	headlineColumnDefs = [
         {headerName: 'Ticker', field: 'ticker'},
+        {headerName: 'Description', field: 'description'},
+        {headerName: 'Sector', field: 'sector'},
+        {headerName: 'Industry', field: 'industry'},
         {headerName: 'EPSCagr5yr', field: 'epsCagr5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSCagr10yr', field: 'epsCagr10yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'EPSCagr2yr', field: 'epsCagr2yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'EPSCagr7yr', field: 'epsCagr7yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'ROE5yr', field: 'roe5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'PEHighMMO5yr', field: 'peHighMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
         {headerName: 'PELowMMO5yr', field: 'peLowMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+	]
+
+	projectionsColumnDefs = [
+	    {headerName: 'Date', field: 'date', valueFormatter: dateFormatter},
+        {headerName: 'EPS', field: 'eps', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'DPS', field: 'dps', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'Growth', field: 'growth', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'PETerminal', field: 'peTerminal', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+        {headerName: 'Payout', field: 'payout', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'Book', field: 'book', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'EPSYr1', field: 'epsYr1', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'EPSYr2', field: 'epsYr2', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
 	]
 
     summaryColumnDefs = [
@@ -35,6 +57,8 @@ export class AppComponent {
         {headerName: 'PELow', field: 'peLow', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
         {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
         {headerName: 'ROA', field: 'roa', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
+        {headerName: 'MarketCap', field: 'marketCap', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+        {headerName: 'SharesDiluted', field: 'sharesDiluted', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
 	]
 
     columnDefs = [
@@ -109,6 +133,7 @@ export class AppComponent {
     ];
 
 	headlineRowData: any;
+	projectionsRowData: any;
     summaryRowData: any;
     balanceRowData: any;
     cashflowRowData: any;
@@ -119,7 +144,14 @@ export class AppComponent {
 
     ngOnInit() {
         this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=BKNG');
-        this.headlineRowData = this.http.get('http://localhost:8081/blue-lion/read/headline?ticker=BKNG');
+        this.headlineRowData = this.http.get<Headline>('http://localhost:8081/blue-lion/read/headline?ticker=BKNG').pipe(
+		    map((receivedData: Headline) => {
+		        return Array.of( receivedData );
+		    }));
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/projections?symbol=BKNG').pipe(
+		    map((receivedData: Projections) => {
+		        return Array.of( receivedData );
+		    }));
         this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=BKNG');
         this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=BKNG');
         this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=BKNG');
@@ -127,7 +159,14 @@ export class AppComponent {
 
 	onEnter(value: string) { 
 		this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + value);
-        this.headlineRowData = this.http.get('http://localhost:8081/blue-lion/read/headline?ticker=' + value);
+        this.headlineRowData = this.http.get<Headline>('http://localhost:8081/blue-lion/read/headline?ticker=' + value).pipe(
+		    map((receivedData: Headline) => {
+		        return Array.of( receivedData );
+		    }));
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/projections?symbol=' + value).pipe(
+		    map((receivedData: Projections) => {
+		        return Array.of( receivedData );
+		    }));
         this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=' + value);
         this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=' + value);
         this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + value);
@@ -138,29 +177,9 @@ export class AppComponent {
     		.map(column => column.colId);
 		params.columnApi.autoSizeColumns(allColIds);
 	}
-
-	onHeadlineGridReady(params){
-		var allColIds = params.columnApi.getAllColumns()
-    		.map(column => column.colId);
-		params.columnApi.autoSizeColumns(allColIds);
-	}
-
-	onSummaryGridReady(params){
-		var allColIds = params.columnApi.getAllColumns()
-    		.map(column => column.colId);
-		params.columnApi.autoSizeColumns(allColIds);
-	}
-
-	onBalanceGridReady(params){
-		var allColIds = params.columnApi.getAllColumns()
-    		.map(column => column.colId);
-		params.columnApi.autoSizeColumns(allColIds);
-	}
-
-	onCashflowGridReady(params){
-		var allColIds = params.columnApi.getAllColumns()
-    		.map(column => column.colId);
-		params.columnApi.autoSizeColumns(allColIds);
+	
+	onRowDataChanged(params){
+		this.onGridReady(params)
 	}
 }
 
