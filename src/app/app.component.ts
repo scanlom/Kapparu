@@ -19,21 +19,34 @@ export enum CurrentDisplay {
 })
 export class AppComponent {
   title = 'Kapparu';
-  currentDisplay = CurrentDisplay.summary
-  currentDisplayType = CurrentDisplay
+  currentDisplay = CurrentDisplay.summary;
+  currentDisplayType = CurrentDisplay;
 
-	headlineColumnDefs = [
+	headlineOneColumnDefs = [
         {headerName: 'Ticker', field: 'ticker'},
         {headerName: 'Description', field: 'description'},
         {headerName: 'Sector', field: 'sector'},
         {headerName: 'Industry', field: 'industry'},
+        {headerName: 'Price', field: 'price', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'PE', field: 'pe', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+        {headerName: 'DivPlusGrowth', field: 'divPlusGrowth', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'EPSYield', field: 'epsYield', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'DPSYield', field: 'dpsYield', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'CAGR5yr', field: 'cagr5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'CAGR10yr', field: 'cagr10yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'CROE5yr', field: 'croe5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+        {headerName: 'CROE10yr', field: 'croe10yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
+	]
+
+	headlineTwoColumnDefs = [
+        {headerName: 'PEHighMMO5yr', field: 'peHighMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+        {headerName: 'PELowMMO5yr', field: 'peLowMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
         {headerName: 'EPSCagr5yr', field: 'epsCagr5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSCagr10yr', field: 'epsCagr10yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSCagr2yr', field: 'epsCagr2yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSCagr7yr', field: 'epsCagr7yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'ROE5yr', field: 'roe5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
-        {headerName: 'PEHighMMO5yr', field: 'peHighMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
-        {headerName: 'PELowMMO5yr', field: 'peLowMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+        {headerName: 'Magic', field: 'magic', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
 	]
 
 	projectionsColumnDefs = [
@@ -47,6 +60,7 @@ export class AppComponent {
         {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSYr1', field: 'epsYr1', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
         {headerName: 'EPSYr2', field: 'epsYr2', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'EntryType', field: 'entryType'},
 	]
 
     summaryColumnDefs = [
@@ -173,6 +187,7 @@ export class AppComponent {
  	}
 
 	onGridReady(params){
+		params.api.setHeaderHeight(25);
 		var allColIds = params.columnApi.getAllColumns()
     		.map(column => column.colId);
 		params.columnApi.autoSizeColumns(allColIds);
@@ -188,8 +203,10 @@ function numberFormatter(params) {
 }
 
 function currencyFormatter(params) {
-	return params.value.toFixed(2)
-}
+	return params.value.toLocaleString('en-US', {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
+	});}
 
 function percentFormatter(params) {
 	return String((params.value * 100).toFixed(2)) + "%";
