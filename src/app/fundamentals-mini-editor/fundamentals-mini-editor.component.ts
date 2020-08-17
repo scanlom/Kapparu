@@ -7,69 +7,37 @@ import { Cashflow } from '../fundamentals';
 import { FundamentalsService } from '../fundamentals.service';
 
 @Component({
-  selector: 'app-fundamentals-editor',
-  templateUrl: './fundamentals-editor.component.html',
-  styleUrls: ['./fundamentals-editor.component.css']
+  selector: 'app-fundamentals-mini-editor',
+  templateUrl: './fundamentals-mini-editor.component.html',
+  styleUrls: ['./fundamentals-mini-editor.component.css']
 })
-export class FundamentalsEditorComponent {
+export class FundamentalsMiniEditorComponent {
   @Input() ticker: string;
-  @Input() simfinId: number;
   @Input() ccy: string;
   @Input() fiscalYear: number;
-  @Input() fiscalPeriod: string;
   @Input() reportDate: string;
-  @Input() publishDate: string;
-  @Input() sharesBasic: number;
   @Input() sharesDiluted: number;
   @Input() revenue: number;
-  @Input() costRevenue: number;
   @Input() grossProfit: number;
-  @Input() operatingExpenses: number;
   @Input() sellingGenAdmin: number;
   @Input() researchDev: number;
   @Input() deprAmor: number;
   @Input() operatingIncome: number;
-  @Input() nonOperatingIncome: number;
   @Input() interestExpNet: number;
-  @Input() pretaxIncomeLossAdj: number;
-  @Input() abnormGainLoss: number;
-  @Input() pretaxIncomeLoss: number;
   @Input() incomeTax: number;
-  @Input() incomeContOp: number;
-  @Input() netExtrGainLoss: number;
   @Input() netIncome: number;
-  @Input() netIncomeCommon: number;
   @Input() cashEquivStInvest: number;
-  @Input() accNotesRecv: number;
-  @Input() inventories: number;
   @Input() totalCurAssets: number;
-  @Input() propPlantEquipNet: number;
-  @Input() ltInvestRecv: number;
-  @Input() otherLtAssets: number;
   @Input() totalNoncurAssets: number;
   @Input() totalAssets: number;
-  @Input() payablesAccruals: number;
-  @Input() stDebt: number;
   @Input() totalCurLiab: number;
   @Input() ltDebt: number;
   @Input() totalNoncurLiab: number;
   @Input() totalLiabilities: number;
-  @Input() shareCapitalAdd: number;
-  @Input() treasuryStock: number;
-  @Input() retainedEarnings: number;
   @Input() totalEquity: number;
   @Input() totalLiabEquity: number;
-  @Input() netIncomeStart: number;
-  @Input() nonCashItems: number;
-  @Input() chgWorkingCapital: number;
-  @Input() chgAccountsRecv: number;
-  @Input() chgInventories: number;
-  @Input() chgAccPayable: number;
-  @Input() chgOther: number;
   @Input() netCashOps: number;
   @Input() chgFixAssetsInt: number;
-  @Input() netChgLtInvest: number;
-  @Input() netCashAcqDivest: number;
   @Input() netCashInv: number;
   @Input() dividendsPaid: number;
   @Input() cashRepayDebt: number;
@@ -84,63 +52,63 @@ export class FundamentalsEditorComponent {
   addFundamentals() {
     this.fundamentalsService.addIncome({
 	  ticker: this.ticker,
-      simfinId: this.simfinId,
+      simfinId: 0,
       ccy: this.ccy,
       fiscalYear: this.fiscalYear,
-      fiscalPeriod: this.fiscalPeriod,
+      fiscalPeriod: "FY",
       reportDate: this.reportDate,
-      publishDate: this.publishDate,
-      sharesBasic: this.sharesBasic,
+      publishDate: this.reportDate,
+      sharesBasic: 0,
       sharesDiluted: this.sharesDiluted,
       revenue: this.revenue,
-      costRevenue: this.costRevenue * -1,
+      costRevenue: 0,
       grossProfit: this.grossProfit,
-      operatingExpenses: this.operatingExpenses * -1,
+      operatingExpenses: 0,
       sellingGenAdmin: this.sellingGenAdmin * -1,
       researchDev: this.researchDev * -1,
       deprAmor: this.deprAmor * -1,
       operatingIncome: this.operatingIncome,
-      nonOperatingIncome: this.nonOperatingIncome,
+      nonOperatingIncome: 0,
       interestExpNet: this.interestExpNet * -1,
-      pretaxIncomeLossAdj: this.pretaxIncomeLossAdj,
-      abnormGainLoss: this.abnormGainLoss,
-      pretaxIncomeLoss: this.pretaxIncomeLoss,
+      pretaxIncomeLossAdj: 0,
+      abnormGainLoss: 0,
+      pretaxIncomeLoss: 0,
       incomeTax: this.incomeTax * -1,
-      incomeContOp: this.incomeContOp,
-      netExtrGainLoss: this.netExtrGainLoss,
+      incomeContOp: 0,
+      netExtrGainLoss: 0,
       netIncome: this.netIncome,
-      netIncomeCommon: this.netIncomeCommon,
+      netIncomeCommon: 0,
       entryType: "M",
     } as Income).subscribe();
 
     this.fundamentalsService.addBalance({
       ticker: this.ticker,
-      simfinId: this.simfinId,
+      simfinId: 0,
       ccy: this.ccy,
       fiscalYear: this.fiscalYear,
-      fiscalPeriod: this.fiscalPeriod,
+      fiscalPeriod: "FY",
       reportDate: this.reportDate,
-      publishDate: this.publishDate,
-      sharesBasic: this.sharesBasic,
+      publishDate: this.reportDate,
+      sharesBasic: 0,
       sharesDiluted: this.sharesDiluted,
       cashEquivStInvest: this.cashEquivStInvest,
-      accNotesRecv: this.accNotesRecv,
-      inventories: this.inventories,
+      accNotesRecv: 0,
+      inventories: 0,
       totalCurAssets: this.totalCurAssets,
-      propPlantEquipNet: this.propPlantEquipNet,
-      ltInvestRecv: this.ltInvestRecv,
-      otherLtAssets: this.otherLtAssets,
+      propPlantEquipNet: 0,
+      ltInvestRecv: 0,
+      otherLtAssets: 0,
       totalNoncurAssets: this.totalNoncurAssets,
       totalAssets: this.totalAssets,
-      payablesAccruals: this.payablesAccruals,
-      stDebt: this.stDebt,
+      payablesAccruals: 0,
+      stDebt: 0,
       totalCurLiab: this.totalCurLiab,
       ltDebt: this.ltDebt,
       totalNoncurLiab: this.totalNoncurLiab,
       totalLiabilities: this.totalLiabilities,
-      shareCapitalAdd: this.shareCapitalAdd,
-      treasuryStock: this.treasuryStock,
-      retainedEarnings: this.retainedEarnings,
+      shareCapitalAdd: 0,
+      treasuryStock: 0,
+      retainedEarnings: 0,
       totalEquity: this.totalEquity,
       totalLiabEquity: this.totalLiabEquity,
       entryType: "M",
@@ -148,30 +116,30 @@ export class FundamentalsEditorComponent {
 
     this.fundamentalsService.addCashflow({
       ticker: this.ticker,
-      simfinId: this.simfinId,
+      simfinId: 0,
       ccy: this.ccy,
       fiscalYear: this.fiscalYear,
-      fiscalPeriod: this.fiscalPeriod,
+      fiscalPeriod: "FY",
       reportDate: this.reportDate,
-      publishDate: this.publishDate,
-      sharesBasic: this.sharesBasic,
+      publishDate: this.reportDate,
+      sharesBasic: 0,
       sharesDiluted: this.sharesDiluted,
-      netIncomeStart: this.netIncomeStart,
+      netIncomeStart: this.netIncome,
       deprAmor: this.deprAmor,
-      nonCashItems: this.nonCashItems,
-      chgWorkingCapital: this.chgWorkingCapital,
-      chgAccountsRecv: this.chgAccountsRecv,
-      chgInventories: this.chgInventories,
-      chgAccPayable: this.chgAccPayable,
-      chgOther: this.chgOther,
+      nonCashItems: 0,
+      chgWorkingCapital: 0,
+      chgAccountsRecv: 0,
+      chgInventories: 0,
+      chgAccPayable: 0,
+      chgOther: 0,
       netCashOps: this.netCashOps,
-      chgFixAssetsInt: this.chgFixAssetsInt,
-      netChgLtInvest: this.netChgLtInvest,
-      netCashAcqDivest: this.netCashAcqDivest,
+      chgFixAssetsInt: this.chgFixAssetsInt * -1,
+      netChgLtInvest: 0,
+      netCashAcqDivest: 0,
       netCashInv: this.netCashInv,
-      dividendsPaid: this.dividendsPaid,
-      cashRepayDebt: this.cashRepayDebt,
-      cashRepurchaseEquity: this.cashRepurchaseEquity,
+      dividendsPaid: this.dividendsPaid * -1,
+      cashRepayDebt: this.cashRepayDebt * -1,
+      cashRepurchaseEquity: this.cashRepurchaseEquity * -1,
       netCashFin: this.netCashFin,
       netChgCash: this.netChgCash,
       entryType: "M",

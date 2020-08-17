@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FundamentalsEditorComponent } from './fundamentals-editor/fundamentals-editor.component';
+import { FundamentalsMiniEditorComponent } from './fundamentals-mini-editor/fundamentals-mini-editor.component';
 import { ProjectionsEditorComponent } from './projections-editor/projections-editor.component';
 
 import { AgGridModule } from 'ag-grid-angular';
@@ -18,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     AppComponent,
 	FundamentalsEditorComponent,
+	FundamentalsMiniEditorComponent,
 	ProjectionsEditorComponent,
   ],
   imports: [

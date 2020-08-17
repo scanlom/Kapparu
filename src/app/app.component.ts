@@ -71,6 +71,11 @@ export class AppComponent {
         {headerName: 'PELow', field: 'peLow', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
         {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
         {headerName: 'ROA', field: 'roa', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
+        {headerName: 'GrMgn', field: 'grMgn', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
+        {headerName: 'OpMgn', field: 'opMgn', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
+        {headerName: 'NetMgn', field: 'netMgn', cellStyle: {textAlign: "right"}, valueFormatter: percentIntFormatter},
+        {headerName: 'LTDRatio', field: 'ltdRatio', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'IntCov', field: 'intCov', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
         {headerName: 'MarketCap', field: 'marketCap', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
         {headerName: 'SharesDiluted', field: 'sharesDiluted', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
 	]

@@ -27,6 +27,7 @@ export interface Income {
   netExtrGainLoss: number;
   netIncome: number;
   netIncomeCommon: number;
+  entryType: string;
 }
 
 export interface Balance {
@@ -60,6 +61,7 @@ export interface Balance {
   retainedEarnings: number;
   totalEquity: number;
   totalLiabEquity: number;
+  entryType: string;
 }
 
 export interface Cashflow {
@@ -91,4 +93,5 @@ export interface Cashflow {
   cashRepurchaseEquity: number;
   netCashFin: number;
   netChgCash: number;
+  entryType: string;
 }
