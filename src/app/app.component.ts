@@ -46,7 +46,7 @@ export class AppComponent {
         {headerName: 'EPSCagr2yr', field: 'epsCagr2yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSCagr7yr', field: 'epsCagr7yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'ROE5yr', field: 'roe5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
-        {headerName: 'Magic', field: 'magic', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
+        {headerName: 'Magic', field: 'magic', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter, headerTooltip: 'EPSCagr5yr'},
 	]
 
 	projectionsColumnDefs = [
@@ -60,7 +60,7 @@ export class AppComponent {
         {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSYr1', field: 'epsYr1', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
         {headerName: 'EPSYr2', field: 'epsYr2', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
-        {headerName: 'EntryType', field: 'entryType'},
+        {headerName: 'EntryType', field: 'entryType', headerTooltip: 'D for Derived<br>O for Overridden'},
 	]
 
     summaryColumnDefs = [
