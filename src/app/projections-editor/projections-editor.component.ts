@@ -31,7 +31,7 @@ export class ProjectionsEditorComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
 	if (changes.rowData && changes.rowData.currentValue) {
 		this.refDataId = this.rowData[0].refDataId;
-		this.date = moment().format("MM-DD-YYYY");
+		this.date = moment().format("YYYY-MM-DD");
 		if (this.rowData[0].entryType == "O") {
 			this.eps = this.rowData[0].eps;
 			this.dps = this.rowData[0].dps;
