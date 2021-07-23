@@ -46,7 +46,7 @@ export class AppComponent {
         {headerName: 'EPSCagr2yr', field: 'epsCagr2yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSCagr7yr', field: 'epsCagr7yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'ROE5yr', field: 'roe5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
-        {headerName: 'Magic', field: 'magic', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter, headerTooltip: 'EPSCagr5yr'},
+        {headerName: 'Magic', field: 'magic', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter, headerTooltip: 'cagr5yr'},
 	]
 
 	projectionsColumnDefs = [
