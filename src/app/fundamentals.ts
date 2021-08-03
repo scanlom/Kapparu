@@ -7,6 +7,7 @@ export interface Income {
   fiscalPeriod: string;
   reportDate: string;
   publishDate: string;
+  restatedDate: string;
   sharesBasic: number;
   sharesDiluted: number;
   revenue: number;
@@ -23,6 +24,7 @@ export interface Income {
   abnormGainLoss: number;
   pretaxIncomeLoss: number;
   incomeTax: number;
+  incomeAffilNetTax: number;
   incomeContOp: number;
   netExtrGainLoss: number;
   netIncome: number;
@@ -39,6 +41,7 @@ export interface Balance {
   fiscalPeriod: string;
   reportDate: string;
   publishDate: string;
+  restatedDate: string;
   sharesBasic: number;
   sharesDiluted: number;
   cashEquivStInvest: number;
@@ -56,6 +59,7 @@ export interface Balance {
   ltDebt: number;
   totalNoncurLiab: number;
   totalLiabilities: number;
+  preferredEquity: number;
   shareCapitalAdd: number;
   treasuryStock: number;
   retainedEarnings: number;
@@ -73,6 +77,7 @@ export interface Cashflow {
   fiscalPeriod: string;
   reportDate: string;
   publishDate: string;
+  restatedDate: string;
   sharesBasic: number;
   sharesDiluted: number;
   netIncomeStart: number;
@@ -92,6 +97,7 @@ export interface Cashflow {
   cashRepayDebt: number;
   cashRepurchaseEquity: number;
   netCashFin: number;
+  effectFxRates: number;
   netChgCash: number;
   entryType: string;
 }

@@ -26,6 +26,7 @@ export class FundamentalsMiniEditorComponent {
   @Input() interestExpNet: number;
   @Input() incomeTax: number;
   @Input() netIncome: number;
+  @Input() netIncomeCommon: number;
   @Input() cashEquivStInvest: number;
   @Input() totalCurAssets: number;
   @Input() totalNoncurAssets: number;
@@ -58,6 +59,7 @@ export class FundamentalsMiniEditorComponent {
       fiscalPeriod: "FY",
       reportDate: this.reportDate,
       publishDate: this.reportDate,
+      restatedDate: "1900-01-01",
       sharesBasic: 0,
       sharesDiluted: this.sharesDiluted,
       revenue: this.revenue,
@@ -74,10 +76,11 @@ export class FundamentalsMiniEditorComponent {
       abnormGainLoss: 0,
       pretaxIncomeLoss: 0,
       incomeTax: this.incomeTax * -1,
+      incomeAffilNetTax: 0,
       incomeContOp: 0,
       netExtrGainLoss: 0,
       netIncome: this.netIncome,
-      netIncomeCommon: 0,
+      netIncomeCommon: this.netIncomeCommon,
       entryType: "M",
     } as Income).subscribe();
 
@@ -89,6 +92,7 @@ export class FundamentalsMiniEditorComponent {
       fiscalPeriod: "FY",
       reportDate: this.reportDate,
       publishDate: this.reportDate,
+      restatedDate: "1900-01-01",
       sharesBasic: 0,
       sharesDiluted: this.sharesDiluted,
       cashEquivStInvest: this.cashEquivStInvest,
@@ -106,6 +110,7 @@ export class FundamentalsMiniEditorComponent {
       ltDebt: this.ltDebt,
       totalNoncurLiab: this.totalNoncurLiab,
       totalLiabilities: this.totalLiabilities,
+      preferredEquity: 0,
       shareCapitalAdd: 0,
       treasuryStock: 0,
       retainedEarnings: 0,
@@ -122,6 +127,7 @@ export class FundamentalsMiniEditorComponent {
       fiscalPeriod: "FY",
       reportDate: this.reportDate,
       publishDate: this.reportDate,
+      restatedDate: "1900-01-01",
       sharesBasic: 0,
       sharesDiluted: this.sharesDiluted,
       netIncomeStart: this.netIncome,
@@ -141,6 +147,7 @@ export class FundamentalsMiniEditorComponent {
       cashRepayDebt: this.cashRepayDebt * -1,
       cashRepurchaseEquity: this.cashRepurchaseEquity * -1,
       netCashFin: this.netCashFin,
+      effectFxRates: 0,
       netChgCash: this.netChgCash,
       entryType: "M",
     } as Cashflow).subscribe();

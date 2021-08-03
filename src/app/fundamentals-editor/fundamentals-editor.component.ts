@@ -19,6 +19,7 @@ export class FundamentalsEditorComponent {
   @Input() fiscalPeriod: string;
   @Input() reportDate: string;
   @Input() publishDate: string;
+  @Input() restatedDate: string;
   @Input() sharesBasic: number;
   @Input() sharesDiluted: number;
   @Input() revenue: number;
@@ -35,6 +36,7 @@ export class FundamentalsEditorComponent {
   @Input() abnormGainLoss: number;
   @Input() pretaxIncomeLoss: number;
   @Input() incomeTax: number;
+  @Input() incomeAffilNetTax: number;
   @Input() incomeContOp: number;
   @Input() netExtrGainLoss: number;
   @Input() netIncome: number;
@@ -54,6 +56,7 @@ export class FundamentalsEditorComponent {
   @Input() ltDebt: number;
   @Input() totalNoncurLiab: number;
   @Input() totalLiabilities: number;
+  @Input() preferredEquity: number;
   @Input() shareCapitalAdd: number;
   @Input() treasuryStock: number;
   @Input() retainedEarnings: number;
@@ -75,6 +78,7 @@ export class FundamentalsEditorComponent {
   @Input() cashRepayDebt: number;
   @Input() cashRepurchaseEquity: number;
   @Input() netCashFin: number;
+  @Input() effectFxRates: number;
   @Input() netChgCash: number;
 
   constructor(private fundamentalsService: FundamentalsService) {
@@ -90,6 +94,7 @@ export class FundamentalsEditorComponent {
       fiscalPeriod: this.fiscalPeriod,
       reportDate: this.reportDate,
       publishDate: this.publishDate,
+      restatedDate: this.restatedDate,
       sharesBasic: this.sharesBasic,
       sharesDiluted: this.sharesDiluted,
       revenue: this.revenue,
@@ -106,6 +111,7 @@ export class FundamentalsEditorComponent {
       abnormGainLoss: this.abnormGainLoss,
       pretaxIncomeLoss: this.pretaxIncomeLoss,
       incomeTax: this.incomeTax * -1,
+      incomeAffilNetTax: this.incomeAffilNetTax * -1,
       incomeContOp: this.incomeContOp,
       netExtrGainLoss: this.netExtrGainLoss,
       netIncome: this.netIncome,
@@ -121,6 +127,7 @@ export class FundamentalsEditorComponent {
       fiscalPeriod: this.fiscalPeriod,
       reportDate: this.reportDate,
       publishDate: this.publishDate,
+      restatedDate: this.restatedDate,
       sharesBasic: this.sharesBasic,
       sharesDiluted: this.sharesDiluted,
       cashEquivStInvest: this.cashEquivStInvest,
@@ -138,6 +145,7 @@ export class FundamentalsEditorComponent {
       ltDebt: this.ltDebt,
       totalNoncurLiab: this.totalNoncurLiab,
       totalLiabilities: this.totalLiabilities,
+      preferredEquity: this.preferredEquity,
       shareCapitalAdd: this.shareCapitalAdd,
       treasuryStock: this.treasuryStock,
       retainedEarnings: this.retainedEarnings,
@@ -154,6 +162,7 @@ export class FundamentalsEditorComponent {
       fiscalPeriod: this.fiscalPeriod,
       reportDate: this.reportDate,
       publishDate: this.publishDate,
+      restatedDate: this.restatedDate,
       sharesBasic: this.sharesBasic,
       sharesDiluted: this.sharesDiluted,
       netIncomeStart: this.netIncomeStart,
@@ -173,6 +182,7 @@ export class FundamentalsEditorComponent {
       cashRepayDebt: this.cashRepayDebt,
       cashRepurchaseEquity: this.cashRepurchaseEquity,
       netCashFin: this.netCashFin,
+      effectFxRates: this.effectFxRates,
       netChgCash: this.netChgCash,
       entryType: "M",
     } as Cashflow).subscribe();

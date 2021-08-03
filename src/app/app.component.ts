@@ -28,7 +28,7 @@ export class AppComponent {
         {headerName: 'Sector', field: 'sector'},
         {headerName: 'Industry', field: 'industry'},
         {headerName: 'Price', field: 'price', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
-        {headerName: 'PE', field: 'pe', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
+        {headerName: 'PE', field: 'pe', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
         {headerName: 'DivPlusGrowth', field: 'divPlusGrowth', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSYield', field: 'epsYield', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'DPSYield', field: 'dpsYield', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
@@ -222,5 +222,5 @@ function percentIntFormatter(params) {
 }
 
 function dateFormatter(params) {
-	return moment(params.value).format('YYYY- MM-DD');
+	return moment(params.value).format('YYYY-MM-DD');
 }
