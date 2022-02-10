@@ -14,3 +14,8 @@ export interface Merger {
 	acquirerTicker: string;
 	targetTicker: string;
 }
+
+export interface MergerJournal extends Merger {
+	mergerId: number;
+	entry: string;
+}

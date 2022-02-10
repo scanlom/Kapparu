@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -11,6 +12,7 @@ export class MergersMonitorComponent {
   rowData: any;
 
   columnDefs = [
+    { headerName: 'ID', field: 'id', hide: true },
     { headerName: 'Target', field: 'targetTicker' },
     { headerName: 'Description', field: 'targetDescription' },
     { headerName: 'Acquirer', field: 'acquirerTicker' },
@@ -23,7 +25,7 @@ export class MergersMonitorComponent {
     { headerName: 'Close', field: 'closeDate' },
   ];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -39,6 +41,10 @@ export class MergersMonitorComponent {
 
   onRowDataChanged(params) {
     this.onGridReady(params)
+  }
+
+  onRowDoubleClicked(params) {
+    this.router.navigate(['/mergers-editor', { id: params.data.id } ]);
   }
 }
 

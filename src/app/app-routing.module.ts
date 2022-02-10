@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FundamentalsMonitorComponent } from './fundamentals-monitor/fundamentals-monitor.component';
 import { MergersMonitorComponent } from './mergers-monitor/mergers-monitor.component';
+import { MergersEditorComponent } from './mergers-editor/mergers-editor.component';
 
 //This is my case 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: 'mergers-monitor',
         component: MergersMonitorComponent
+    },
+    {
+        path: 'mergers-editor',
+        component: MergersEditorComponent
     }
 ];
 

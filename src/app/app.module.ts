@@ -9,6 +9,7 @@ import { FundamentalsMiniEditorComponent } from './fundamentals-mini-editor/fund
 import { ProjectionsEditorComponent } from './projections-editor/projections-editor.component';
 import { FundamentalsMonitorComponent } from './fundamentals-monitor/fundamentals-monitor.component';
 import { MergersMonitorComponent } from './mergers-monitor/mergers-monitor.component';
+import { MergersEditorComponent } from './mergers-editor/mergers-editor.component';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     ProjectionsEditorComponent,
     FundamentalsMonitorComponent,
     MergersMonitorComponent,
+    MergersEditorComponent,
   ],
   imports: [
     BrowserModule,

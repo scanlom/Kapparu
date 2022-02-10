@@ -1,0 +1,71 @@
+<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="rowData | async"
+  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>confidence</mat-label> <input type="number" matInput [(ngModel)]="confidence">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>dividends</mat-label> <input type="number" matInput [(ngModel)]="dividends">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>closeDate</mat-label> <input type="string" matInput [(ngModel)]="closeDate">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>breakPrice</mat-label> <input type="number" matInput [(ngModel)]="breakPrice">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>breakDate</mat-label> <input type="string" matInput [(ngModel)]="breakDate">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>dealPrice</mat-label> <input type="number" matInput [(ngModel)]="dealPrice">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>failPrice</mat-label> <input type="number" matInput [(ngModel)]="failPrice">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>announceDate</mat-label> <input type="string" matInput [(ngModel)]="announceDate">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>meetingDate</mat-label> <input type="string" matInput [(ngModel)]="meetingDate">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="updateMerger()">Update Merger</button>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline" style="width:50vw">
+        <textarea matInput [(ngModel)]="entry"></textarea>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="addMergerJournal()">Add Journal Entry</button>
+    </td>
+  </tr>
+</table>
