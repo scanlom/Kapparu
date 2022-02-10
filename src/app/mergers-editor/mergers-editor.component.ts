@@ -16,6 +16,7 @@ export class MergersEditorComponent {
 
   id: string;
   rowData: any;
+  mergerJournals: MergerJournal[] = [];
 
   // Inputs
   @Input() acquirerRefDataId: number;
@@ -69,6 +70,9 @@ export class MergersEditorComponent {
         this.dividends = receivedData.dividends;
         return Array.of(receivedData);
       }));
+      this.http.get<MergerJournal[]>('http://localhost:8081/blue-lion/read/enriched-mergers-journal?mergerId=' + this.id).subscribe(
+        mergerJournals => this.mergerJournals = mergerJournals
+        );
   }
 
   onGridReady(params) {
