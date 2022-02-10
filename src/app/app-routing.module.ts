@@ -3,12 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { FundamentalsMonitorComponent } from './fundamentals-monitor/fundamentals-monitor.component';
 import { MergersMonitorComponent } from './mergers-monitor/mergers-monitor.component';
 import { MergersEditorComponent } from './mergers-editor/mergers-editor.component';
+import { WatchMonitorComponent } from './watch-monitor/watch-monitor.component';
 
 //This is my case 
 const routes: Routes = [
     {
         path: '',
-        component: FundamentalsMonitorComponent
+        component: WatchMonitorComponent
+    },
+    {
+        path: 'watch-monitor',
+        component: WatchMonitorComponent
     },
     {
         path: 'fundamentals-monitor',

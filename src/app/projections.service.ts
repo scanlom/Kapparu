@@ -10,21 +10,27 @@ import { Projections } from './projections';
 export class ProjectionsService {
 
   private projectionsUrl = 'http://localhost:8083/blue-lion/write/projections';
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
     private http: HttpClient,
-	){}
-	
+  ) { }
+
   /** POST: add new projections to the server */
   addProjections(projections: Projections): Observable<Projections> {
-	console.log(projections); // It is defined
     return this.http.post<Projections>(this.projectionsUrl, projections, this.httpOptions).pipe(
       tap((newProjections: Projections) => this.log(`added projections w/ id=${newProjections.id}`)),
       catchError(this.handleError<Projections>('addProjections'))
+    );
+  }
+  /** PUT: update projections on the server */
+  updateProjections(projections: Projections): Observable<Projections> {
+    return this.http.put<Projections>(this.projectionsUrl + "/" + projections.id, projections, this.httpOptions).pipe(
+      tap((newProjections: Projections) => this.log(`updated projections w/ id=${newProjections.id}`)),
+      catchError(this.handleError<Projections>('updateProjections'))
     );
   }
 

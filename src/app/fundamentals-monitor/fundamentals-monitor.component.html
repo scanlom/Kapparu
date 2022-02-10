@@ -1,86 +1,43 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-          <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="this.currentDisplay = this.currentDisplayType.summary">Summary</button>
-            <button mat-menu-item (click)="this.currentDisplay = this.currentDisplayType.income">Income</button>
-            <button mat-menu-item (click)="this.currentDisplay = this.currentDisplayType.balance">Balance</button>
-            <button mat-menu-item (click)="this.currentDisplay = this.currentDisplayType.cashflow">Cashflow</button>
-          </mat-menu>
-          <input #ticker (keyup.enter)="onEnter(ticker.value)">
-      </mat-toolbar-row>
-  </mat-toolbar>
-  
-  <ag-grid-angular
-      style="width: 100%; height: 70px;"
-      class="ag-theme-alpine"
-      [rowData]="headlineRowData | async"
-      [columnDefs]="headlineOneColumnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <ag-grid-angular
-      style="width: 100%; height: 70px;"
-      class="ag-theme-alpine"
-      [rowData]="headlineRowData | async"
-      [columnDefs]="headlineTwoColumnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <ag-grid-angular
-      style="width: 100%; height: 70px;"
-      class="ag-theme-alpine"
-      [rowData]="projectionsRowData | async"
-      [columnDefs]="projectionsColumnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <ag-grid-angular
-      *ngIf="currentDisplay == currentDisplayType.summary"
-      style="width: 100%; height: 600px;"
-      class="ag-theme-alpine"
-      [rowData]="summaryRowData | async"
-      [columnDefs]="summaryColumnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <ag-grid-angular
-      *ngIf="currentDisplay == currentDisplayType.income"
-      style="width: 100%; height: 600px;"
-      class="ag-theme-alpine"
-      [rowData]="rowData | async"
-      [columnDefs]="columnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <ag-grid-angular
-      *ngIf="currentDisplay == currentDisplayType.balance"
-      style="width: 100%; height: 600px;"
-      class="ag-theme-alpine"
-      [rowData]="balanceRowData | async"
-      [columnDefs]="balanceColumnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <ag-grid-angular
-      *ngIf="currentDisplay == currentDisplayType.cashflow"
-      style="width: 100%; height: 600px;"
-      class="ag-theme-alpine"
-      [rowData]="cashflowRowData | async"
-      [columnDefs]="cashflowColumnDefs"
-      (gridReady)="onGridReady($event)"
-      (rowDataChanged)="onRowDataChanged($event)"
-      >
-  </ag-grid-angular>
-  <app-projections-editor
-      [rowData]="projectionsRowData | async"
-      >
-  </app-projections-editor>
-  <app-fundamentals-mini-editor></app-fundamentals-mini-editor>
-  <app-fundamentals-editor></app-fundamentals-editor>
+        <button mat-raised-button color="accent"
+            (click)="this.currentDisplay = this.currentDisplayType.summary">Summary</button>
+        <button mat-raised-button color="accent"
+            (click)="this.currentDisplay = this.currentDisplayType.income">Income</button>
+        <button mat-raised-button color="accent"
+            (click)="this.currentDisplay = this.currentDisplayType.balance">Balance</button>
+        <button mat-raised-button color="accent"
+            (click)="this.currentDisplay = this.currentDisplayType.cashflow">Cashflow</button>
+        <button mat-raised-button color="accent"
+            (click)="this.currentDisplay = this.currentDisplayType.journal">Journal</button>
+        <input #ticker (keyup.enter)="onEnter(ticker.value)">
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="headlineRowData | async"
+    [columnDefs]="headlineOneColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="headlineRowData | async"
+    [columnDefs]="headlineTwoColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
+    [columnDefs]="projectionsColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.summary" style="width: 100%; height: 600px;"
+    class="ag-theme-alpine" [rowData]="summaryRowData | async" [columnDefs]="summaryColumnDefs"
+    (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.income" style="width: 100%; height: 600px;"
+    class="ag-theme-alpine" [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
+    (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.balance" style="width: 100%; height: 600px;"
+    class="ag-theme-alpine" [rowData]="balanceRowData | async" [columnDefs]="balanceColumnDefs"
+    (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.cashflow" style="width: 100%; height: 600px;"
+    class="ag-theme-alpine" [rowData]="cashflowRowData | async" [columnDefs]="cashflowColumnDefs"
+    (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<app-projections-editor *ngIf="currentDisplay == currentDisplayType.journal" [rowData]="projectionsRowData | async">
+</app-projections-editor>

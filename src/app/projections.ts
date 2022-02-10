@@ -11,6 +11,6 @@ export interface Projections {
   roe: number;
   epsYr1: number;
   epsYr2: number;
-  entryType: string;
+  confidence: string;
 }
 

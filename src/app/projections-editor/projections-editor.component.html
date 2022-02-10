@@ -53,8 +53,13 @@
     <mat-label>epsYr2</mat-label>
     <input type="number" matInput [(ngModel)]="epsYr2">
   </mat-form-field>
+</td><td>
+  <mat-form-field appearance="outline">
+    <mat-label>confidence</mat-label>
+    <input type="string" matInput [(ngModel)]="confidence">
+  </mat-form-field>
 </td></tr></table>
 <p>
-  <button (click)="addProjections()">Add Projections</button>
+  <button (click)="addProjections()">Update Projections</button>
 </p>
 

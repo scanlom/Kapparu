@@ -4,12 +4,14 @@ import { map } from 'rxjs/operators';
 import { Projections } from '../projections';
 import { Headline } from '../headline';
 import * as moment from 'moment';
+import { ActivatedRoute } from '@angular/router';
 
 export enum CurrentDisplay {
     summary = 1,
 	income = 2,
     balance = 3,
     cashflow = 4,
+    journal = 5,
 }
 
 @Component({
@@ -59,7 +61,7 @@ export class FundamentalsMonitorComponent {
         {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSYr1', field: 'epsYr1', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
         {headerName: 'EPSYr2', field: 'epsYr2', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
-        {headerName: 'EntryType', field: 'entryType', headerTooltip: 'D for Derived<br>O for Overridden'},
+        {headerName: 'Confidence', field: 'confidence'},
 	]
 
     summaryColumnDefs = [
@@ -157,22 +159,26 @@ export class FundamentalsMonitorComponent {
     cashflowRowData: any;
     rowData: any;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=BKNG');
-        this.headlineRowData = this.http.get<Headline>('http://localhost:8081/blue-lion/read/headline?ticker=BKNG').pipe(
+        var ticker = 'BKNG'
+        if(this.route.snapshot.paramMap.has('ticker')) { 
+            ticker = this.route.snapshot.paramMap.get('ticker');
+        }
+        this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + ticker);
+        this.headlineRowData = this.http.get<Headline>('http://localhost:8081/blue-lion/read/headline?ticker=' + ticker).pipe(
 		    map((receivedData: Headline) => {
 		        return Array.of( receivedData );
 		    }));
-        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/projections?symbol=BKNG').pipe(
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/projections?symbol=' + ticker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
-        this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=BKNG');
-        this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=BKNG');
-        this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=BKNG');
+        this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=' + ticker);
+        this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=' + ticker);
+        this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + ticker);
     }
 
 	onEnter(value: string) { 

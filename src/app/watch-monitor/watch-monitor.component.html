@@ -1,0 +1,10 @@
+<ag-grid-angular
+	style="width: 100%; height: 600px;"
+    class="ag-theme-alpine"
+    [rowData]="rowData | async"
+    [columnDefs]="columnDefs"
+	  (gridReady)="onGridReady($event)"
+	  (rowDataChanged)="onRowDataChanged($event)"
+    (rowDoubleClicked)="onRowDoubleClicked($event)"
+    >
+</ag-grid-angular>

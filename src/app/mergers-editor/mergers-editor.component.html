@@ -58,8 +58,8 @@
 <table>
   <tr>
     <td>
-      <mat-form-field appearance="outline" style="width:50vw">
-        <textarea matInput [(ngModel)]="entry"></textarea>
+      <mat-form-field appearance="outline" style="width:100vw">
+        <textarea matInput rows="20" [(ngModel)]="entry"></textarea>
       </mat-form-field>
     </td>
   </tr>
@@ -74,5 +74,5 @@
   <ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="[mergerJournal]"
     [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
   </ag-grid-angular>
-  <span style="display: inline-block; margin: 20px;">{{mergerJournal.entry}}</span>
+  <span style="display: inline-block; margin: 20px; white-space: pre-line;">{{mergerJournal.entry}}</span>
 </div>
