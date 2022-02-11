@@ -14,3 +14,7 @@ export interface Projections {
   confidence: string;
 }
 
+export interface ProjectionsJournal extends Projections {
+	projectionsId: number;
+	entry: string;
+}

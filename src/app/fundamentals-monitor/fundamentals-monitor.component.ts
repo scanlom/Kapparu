@@ -61,7 +61,21 @@ export class FundamentalsMonitorComponent {
         {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
         {headerName: 'EPSYr1', field: 'epsYr1', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
         {headerName: 'EPSYr2', field: 'epsYr2', cellStyle: {textAlign: "right"}, valueFormatter: currencyFormatter},
-        {headerName: 'Confidence', field: 'confidence'},
+		{
+			headerName: 'Confidence', field: 'confidence', cellStyle: params => {
+				switch (params.value) {
+					case 'H':
+						return { backgroundColor: 'green' };
+					case 'M':
+						return { backgroundColor: 'yellow' };
+					case 'B':
+						return { backgroundColor: 'gray' };
+					case 'L':
+						return { backgroundColor: 'red' };
+				}
+				return null;
+			}
+		},
 	]
 
     summaryColumnDefs = [
@@ -152,7 +166,6 @@ export class FundamentalsMonitorComponent {
 		{headerName: 'NetChgCash', field: 'netChgCash', cellStyle: {textAlign: "right"}, valueFormatter: numberFormatter},
     ];
 
-	headlineRowData: any;
 	projectionsRowData: any;
     summaryRowData: any;
     balanceRowData: any;
@@ -168,11 +181,7 @@ export class FundamentalsMonitorComponent {
             ticker = this.route.snapshot.paramMap.get('ticker');
         }
         this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + ticker);
-        this.headlineRowData = this.http.get<Headline>('http://localhost:8081/blue-lion/read/headline?ticker=' + ticker).pipe(
-		    map((receivedData: Headline) => {
-		        return Array.of( receivedData );
-		    }));
-        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/projections?symbol=' + ticker).pipe(
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + ticker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
@@ -183,11 +192,7 @@ export class FundamentalsMonitorComponent {
 
 	onEnter(value: string) { 
 		this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + value);
-        this.headlineRowData = this.http.get<Headline>('http://localhost:8081/blue-lion/read/headline?ticker=' + value).pipe(
-		    map((receivedData: Headline) => {
-		        return Array.of( receivedData );
-		    }));
-        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/projections?symbol=' + value).pipe(
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + value).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
@@ -206,6 +211,10 @@ export class FundamentalsMonitorComponent {
 	onRowDataChanged(params){
 		this.onGridReady(params)
 	}
+
+    onProjectionsChanged(params){
+        this.ngOnInit()
+    }
 }
 
 function numberFormatter(params) {

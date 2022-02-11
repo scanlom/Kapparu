@@ -4,12 +4,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Projections } from './projections';
+import { Projections, ProjectionsJournal } from './projections';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectionsService {
 
   private projectionsUrl = 'http://localhost:8083/blue-lion/write/projections';
+  private projectionsJournalUrl = 'http://localhost:8083/blue-lion/write/enriched-projections-journal';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,6 +32,14 @@ export class ProjectionsService {
     return this.http.put<Projections>(this.projectionsUrl + "/" + projections.id, projections, this.httpOptions).pipe(
       tap((newProjections: Projections) => this.log(`updated projections w/ id=${newProjections.id}`)),
       catchError(this.handleError<Projections>('updateProjections'))
+    );
+  }
+
+  /** POST: add a projections journal on the server */
+  addProjectionsJournal(projectionsJournal: ProjectionsJournal): Observable<ProjectionsJournal> {
+    return this.http.post<ProjectionsJournal>(this.projectionsJournalUrl, projectionsJournal, this.httpOptions).pipe(
+      tap((newProjectionsJournal: ProjectionsJournal) => this.log(`updated projections journal w/ id=${newProjectionsJournal.id}`)),
+      catchError(this.handleError<ProjectionsJournal>('addProjectionsJournal'))
     );
   }
 

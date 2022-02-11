@@ -1,65 +1,88 @@
-<table><tr><td>
-  <mat-form-field appearance="outline">
-    <mat-label>refDataId</mat-label>
-    <input type="number" matInput [(ngModel)]="refDataId">
-  </mat-form-field>
-</td><td>  
-<mat-form-field appearance="outline">
-    <mat-label>date</mat-label>
-    <input type="text" matInput [(ngModel)]="date">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>eps</mat-label>
-    <input type="number" matInput [(ngModel)]="eps">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>dps</mat-label>
-    <input type="number" matInput [(ngModel)]="dps">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>growth</mat-label>
-    <input type="number" matInput [(ngModel)]="growth">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>peTerminal</mat-label>
-    <input type="number" matInput [(ngModel)]="peTerminal">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>payout</mat-label>
-    <input type="number" matInput [(ngModel)]="payout">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>book</mat-label>
-    <input type="number" matInput [(ngModel)]="book">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>roe</mat-label>
-    <input type="number" matInput [(ngModel)]="roe">
-  </mat-form-field>
-</td></tr><tr><td>
-  <mat-form-field appearance="outline">
-    <mat-label>epsYr1</mat-label>
-    <input type="number" matInput [(ngModel)]="epsYr1">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>epsYr2</mat-label>
-    <input type="number" matInput [(ngModel)]="epsYr2">
-  </mat-form-field>
-</td><td>
-  <mat-form-field appearance="outline">
-    <mat-label>confidence</mat-label>
-    <input type="string" matInput [(ngModel)]="confidence">
-  </mat-form-field>
-</td></tr></table>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>eps</mat-label>
+        <input type="number" matInput [(ngModel)]="eps">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>dps</mat-label>
+        <input type="number" matInput [(ngModel)]="dps">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>growth</mat-label>
+        <input type="number" matInput [(ngModel)]="growth">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>peTerminal</mat-label>
+        <input type="number" matInput [(ngModel)]="peTerminal">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>payout</mat-label>
+        <input type="number" matInput [(ngModel)]="payout">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>book</mat-label>
+        <input type="number" matInput [(ngModel)]="book">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>roe</mat-label>
+        <input type="number" matInput [(ngModel)]="roe">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>epsYr1</mat-label>
+        <input type="number" matInput [(ngModel)]="epsYr1">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>epsYr2</mat-label>
+        <input type="number" matInput [(ngModel)]="epsYr2">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>confidence</mat-label>
+        <input type="string" matInput [(ngModel)]="confidence">
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
 <p>
   <button (click)="addProjections()">Update Projections</button>
 </p>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline" style="width:100vw">
+        <textarea matInput [(ngModel)]="entry"></textarea>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button (click)="addProjectionsJournal()">Add Journal Entry</button>
+    </td>
+  </tr>
+</table>
 
+<div *ngFor="let projectionsJournal of projectionsJournals">
+ <ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="[projectionsJournal]"
+    [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+  </ag-grid-angular>
+  <span style="display: inline-block; margin: 20px; white-space: pre-line;">{{projectionsJournal.entry}}</span>
+</div>

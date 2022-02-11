@@ -23,7 +23,21 @@ export class WatchMonitorComponent {
     { headerName: '10 CAGR', field: 'cagr10yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
     { headerName: '5 CROE', field: 'croe5yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
     { headerName: '10 CROE', field: 'croe10yr', cellStyle: {textAlign: "right"}, valueFormatter: percentFormatter},
-    { headerName: 'Confidence', field: 'confidence' },
+		{
+			headerName: 'Confidence', field: 'confidence', cellStyle: params => {
+				switch (params.value) {
+					case 'H':
+						return { backgroundColor: 'green' };
+					case 'M':
+						return { backgroundColor: 'yellow' };
+					case 'B':
+						return { backgroundColor: 'gray' };
+					case 'L':
+						return { backgroundColor: 'red' };
+				}
+				return null;
+			}
+		},
   ];
 
   constructor(private http: HttpClient, private router: Router) {
