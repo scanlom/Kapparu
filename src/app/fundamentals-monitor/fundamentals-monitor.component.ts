@@ -22,6 +22,7 @@ export enum CurrentDisplay {
 export class FundamentalsMonitorComponent {
   currentDisplay = CurrentDisplay.summary;
   currentDisplayType = CurrentDisplay;
+  currentTicker = "BKNG";
 
 	headlineOneColumnDefs = [
         {headerName: 'Ticker', field: 'ticker'},
@@ -176,29 +177,29 @@ export class FundamentalsMonitorComponent {
     }
 
     ngOnInit() {
-        var ticker = 'BKNG'
         if(this.route.snapshot.paramMap.has('ticker')) { 
-            ticker = this.route.snapshot.paramMap.get('ticker');
+            this.currentTicker = this.route.snapshot.paramMap.get('ticker');
         }
-        this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + ticker);
-        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + ticker).pipe(
+        this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + this.currentTicker);
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
-        this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=' + ticker);
-        this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=' + ticker);
-        this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + ticker);
+        this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=' + this.currentTicker);
+        this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=' + this.currentTicker);
+        this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + this.currentTicker);
     }
 
 	onEnter(value: string) { 
-		this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + value);
-        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + value).pipe(
+        this.currentTicker = value
+		this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + this.currentTicker);
+        this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
-        this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=' + value);
-        this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=' + value);
-        this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + value);
+        this.summaryRowData = this.http.get('http://localhost:8081/blue-lion/read/summary?ticker=' + this.currentTicker);
+        this.balanceRowData = this.http.get('http://localhost:8081/blue-lion/read/balance?ticker=' + this.currentTicker);
+        this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + this.currentTicker);
  	}
 
 	onGridReady(params){

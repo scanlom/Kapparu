@@ -44,7 +44,7 @@ export class WatchMonitorComponent {
   }
 
   ngOnInit() {
-    this.rowData = this.http.get('http://localhost:8081/blue-lion/read/enriched-projections');
+    this.rowData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections');
   }
 
   onGridReady(params) {
