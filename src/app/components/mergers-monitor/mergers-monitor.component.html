@@ -1,0 +1,51 @@
+<table>
+    <tr>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>acquirerTicker</mat-label> <input matInput [(ngModel)]="acquirerTicker" type="text">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>targetTicker</mat-label> <input matInput [(ngModel)]="targetTicker" type="text">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>dealPrice</mat-label> <input matInput [(ngModel)]="dealPrice" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>failPrice</mat-label> <input matInput [(ngModel)]="failPrice" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>announceDate</mat-label> <input matInput [(ngModel)]="announceDate" type="string">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>closeDate</mat-label> <input matInput [(ngModel)]="closeDate" type="string">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>confidence</mat-label> <input matInput [(ngModel)]="confidence" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>dividends</mat-label> <input matInput [(ngModel)]="dividends" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <button mat-raised-button color="primary" (click)="addMerger()">Add Merger</button>
+        </td>
+    </tr>
+</table>
+<ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 100%;" [rowData]="rowData | async"
+    [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)"
+    (rowDoubleClicked)="onRowDoubleClicked($event)">
+</ag-grid-angular>

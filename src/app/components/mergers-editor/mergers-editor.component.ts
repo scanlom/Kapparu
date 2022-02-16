@@ -3,16 +3,17 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Merger, MergerJournal } from '../merger';
+import { Merger, MergerJournal } from 'src/app/services/merger';
 import * as moment from 'moment';
-import { MergerService } from '../merger.service';
+import { MergerService } from 'src/app/services/merger.service';
+import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
   selector: 'app-mergers-editor',
   templateUrl: './mergers-editor.component.html',
   styleUrls: ['./mergers-editor.component.css']
 })
-export class MergersEditorComponent {
+export class MergersEditorComponent extends KapparuGridComponent {
 
   id: string;
   rowData: any;
@@ -38,15 +39,16 @@ export class MergersEditorComponent {
     { headerName: 'Description', field: 'targetDescription' },
     { headerName: 'Acquirer', field: 'acquirerTicker' },
     { headerName: 'Description', field: 'acquirerDescription' },
-    { headerName: 'Net', field: 'marketNetReturn', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-    { headerName: 'Annualized', field: 'marketNetReturnAnnualized', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-    { headerName: 'Positive', field: 'marketPositiveReturn', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-    { headerName: 'Annualized', field: 'marketPositiveReturnAnnualized', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-    { headerName: 'Confidence', field: 'confidence', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-    { headerName: 'Close', field: 'closeDate' },
+    { headerName: 'Net', field: 'marketNetReturn', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colMergersNetAnnualized,
+    { headerName: 'Positive', field: 'marketPositiveReturn', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Annualized', field: 'marketPositiveReturnAnnualized', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Confidence', field: 'confidence', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Close', field: 'closeDate', valueFormatter: this.dateFormatter },
   ];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private mergerService: MergerService) {
+    super()
   }
 
   ngOnInit() {
@@ -73,17 +75,6 @@ export class MergersEditorComponent {
       this.http.get<MergerJournal[]>('http://localhost:8081/blue-lion/read/enriched-mergers-journal?mergerId=' + this.id).subscribe(
         mergerJournals => this.mergerJournals = mergerJournals
         );
-  }
-
-  onGridReady(params) {
-    params.api.setHeaderHeight(25);
-    var allColIds = params.columnApi.getAllColumns()
-      .map(column => column.colId);
-    params.columnApi.autoSizeColumns(allColIds);
-  }
-
-  onRowDataChanged(params) {
-    this.onGridReady(params)
   }
 
   updateMerger() {
@@ -119,29 +110,6 @@ export class MergersEditorComponent {
       }
     });
   }
-}
-
-function numberFormatter(params) {
-  return params.value.toLocaleString();
-}
-
-function currencyFormatter(params) {
-  return params.value.toLocaleString('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
-}
-
-function percentFormatter(params) {
-  return String((params.value * 100).toFixed(2)) + "%";
-}
-
-function percentIntFormatter(params) {
-  return String((params.value * 100).toFixed(0)) + "%";
-}
-
-function dateFormatter(params) {
-  return moment(params.value).format('YYYY-MM-DD');
 }
 
 /*

@@ -1,0 +1,49 @@
+<input #ticker (keyup.enter)="onEnter(ticker.value)">
+<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="rowData | async"
+  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>symbol</mat-label>
+        <input type="string" matInput [(ngModel)]="symbol">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>symbolAlphaVantage</mat-label>
+        <input type="string" matInput [(ngModel)]="symbolAlphaVantage">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>description</mat-label>
+        <input type="string" matInput [(ngModel)]="description">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>sector</mat-label>
+        <input type="string" matInput [(ngModel)]="sector">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>industry</mat-label>
+        <input type="string" matInput [(ngModel)]="industry">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-checkbox matInput [(ngModel)]="active">Active</mat-checkbox>
+    </td>
+    <td>
+      <mat-checkbox matInput [(ngModel)]="focus">Focus</mat-checkbox>
+    </td>
+  </tr>
+</table>
+<p>
+  <button (click)="updateRefData()">Update RefData</button>
+</p><p>
+  <button (click)="addRefData()">Add RefData</button>
+</p>

@@ -3,15 +3,16 @@ import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 
-import { Projections, ProjectionsJournal } from '../projections';
-import { ProjectionsService } from '../projections.service';
+import { Projections, ProjectionsJournal } from 'src/app/services/projections';
+import { ProjectionsService } from 'src/app/services/projections.service';
+import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
 	selector: 'app-projections-editor',
 	templateUrl: './projections-editor.component.html',
 	styleUrls: ['./projections-editor.component.css']
 })
-export class ProjectionsEditorComponent implements OnChanges {
+export class ProjectionsEditorComponent extends KapparuGridComponent implements OnChanges {
 	projectionsJournals: ProjectionsJournal[] = [];
 
 	@Input() id: number;
@@ -33,7 +34,7 @@ export class ProjectionsEditorComponent implements OnChanges {
 	@Output() changedEvent = new EventEmitter();
 
 	columnDefs = [
-		{ headerName: 'Date', field: 'date', valueFormatter: dateFormatter },
+		this.colProjectionsDate,
 		{ headerName: 'EPS', field: 'eps', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
 		{ headerName: 'DPS', field: 'dps', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
 		{ headerName: 'Growth', field: 'growth', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
@@ -43,31 +44,18 @@ export class ProjectionsEditorComponent implements OnChanges {
 		{ headerName: 'ROE', field: 'roe', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
 		{ headerName: 'EPSYr1', field: 'epsYr1', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
 		{ headerName: 'EPSYr2', field: 'epsYr2', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{
-			headerName: 'Confidence', field: 'confidence', cellStyle: params => {
-				switch (params.value) {
-					case 'H':
-						return { backgroundColor: 'green' };
-					case 'M':
-						return { backgroundColor: 'yellow' };
-					case 'B':
-						return { backgroundColor: 'gray' };
-					case 'L':
-						return { backgroundColor: 'red' };
-				}
-				return null;
-			}
-		},
+		this.colConfidence,
 		{ headerName: 'Price', field: 'price', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
 		{ headerName: 'PE', field: 'pe', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
 		{ headerName: 'EPSYield', field: 'epsYield', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
 		{ headerName: 'DPSYield', field: 'dpsYield', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-		{ headerName: 'CAGR5yr', field: 'cagr5yr', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
+		this.colCAGR5yr,
 		{ headerName: 'CAGR10yr', field: 'cagr10yr', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
 		{ headerName: 'Magic', field: 'magic', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter, headerTooltip: 'cagr5yr' },
 	]
 
 	constructor(private http: HttpClient, private projectionsService: ProjectionsService) {
+		super()
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
@@ -90,17 +78,6 @@ export class ProjectionsEditorComponent implements OnChanges {
 				projectionsJournals => this.projectionsJournals = projectionsJournals
 			);
 		}
-	}
-
-	onGridReady(params) {
-		params.api.setHeaderHeight(25);
-		var allColIds = params.columnApi.getAllColumns()
-			.map(column => column.colId);
-		params.columnApi.autoSizeColumns(allColIds);
-	}
-
-	onRowDataChanged(params) {
-		this.onGridReady(params)
 	}
 
 	addProjections() {
@@ -152,6 +129,7 @@ export class ProjectionsEditorComponent implements OnChanges {
 		const that = this;
 		this.projectionsService.addProjectionsJournal({
 			projectionsId: +this.id,
+			date: this.date,
 			entry: this.entry,
 		} as ProjectionsJournal).subscribe({
 			next(m) {

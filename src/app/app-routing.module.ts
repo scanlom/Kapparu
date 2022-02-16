@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FundamentalsMonitorComponent } from './fundamentals-monitor/fundamentals-monitor.component';
-import { MergersMonitorComponent } from './mergers-monitor/mergers-monitor.component';
-import { MergersEditorComponent } from './mergers-editor/mergers-editor.component';
-import { WatchMonitorComponent } from './watch-monitor/watch-monitor.component';
+import { FundamentalsMonitorComponent } from './components/fundamentals-monitor/fundamentals-monitor.component';
+import { MergersMonitorComponent } from './components/mergers-monitor/mergers-monitor.component';
+import { MergersEditorComponent } from './components/mergers-editor/mergers-editor.component';
+import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
+import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
+import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 
 //This is my case 
 const routes: Routes = [
     {
         path: '',
-        component: WatchMonitorComponent
+        component: PortfoliosMonitorComponent
+    },    {
+        path: 'portfolios-monitor',
+        component: PortfoliosMonitorComponent
     },
     {
         path: 'watch-monitor',
@@ -26,6 +31,10 @@ const routes: Routes = [
     {
         path: 'mergers-editor',
         component: MergersEditorComponent
+    },
+    {
+        path: 'ref-data-editor',
+        component: RefDataEditorComponent
     }
 ];
 

@@ -16,5 +16,6 @@ export interface Projections {
 
 export interface ProjectionsJournal extends Projections {
 	projectionsId: number;
+  date: string;
 	entry: string;
 }

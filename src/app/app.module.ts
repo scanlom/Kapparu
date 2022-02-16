@@ -2,14 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module'; 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FundamentalsEditorComponent } from './fundamentals-editor/fundamentals-editor.component';
-import { FundamentalsMiniEditorComponent } from './fundamentals-mini-editor/fundamentals-mini-editor.component';
-import { ProjectionsEditorComponent } from './projections-editor/projections-editor.component';
-import { FundamentalsMonitorComponent } from './fundamentals-monitor/fundamentals-monitor.component';
-import { MergersMonitorComponent } from './mergers-monitor/mergers-monitor.component';
-import { MergersEditorComponent } from './mergers-editor/mergers-editor.component';
+import { FundamentalsEditorComponent } from './components/fundamentals-editor/fundamentals-editor.component';
+import { FundamentalsMiniEditorComponent } from './components/fundamentals-mini-editor/fundamentals-mini-editor.component';
+import { ProjectionsEditorComponent } from './components/projections-editor/projections-editor.component';
+import { FundamentalsMonitorComponent } from './components/fundamentals-monitor/fundamentals-monitor.component';
+import { MergersMonitorComponent } from './components/mergers-monitor/mergers-monitor.component';
+import { MergersEditorComponent } from './components/mergers-editor/mergers-editor.component';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,7 +19,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { WatchMonitorComponent } from './watch-monitor/watch-monitor.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
+import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
+import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { WatchMonitorComponent } from './watch-monitor/watch-monitor.component';
     MergersMonitorComponent,
     MergersEditorComponent,
     WatchMonitorComponent,
+    RefDataEditorComponent,
+    PortfoliosMonitorComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { WatchMonitorComponent } from './watch-monitor/watch-monitor.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
   ],

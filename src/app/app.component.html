@@ -1,9 +1,16 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <span> Kapparu </span>
-        <button mat-raised-button color="primary" [routerLink]="'/watch-monitor'">Watch</button>
-        <button mat-raised-button color="primary" [routerLink]="'/fundamentals-monitor'">Fundamentals</button>
-        <button mat-raised-button color="primary" [routerLink]="'/mergers-monitor'">Mergers</button>
-    </mat-toolbar-row>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="main-header">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span> Kapparu </span>
+            <button mat-raised-button color="accent" [routerLink]="'/portfolios-monitor'">Home</button>
+            <button mat-raised-button color="accent" [routerLink]="'/watch-monitor'">Watch</button>
+            <button mat-raised-button color="accent" [routerLink]="'/fundamentals-monitor'">Fundamentals</button>
+            <button mat-raised-button color="accent" [routerLink]="'/mergers-monitor'">Mergers</button>
+            <span class="toolbar-spacer"></span>
+            <button mat-raised-button color="primary" [routerLink]="'/ref-data-editor'">Admin</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>

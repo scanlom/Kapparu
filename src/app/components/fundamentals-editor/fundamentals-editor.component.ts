@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { Income } from '../fundamentals';
-import { Balance } from '../fundamentals';
-import { Cashflow } from '../fundamentals';
-import { FundamentalsService } from '../fundamentals.service';
+import { Income } from 'src/app/services/fundamentals';
+import { Balance } from 'src/app/services/fundamentals';
+import { Cashflow } from 'src/app/services/fundamentals';
+import { FundamentalsService } from 'src/app/services/fundamentals.service';
 
 @Component({
   selector: 'app-fundamentals-editor',

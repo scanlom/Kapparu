@@ -10,6 +10,7 @@ import { Merger, MergerJournal } from './merger';
 export class MergerService {
 
   private mergerUrl = 'http://localhost:8083/blue-lion/write/mergers/';
+  private enrichedMergerUrl = 'http://localhost:8083/blue-lion/write/enriched-mergers';
   private mergerJournalUrl = 'http://localhost:8083/blue-lion/write/enriched-mergers-journal';
 
   httpOptions = {
@@ -28,10 +29,18 @@ export class MergerService {
     );
   }
 
+    /** POST: add a merger on the server */
+    addMerger(merger: Merger): Observable<Merger> {
+      return this.http.post<Merger>(this.enrichedMergerUrl, merger, this.httpOptions).pipe(
+        tap((newMerger: Merger) => this.log(`added merger w/ id=${newMerger.id}`)),
+        catchError(this.handleError<Merger>('addMerger'))
+      );
+    }
+
   /** POST: add a merger journal on the server */
   addMergerJournal(mergerJournal: MergerJournal): Observable<MergerJournal> {
     return this.http.post<MergerJournal>(this.mergerJournalUrl, mergerJournal, this.httpOptions).pipe(
-      tap((newMergerJournal: MergerJournal) => this.log(`updated merger journal w/ id=${newMergerJournal.id}`)),
+      tap((newMergerJournal: MergerJournal) => this.log(`added merger journal w/ id=${newMergerJournal.id}`)),
       catchError(this.handleError<MergerJournal>('addMergerJournal'))
     );
   }
