@@ -10,19 +10,16 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
   styleUrls: ['./portfolios-monitor.component.css']
 })
 export class PortfoliosMonitorComponent extends KapparuGridComponent {
-  rowData: any;
-
-  columnDefs = [
-    { headerName: 'Name', field: 'name' },
-    { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-  ];
+  portfolios: any[] = [];
 
   constructor(private http: HttpClient, private router: Router) {
     super();
   }
 
   ngOnInit() {
-    this.rowData = this.http.get('http://localhost:8081/blue-lion/read/portfolios');
+    this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolios').subscribe(
+      portfolios => this.portfolios = portfolios
+    );
   }
 }
 

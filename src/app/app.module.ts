@@ -23,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
+import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PortfoliosMonitorComponent } from './components/portfolios-monitor/port
     WatchMonitorComponent,
     RefDataEditorComponent,
     PortfoliosMonitorComponent,
+    PortfolioMonitorComponent,
   ],
   imports: [
     BrowserModule,
