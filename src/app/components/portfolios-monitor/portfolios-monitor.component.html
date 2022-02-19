@@ -3,16 +3,16 @@
         <app-portfolio-summary style="width: 100%; height: 70px;" [rowData]="[portfolios[0]]">
         </app-portfolio-summary>
         <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 70px;" [rowData]="returns | slice:0:1"
-            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
         </ag-grid-angular>
     </div>
 </div>
 <div class="row">
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 160px;" [rowData]="returns | slice:1:4"
-        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
     </ag-grid-angular>
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 160px;" [rowData]="returns | slice:4"
-        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+        [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
     </ag-grid-angular>
 </div>
 <div class="row">

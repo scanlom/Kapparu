@@ -13,13 +13,12 @@ export class KapparuGridComponent {
 
   onGridReady(params) {
     params.api.setHeaderHeight(25);
-    var allColIds = params.columnApi.getAllColumns()
-      .map(column => column.colId);
-    params.columnApi.autoSizeColumns(allColIds);
   }
 
   onRowDataChanged(params) {
-    this.onGridReady(params)
+    var allColIds = params.columnApi.getAllColumns()
+      .map(column => column.colId);
+    params.columnApi.autoSizeColumns(allColIds);
   }
 
   // Columns
@@ -101,7 +100,8 @@ export class KapparuGridComponent {
   colReturns(headerName, field) {
     return {
       headerName: headerName, 
-      field: field, 
+      field: field,
+      width: 100, 
       cellStyle: this.cellStyleReturns,
       valueFormatter: this.percentFormatter
     }

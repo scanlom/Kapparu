@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -7,14 +7,15 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 @Component({
   selector: 'app-portfolios-monitor',
   templateUrl: './portfolios-monitor.component.html',
-  styleUrls: ['./portfolios-monitor.component.css']
+  styleUrls: ['./portfolios-monitor.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfoliosMonitorComponent extends KapparuGridComponent {
-  portfolios: any[] = [];
-  returns: any[] = [];
+  @Input() portfolios: any[] = [];
+  @Input() returns: any[] = [];
 
   columnDefs = [
-    { headerName: 'Name', field: 'name' },
+    { headerName: 'Name', field: 'name', width: 150 },
     this.colReturns( 'Day',  'oneDay' ),
     this.colReturns( 'Week',  'oneWeek' ),
     this.colReturns( 'Month',  'oneMonth' ),
@@ -24,7 +25,7 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
     this.colReturns( '10 Year',  'tenYears' ),
   ];  
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef) {
     super();
   }
 
@@ -33,7 +34,7 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
       portfolios => this.portfolios = portfolios
     );
     this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolio-returns').subscribe(
-      returns => this.returns = returns
+      returns => { this.returns = returns;  this.cdr.detectChanges(); }
     );
   }
 }
