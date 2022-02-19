@@ -11,6 +11,18 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 })
 export class PortfoliosMonitorComponent extends KapparuGridComponent {
   portfolios: any[] = [];
+  returns: any[] = [];
+
+  columnDefs = [
+    { headerName: 'Name', field: 'name' },
+    this.colReturns( 'Day',  'oneDay' ),
+    this.colReturns( 'Week',  'oneWeek' ),
+    this.colReturns( 'Month',  'oneMonth' ),
+    this.colReturns( '3 Month',  'threeMonths' ),
+    this.colReturns( 'Year',  'oneYear' ),
+    this.colReturns( '5 Year',  'fiveYears' ),
+    this.colReturns( '10 Year',  'tenYears' ),
+  ];  
 
   constructor(private http: HttpClient, private router: Router) {
     super();
@@ -19,6 +31,9 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
   ngOnInit() {
     this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolios').subscribe(
       portfolios => this.portfolios = portfolios
+    );
+    this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolio-returns').subscribe(
+      returns => this.returns = returns
     );
   }
 }

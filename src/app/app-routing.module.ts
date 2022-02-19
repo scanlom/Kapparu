@@ -6,15 +6,21 @@ import { MergersEditorComponent } from './components/mergers-editor/mergers-edit
 import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
+import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
 
 //This is my case 
 const routes: Routes = [
     {
         path: '',
         component: PortfoliosMonitorComponent
-    },    {
+    }, 
+    {
         path: 'portfolios-monitor',
         component: PortfoliosMonitorComponent
+    },
+    {
+        path: 'portfolio-monitor',
+        component: PortfolioMonitorComponent
     },
     {
         path: 'watch-monitor',
@@ -39,7 +45,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -12,6 +12,11 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export class WatchMonitorComponent extends KapparuGridComponent {
   rowData: any;
 
+  defaultColDef = {
+    // set filtering on for all columns
+    filter: true,
+  };
+
   columnDefs = [
     { headerName: 'ID', field: 'id', hide: true },
     this.colProjectionsDate,

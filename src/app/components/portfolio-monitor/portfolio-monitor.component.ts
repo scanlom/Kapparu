@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { map } from 'rxjs';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -9,31 +10,37 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
   templateUrl: './portfolio-monitor.component.html',
   styleUrls: ['./portfolio-monitor.component.css']
 })
-export class PortfolioMonitorComponent extends KapparuGridComponent implements OnChanges  {
+export class PortfolioMonitorComponent extends KapparuGridComponent {
+  portfolioId = 1;
   positions: any[] = [];
   @Input() rowData: any;
 
   columnDefs = [
     { headerName: 'Name', field: 'name' },
     { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-  ];  
-  
+  ];
+
   positionColumnDefs = [
     { headerName: 'Symbol', field: 'symbol' },
     { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ];
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     super();
   }
 
-	ngOnChanges(changes: SimpleChanges) {
-		if (changes.rowData && changes.rowData.currentValue) {
-			this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.rowData[0].id).subscribe(
-				positions => this.positions = positions
-			);
-		}
-	}
+  ngOnInit() {
+    if (this.route.snapshot.paramMap.has('portfolioId')) {
+      this.portfolioId = +this.route.snapshot.paramMap.get('portfolioId');
+    }
+    this.rowData = this.http.get<any>('http://localhost:8081/blue-lion/read/portfolios/' + this.portfolioId).pipe(
+      map((receivedData: any) => {
+        return Array.of(receivedData);
+      }));
+    this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.portfolioId).subscribe(
+      positions => this.positions = positions
+    );
+  }
 }
 
 /*
