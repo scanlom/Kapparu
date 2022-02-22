@@ -47,7 +47,6 @@ export class FundamentalsMiniEditorComponent {
   @Input() netChgCash: number;
 
   constructor(private fundamentalsService: FundamentalsService) {
-	console.log(this.fundamentalsService); // It is defined
  }
 
   addFundamentals() {

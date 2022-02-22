@@ -7,13 +7,14 @@ import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
+import { PortfoliosHistoryMonitorComponent } from './components/portfolios-history-monitor/portfolios-history-monitor.component';
 
 //This is my case 
 const routes: Routes = [
     {
         path: '',
         component: PortfoliosMonitorComponent
-    }, 
+    },
     {
         path: 'portfolios-monitor',
         component: PortfoliosMonitorComponent
@@ -37,6 +38,16 @@ const routes: Routes = [
     {
         path: 'mergers-editor',
         component: MergersEditorComponent
+    },
+    {
+        path: 'portfolios-history-monitor',
+        component: PortfoliosHistoryMonitorComponent,
+        children: [
+            {
+                path: 'portfolios-monitor',
+                component: PortfoliosMonitorComponent,
+            },
+        ]
     },
     {
         path: 'ref-data-editor',

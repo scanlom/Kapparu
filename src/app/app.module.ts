@@ -20,11 +20,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 import { PortfolioSummaryComponent } from './components/portfolio-summary/portfolio-summary.component';
 import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
+import { PortfoliosHistoryMonitorComponent } from './components/portfolios-history-monitor/portfolios-history-monitor.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfo
     PortfoliosMonitorComponent,
     PortfolioSummaryComponent,
     PortfolioMonitorComponent,
+    PortfoliosHistoryMonitorComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,8 @@ import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfo
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
   ],
