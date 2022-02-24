@@ -19,6 +19,7 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
   columnDefs = [
     { headerName: 'Name', field: 'name', width: 150 },
     this.colReturns('Day', 'oneDay'),
+    this.colReturns('YTD', 'yearToDate'),
     this.colReturns('Week', 'oneWeek'),
     this.colReturns('Month', 'oneMonth'),
     this.colReturns('3 Month', 'threeMonths'),

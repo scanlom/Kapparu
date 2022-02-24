@@ -17,7 +17,7 @@
 </div>
 <div class="row">
     <div *ngFor="let portfolio of portfolios | slice:1" class="col">
-        <app-portfolio-summary [rowData]="[portfolio]">
+        <app-portfolio-summary [rowData]="[portfolio]" [historyMode]="historyMode">
         </app-portfolio-summary>
     </div>
 </div>
