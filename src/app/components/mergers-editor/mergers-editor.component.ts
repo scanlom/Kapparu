@@ -34,6 +34,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
   @Input() entry: string;
 
   columnDefs = [
+    { headerName: 'Date', field: 'date', valueFormatter: this.dateFormatter },
     { headerName: 'ID', field: 'id', hide: true },
     { headerName: 'Target', field: 'targetTicker' },
     { headerName: 'Description', field: 'targetDescription' },

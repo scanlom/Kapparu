@@ -46,7 +46,7 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
       });
     }
     else {
-      this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolios').subscribe(
+      this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-portfolios').subscribe(
         portfolios => { this.portfolios = portfolios; this.cdr.detectChanges(); }
       );
       this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolio-returns').subscribe(

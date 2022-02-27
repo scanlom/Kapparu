@@ -33,7 +33,7 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
     if (this.route.snapshot.paramMap.has('portfolioId')) {
       this.portfolioId = +this.route.snapshot.paramMap.get('portfolioId');
     }
-    this.rowData = this.http.get<any>('http://localhost:8081/blue-lion/read/portfolios/' + this.portfolioId).pipe(
+    this.rowData = this.http.get<any>('http://localhost:8081/blue-lion/read/enriched-portfolios/' + this.portfolioId).pipe(
       map((receivedData: any) => {
         return Array.of(receivedData);
       }));

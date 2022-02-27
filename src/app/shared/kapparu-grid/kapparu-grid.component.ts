@@ -12,7 +12,6 @@ export class KapparuGridComponent {
   }
 
   onGridReady(params) {
-    params.api.setHeaderHeight(25);
   }
 
   onRowDataChanged(params) {
@@ -40,7 +39,7 @@ export class KapparuGridComponent {
   }
 
   colCAGR5yr = {
-    headerName: 'CAGR5yr', field: 'cagr5yr', cellStyle: params => {
+    headerName: 'CAGR5yr', field: 'cagr5yr', width: 100, cellStyle: params => {
       var color = "#F1948A"
       if (params.value < 0.05 && params.value >= 0) {
         color = "#FADBD8"
@@ -54,7 +53,7 @@ export class KapparuGridComponent {
   }
 
   colMergersNetAnnualized = {
-    headerName: 'Annualized', field: 'marketNetReturnAnnualized', cellStyle: params => {
+    headerName: 'Annualized', field: 'marketNetReturnAnnualized', width: 100, cellStyle: params => {
       var color = "#F1948A"
       if (params.value < 0.04 && params.value >= 0.02) {
         color = "#FADBD8"
@@ -71,10 +70,8 @@ export class KapparuGridComponent {
     headerName: 'Date', field: 'date', cellStyle: params => {
       var now = new Date()
       var date = new Date(params.value)
-      console.log(typeof params.value)
       var diff = Math.abs(date.getTime() - now.getTime());
       var diffDays = Math.ceil(diff / (1000 * 3600 * 24));
-      console.log(diffDays)
       if (diffDays >= 90) {
         return { backgroundColor: "#F1948A" };
       }
@@ -99,11 +96,30 @@ export class KapparuGridComponent {
 
   colReturns(headerName, field) {
     return {
-      headerName: headerName, 
+      headerName: headerName,
       field: field,
-      width: 100, 
+      width: 100,
       cellStyle: this.cellStyleReturns,
       valueFormatter: this.percentFormatter
+    }
+  }
+
+  colActual(field) {
+    return {
+      headerName: 'Actual', field: field, width: 70, cellStyle: params => {
+        if (params.data['model'] > 0) {
+          var diff = Math.abs(params.value - params.data['model']);
+          var color = "#F1948A"
+          if (diff < 0.02 && diff >= 0.01) {
+            color = "#FADBD8"
+          } else if (diff < 0.01) {
+            color = "#D4EFDF"
+          }
+          return { textAlign: "right", backgroundColor: color };
+        } else {
+          return { textAlign: "right" };
+        }
+      }, valueFormatter: this.percentFormatter
     }
   }
 

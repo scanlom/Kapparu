@@ -12,6 +12,7 @@ export interface Projections {
   epsYr1: number;
   epsYr2: number;
   confidence: string;
+  watch: boolean;
 }
 
 export interface ProjectionsJournal extends Projections {

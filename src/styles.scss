@@ -2,7 +2,11 @@
 @import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
 
 .ag-theme-alpine {
-    @include ag-theme-alpine();
+    @include ag-theme-alpine((
+        grid-size: 2px,
+        row-height: 25px,
+        header-height: 25px
+    ));
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

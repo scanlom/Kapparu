@@ -10,7 +10,10 @@
             (click)="this.currentDisplay = this.currentDisplayType.cashflow">Cashflow</button>
         <button mat-raised-button color="accent"
             (click)="this.currentDisplay = this.currentDisplayType.journal">Journal</button>
-        <input #ticker (keyup.enter)="onEnter(ticker.value)">
+        <mat-form-field appearance="outline">
+            <mat-label>Symbol</mat-label>
+            <input #ticker type="string" matInput (keyup.enter)="onEnter(ticker.value)">
+        </mat-form-field>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -39,5 +42,6 @@
     class="ag-theme-alpine" [rowData]="cashflowRowData | async" [columnDefs]="cashflowColumnDefs"
     (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
 </ag-grid-angular>
-<app-projections-editor *ngIf="currentDisplay == currentDisplayType.journal" (changedEvent)="onProjectionsChanged($event)" [rowData]="projectionsRowData | async">
+<app-projections-editor *ngIf="currentDisplay == currentDisplayType.journal"
+    (changedEvent)="onProjectionsChanged($event)" [rowData]="projectionsRowData | async">
 </app-projections-editor>

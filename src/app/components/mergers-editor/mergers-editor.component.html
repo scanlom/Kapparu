@@ -1,5 +1,5 @@
 <ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="rowData | async"
-  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+  [columnDefs]="columnDefs | slice:1" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
 </ag-grid-angular>
 <table>
   <tr>

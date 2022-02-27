@@ -10,7 +10,10 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
   styleUrls: ['./watch-monitor.component.css']
 })
 export class WatchMonitorComponent extends KapparuGridComponent {
-  rowData: any;
+  positionsData: any;
+  positionsTotalData: any;
+  watchData: any;
+  researchData: any;
 
   defaultColDef = {
     // set filtering on for all columns
@@ -20,17 +23,18 @@ export class WatchMonitorComponent extends KapparuGridComponent {
   columnDefs = [
     { headerName: 'ID', field: 'id', hide: true },
     this.colProjectionsDate,
-    { headerName: 'Ticker', field: 'ticker' },
-    { headerName: 'Description', field: 'description' },
-    { headerName: 'Growth', field: 'growth', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
-    { headerName: 'DivPlusGrowth', field: 'divPlusGrowth', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
-    { headerName: 'EYield', field: 'epsYield', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
-    { headerName: 'DYield', field: 'dpsYield', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Ticker', field: 'ticker', width: 70 },
+    { headerName: 'Description', field: 'description', width: 200 },
+    { headerName: 'Growth', field: 'growth', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'DivPlusGrowth', field: 'divPlusGrowth', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'EYield', field: 'epsYield', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'DYield', field: 'dpsYield', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
     this.colCAGR5yr,
-    { headerName: 'CAGR10yr', field: 'cagr10yr', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
-    { headerName: 'CROE5Yr', field: 'croe5yr', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
-    { headerName: 'CROE10yr', field: 'croe10yr', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'CAGR10yr', field: 'cagr10yr', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'CROE5Yr', field: 'croe5yr', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'CROE10yr', field: 'croe10yr', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
     this.colConfidence,
+    { headerName: '% Selfie', field: 'percentPortfolio', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
   ];
 
   constructor(private http: HttpClient, private router: Router) {
@@ -38,7 +42,10 @@ export class WatchMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.rowData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections');
+    this.positionsData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-positions');
+    this.positionsTotalData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-positions-total');
+    this.watchData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-watch');
+    this.researchData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-research');
   }
 
   onRowDoubleClicked(params) {

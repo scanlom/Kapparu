@@ -16,13 +16,27 @@ export class PortfolioSummaryComponent extends KapparuGridComponent implements O
   @Input() rowData: any;
 
   columnDefs = [
-    { headerName: 'Name', field: 'name', width: 150 },
-    { headerName: 'Value', field: 'value', width: 150, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Name', field: 'name', width: 70 },
+    { headerName: 'Value', field: 'value', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Model', field: 'model', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colActual('percentTotal'),
+  ];
+
+  totalColumnDefs = [
+    { headerName: 'Name', field: 'name', width: 70 },
+    { headerName: 'Value', field: 'value', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'ValueTC', field: 'valueTotalCapital', width: 150, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Cash', field: 'cash', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: '%', field: 'percentCash', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Debt', field: 'debt', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: '%', field: 'percentDebt', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
   ];
 
   positionColumnDefs = [
-    { headerName: 'Symbol', field: 'symbol', width: 150 },
-    { headerName: 'Value', field: 'value', width: 150, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Symbol', field: 'symbol', width: 70 },
+    { headerName: 'Value', field: 'value', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Model', field: 'model', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colActual('percentPortfolio'),
   ];
 
   constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef) {

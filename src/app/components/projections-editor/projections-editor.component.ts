@@ -29,6 +29,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 	@Input() epsYr1: number;
 	@Input() epsYr2: number;
 	@Input() confidence: string;
+	@Input() watch: boolean;
 	@Input() entry: string;
 
 	@Output() changedEvent = new EventEmitter();
@@ -73,6 +74,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 			this.epsYr1 = this.rowData[0].epsYr1;
 			this.epsYr2 = this.rowData[0].epsYr2;
 			this.confidence = this.rowData[0].confidence;
+			this.watch = this.rowData[0].watch;
 
 			this.http.get<ProjectionsJournal[]>('http://localhost:8081/blue-lion/read/enriched-projections-journal?projectionsId=' + this.id).subscribe(
 				projectionsJournals => this.projectionsJournals = projectionsJournals
@@ -97,6 +99,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 				epsYr1: this.epsYr1,
 				epsYr2: this.epsYr2,
 				confidence: this.confidence,
+				watch: this.watch,
 			} as Projections).subscribe({
 				next(m) {
 					that.changedEvent.emit();
@@ -117,6 +120,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 				epsYr1: this.epsYr1,
 				epsYr2: this.epsYr2,
 				confidence: this.confidence,
+				watch: this.watch,
 			} as Projections).subscribe({
 				next(m) {
 					that.changedEvent.emit();
