@@ -15,6 +15,8 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export class ProjectionsEditorComponent extends KapparuGridComponent implements OnChanges {
 	projectionsJournals: ProjectionsJournal[] = [];
 
+	@Input() projectionsJournalId: number = 0;
+	@Input() entry: string = "";
 	@Input() id: number;
 	@Input() rowData: any;
 	@Input() refDataId: number;
@@ -30,29 +32,28 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 	@Input() epsYr2: number;
 	@Input() confidence: string;
 	@Input() watch: boolean;
-	@Input() entry: string;
 
 	@Output() changedEvent = new EventEmitter();
 
 	columnDefs = [
-		this.colProjectionsDate,
-		{ headerName: 'EPS', field: 'eps', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{ headerName: 'DPS', field: 'dps', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{ headerName: 'Growth', field: 'growth', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-		{ headerName: 'PETerminal', field: 'peTerminal', cellStyle: { textAlign: "right" }, valueFormatter: numberFormatter },
-		{ headerName: 'Payout', field: 'payout', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-		{ headerName: 'Book', field: 'book', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{ headerName: 'ROE', field: 'roe', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-		{ headerName: 'EPSYr1', field: 'epsYr1', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{ headerName: 'EPSYr2', field: 'epsYr2', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
+		this.colDate,
+		{ headerName: 'EPS', field: 'eps', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+		{ headerName: 'DPS', field: 'dps', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+		{ headerName: 'Growth', field: 'growth', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+		{ headerName: 'PETerminal', field: 'peTerminal', cellStyle: { textAlign: "right" }, valueFormatter: this.numberFormatter },
+		{ headerName: 'Payout', field: 'payout', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+		{ headerName: 'Book', field: 'book', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+		{ headerName: 'ROE', field: 'roe', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+		{ headerName: 'EPSYr1', field: 'epsYr1', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+		{ headerName: 'EPSYr2', field: 'epsYr2', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
 		this.colConfidence,
-		{ headerName: 'Price', field: 'price', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{ headerName: 'PE', field: 'pe', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter },
-		{ headerName: 'EPSYield', field: 'epsYield', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-		{ headerName: 'DPSYield', field: 'dpsYield', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
+		{ headerName: 'Price', field: 'price', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+		{ headerName: 'PE', field: 'pe', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+		{ headerName: 'EPSYield', field: 'epsYield', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+		{ headerName: 'DPSYield', field: 'dpsYield', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
 		this.colCAGR5yr,
-		{ headerName: 'CAGR10yr', field: 'cagr10yr', cellStyle: { textAlign: "right" }, valueFormatter: percentFormatter },
-		{ headerName: 'Magic', field: 'magic', cellStyle: { textAlign: "right" }, valueFormatter: currencyFormatter, headerTooltip: 'cagr5yr' },
+		{ headerName: 'CAGR10yr', field: 'cagr10yr', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+		{ headerName: 'Magic', field: 'magic', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter, headerTooltip: 'cagr5yr' },
 	]
 
 	constructor(private http: HttpClient, private projectionsService: ProjectionsService) {
@@ -61,7 +62,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.rowData && changes.rowData.currentValue) {
-			this.id = this.rowData[0].id
+			this.id = this.rowData[0].id;
 			this.refDataId = this.rowData[0].refDataId;
 			this.date = moment().format("YYYY-MM-DD");
 			this.eps = this.rowData[0].eps;
@@ -83,7 +84,6 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 	}
 
 	addProjections() {
-		console.log(this.refDataId)
 		const that = this;
 		if (this.id == 0) {
 			this.projectionsService.addProjections({
@@ -131,39 +131,52 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 
 	addProjectionsJournal() {
 		const that = this;
-		this.projectionsService.addProjectionsJournal({
-			projectionsId: +this.id,
-			date: this.date,
-			entry: this.entry,
+		if (this.projectionsJournalId == 0) {
+			this.projectionsService.addProjectionsJournal({
+				projectionsId: +this.id,
+				date: this.date,
+				entry: this.entry,
+			} as ProjectionsJournal).subscribe({
+				next(m) {
+					that.clearProjectionsJournal();
+					that.changedEvent.emit();
+				}
+			});
+		} else {
+			this.projectionsService.updateProjectionsJournal({
+				id: this.projectionsJournalId,
+				entry: this.entry,
+			} as ProjectionsJournal).subscribe({
+				next(m) {
+					that.clearProjectionsJournal();
+					that.changedEvent.emit();
+				}
+			});
+		}
+	}
+
+	deleteProjectionsJournal(projectionsJournal: ProjectionsJournal) {
+		const that = this;
+		this.projectionsService.deleteProjectionsJournal({
+			id: projectionsJournal.id,
 		} as ProjectionsJournal).subscribe({
 			next(m) {
 				that.changedEvent.emit();
 			}
 		});
 	}
-}
 
-function numberFormatter(params) {
-	return params.value.toLocaleString();
-}
+	editProjectionsJournal(projectionsJournal: ProjectionsJournal) {
+		// This is not a server txn, we're just updating the ui edit box
+		this.entry = projectionsJournal.entry
+		this.projectionsJournalId = projectionsJournal.id
+	}
 
-function currencyFormatter(params) {
-	return params.value.toLocaleString('en-US', {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-	});
-}
-
-function percentFormatter(params) {
-	return String((params.value * 100).toFixed(2)) + "%";
-}
-
-function percentIntFormatter(params) {
-	return String((params.value * 100).toFixed(0)) + "%";
-}
-
-function dateFormatter(params) {
-	return moment(params.value).format('YYYY-MM-DD');
+	clearProjectionsJournal() {
+		// This is not a server txn, we're just updating the ui edit box
+		this.entry = ""
+		this.projectionsJournalId = 0
+	}
 }
 
 /*

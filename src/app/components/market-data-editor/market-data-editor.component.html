@@ -1,0 +1,25 @@
+<input #ticker (keyup.enter)="onEnter(ticker.value)">
+<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="rowData | async"
+  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>refDataId</mat-label>
+        <input type="number" matInput [(ngModel)]="refDataId">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>last</mat-label>
+        <input type="number" matInput [(ngModel)]="last">
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+<p>
+  <button (click)="updateMarketData()">Update MarketData</button>
+</p><p>
+  <button (click)="addMarketData()">Add MarketData</button>
+</p>

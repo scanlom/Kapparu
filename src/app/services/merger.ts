@@ -1,5 +1,6 @@
 export interface Merger {
 	id: number;
+	date: string;
 	acquirerRefDataId: number;
 	targetRefDataId: number;
 	dealPrice: number;

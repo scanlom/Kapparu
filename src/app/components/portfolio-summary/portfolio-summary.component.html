@@ -1,9 +1,9 @@
-<ag-grid-angular *ngIf="positions.length > 0" class="ag-theme-alpine" style="width: 100%; height: 70px;" [rowData]="rowData"
+<ag-grid-angular *ngIf="positions.length > 0" class="ag-theme-alpine" style="width: 100%; height: 53px;" [rowData]="rowData"
     [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDoubleClicked)="onPortfolioRowDoubleClicked($event)">
 </ag-grid-angular>
-<ag-grid-angular *ngIf="positions.length == 0" class="ag-theme-alpine" style="width: 100%; height: 70px;" [rowData]="rowData"
+<ag-grid-angular *ngIf="positions.length == 0" class="ag-theme-alpine" style="width: 100%; height: 53px;" [rowData]="rowData"
     [columnDefs]="totalColumnDefs" (gridReady)="onGridReady($event)" (rowDoubleClicked)="onPortfolioRowDoubleClicked($event)">
 </ag-grid-angular>
 <ag-grid-angular *ngIf="positions.length > 0" style="width: 100%;" domLayout="autoHeight" class="ag-theme-alpine" [rowData]="positions"
-    [columnDefs]="positionColumnDefs" (gridReady)="onGridReady($event)">
+    [columnDefs]="positionColumnDefs" (gridReady)="onGridReady($event)" (rowDoubleClicked)="onPositionRowDoubleClicked($event)">
 </ag-grid-angular>

@@ -23,11 +23,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
+import { AdminEditorComponent } from './components/admin-editor/admin-editor.component';
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
+import { MarketDataEditorComponent } from './components/market-data-editor/market-data-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 import { PortfolioSummaryComponent } from './components/portfolio-summary/portfolio-summary.component';
 import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
 import { PortfoliosHistoryMonitorComponent } from './components/portfolios-history-monitor/portfolios-history-monitor.component';
+import { PositionMonitorComponent } from './components/position-monitor/position-monitor.component';
+import { TransactionsMonitorComponent } from './components/transactions-monitor/transactions-monitor.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +43,15 @@ import { PortfoliosHistoryMonitorComponent } from './components/portfolios-histo
     MergersMonitorComponent,
     MergersEditorComponent,
     WatchMonitorComponent,
+    AdminEditorComponent,
     RefDataEditorComponent,
+    MarketDataEditorComponent,
     PortfoliosMonitorComponent,
     PortfolioSummaryComponent,
     PortfolioMonitorComponent,
     PortfoliosHistoryMonitorComponent,
+    PositionMonitorComponent,
+    TransactionsMonitorComponent,
   ],
   imports: [
     BrowserModule,

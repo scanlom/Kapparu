@@ -29,19 +29,35 @@ export class MergerService {
     );
   }
 
-    /** POST: add a merger on the server */
-    addMerger(merger: Merger): Observable<Merger> {
-      return this.http.post<Merger>(this.enrichedMergerUrl, merger, this.httpOptions).pipe(
-        tap((newMerger: Merger) => this.log(`added merger w/ id=${newMerger.id}`)),
-        catchError(this.handleError<Merger>('addMerger'))
-      );
-    }
+  /** POST: add a merger on the server */
+  addMerger(merger: Merger): Observable<Merger> {
+    return this.http.post<Merger>(this.enrichedMergerUrl, merger, this.httpOptions).pipe(
+      tap((newMerger: Merger) => this.log(`added merger w/ id=${newMerger.id}`)),
+      catchError(this.handleError<Merger>('addMerger'))
+    );
+  }
 
   /** POST: add a merger journal on the server */
   addMergerJournal(mergerJournal: MergerJournal): Observable<MergerJournal> {
     return this.http.post<MergerJournal>(this.mergerJournalUrl, mergerJournal, this.httpOptions).pipe(
       tap((newMergerJournal: MergerJournal) => this.log(`added merger journal w/ id=${newMergerJournal.id}`)),
       catchError(this.handleError<MergerJournal>('addMergerJournal'))
+    );
+  }
+
+  /** PUT: update merger journal on the server */
+  updateMergerJournal(mergerJournal: MergerJournal): Observable<MergerJournal> {
+    return this.http.put<MergerJournal>(this.mergerJournalUrl + "/" + mergerJournal.id, mergerJournal, this.httpOptions).pipe(
+      tap((newMergerJournal: MergerJournal) => this.log(`updated Merger journal w/ id=${newMergerJournal.id}`)),
+      catchError(this.handleError<MergerJournal>('updateMergerJournal'))
+    );
+  }
+
+  /** DELETE: delete a merger journal on the server */
+  deleteMergerJournal(mergerJournal: MergerJournal): Observable<MergerJournal> {
+    return this.http.delete<MergerJournal>(this.mergerJournalUrl + "/" + mergerJournal.id).pipe(
+      tap(() => this.log(`deleted Merger journal`)),
+      catchError(this.handleError<MergerJournal>('deleteMergerJournal'))
     );
   }
 

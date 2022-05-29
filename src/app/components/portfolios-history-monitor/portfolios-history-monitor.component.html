@@ -1,7 +1,7 @@
 <div class="main-header">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="onDateChange($event)">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date" style="width: 100px;" (dateChange)="onDateChange($event)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <button mat-raised-button color="accent" (click)="onClickDownOneDay($event)">&lt;&lt;</button>

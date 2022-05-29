@@ -1,5 +1,5 @@
-<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="rowData | async"
-  [columnDefs]="columnDefs | slice:1" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="rowData | async"
+  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
 </ag-grid-angular>
 <table>
   <tr>
@@ -57,6 +57,9 @@
 </table>
 <table>
   <tr>
+    <td>Jounral Entry: {{mergerJournalId}}</td>
+  </tr>
+  <tr>
     <td>
       <mat-form-field appearance="outline" style="width:98vw">
         <textarea matInput [(ngModel)]="entry"></textarea>
@@ -65,14 +68,18 @@
   </tr>
   <tr>
     <td>
-      <button (click)="addMergerJournal()">Add Journal Entry</button>
+      <button (click)="addMergerJournal()">Update Journal Entry</button>
+      <button (click)="clearMergerJournal()">Clear</button>
     </td>
   </tr>
 </table>
 
 <div *ngFor="let mergerJournal of mergerJournals">
-  <ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="[mergerJournal]"
-    [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+  <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="[mergerJournal]"
+    [columnDefs]="columnDefsJournal" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
   </ag-grid-angular>
-  <span style="display: inline-block; margin: 20px; white-space: pre-line;">{{mergerJournal.entry}}</span>
+  <span style="display: inline-block; margin: 20px; white-space: pre-wrap;">{{mergerJournal.entry}}</span>
+  <br>
+  <button (click)="deleteMergerJournal(mergerJournal)">Delete</button>
+  <button (click)="editMergerJournal(mergerJournal)">Edit...</button>
 </div>

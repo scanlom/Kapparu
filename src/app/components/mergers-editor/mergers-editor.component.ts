@@ -20,6 +20,9 @@ export class MergersEditorComponent extends KapparuGridComponent {
   mergerJournals: MergerJournal[] = [];
 
   // Inputs
+  @Input() mergerJournalId: number = 0;
+  @Input() entry: string = "";
+  @Input() date: string;
   @Input() acquirerRefDataId: number;
   @Input() targetRefDataId: number;
   @Input() dealPrice: number;
@@ -31,15 +34,31 @@ export class MergersEditorComponent extends KapparuGridComponent {
   @Input() breakDate: string;
   @Input() confidence: number;
   @Input() dividends: number;
-  @Input() entry: string;
 
   columnDefs = [
-    { headerName: 'Date', field: 'date', valueFormatter: this.dateFormatter },
     { headerName: 'ID', field: 'id', hide: true },
+    this.colUpdateDate,
     { headerName: 'Target', field: 'targetTicker' },
     { headerName: 'Description', field: 'targetDescription' },
     { headerName: 'Acquirer', field: 'acquirerTicker' },
     { headerName: 'Description', field: 'acquirerDescription' },
+    { headerName: 'Price', field: 'price', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+    { headerName: 'Net', field: 'marketNetReturn', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colMergersNetAnnualized,
+    { headerName: 'Positive', field: 'marketPositiveReturn', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Annualized', field: 'marketPositiveReturnAnnualized', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Confidence', field: 'confidence', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Close', field: 'closeDate', valueFormatter: this.dateFormatter },
+  ];
+
+  columnDefsJournal = [
+    { headerName: 'ID', field: 'id', hide: true },
+    this.colDate,
+    { headerName: 'Target', field: 'targetTicker' },
+    { headerName: 'Description', field: 'targetDescription' },
+    { headerName: 'Acquirer', field: 'acquirerTicker' },
+    { headerName: 'Description', field: 'acquirerDescription' },
+    { headerName: 'Price', field: 'price', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
     { headerName: 'Net', field: 'marketNetReturn', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
     this.colMergersNetAnnualized,
     { headerName: 'Positive', field: 'marketPositiveReturn', cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
@@ -54,13 +73,10 @@ export class MergersEditorComponent extends KapparuGridComponent {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.entry = ""
     this.rowData = this.http.get<Merger>('http://localhost:8081/blue-lion/read/enriched-mergers/' + this.id).pipe(
       map((receivedData: Merger) => {
-        // Inputs
+        this.date = moment().format("YYYY-MM-DD");
         this.confidence = receivedData.confidence;
-
-        // Pass Thrus
         this.acquirerRefDataId = receivedData.acquirerRefDataId;
         this.targetRefDataId = receivedData.targetRefDataId;
         this.dealPrice = receivedData.dealPrice;
@@ -82,6 +98,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
     const that = this;
     this.mergerService.updateMerger({
       id: +this.id,
+      date: this.date,
       acquirerRefDataId: this.acquirerRefDataId,
       targetRefDataId: this.targetRefDataId,
       dealPrice: this.dealPrice,
@@ -102,15 +119,52 @@ export class MergersEditorComponent extends KapparuGridComponent {
   
   addMergerJournal() {
     const that = this;
-    this.mergerService.addMergerJournal({
-      mergerId: +this.id,
-      entry: this.entry,
-    } as MergerJournal).subscribe({
-      next(m) {
-        that.ngOnInit()
-      }
-    });
+    if (this.mergerJournalId == 0) {
+      this.mergerService.addMergerJournal({
+        mergerId: +this.id,
+        date: this.date,
+        entry: this.entry,
+      } as MergerJournal).subscribe({
+        next(m) {
+          that.clearMergerJournal();
+          that.ngOnInit();
+        }
+      });
+    } else {
+			this.mergerService.updateMergerJournal({
+				id: this.mergerJournalId,
+				entry: this.entry,
+			} as MergerJournal).subscribe({
+				next(m) {
+          that.clearMergerJournal();
+          that.ngOnInit()
+				}
+			});      
+    }
   }
+
+  deleteMergerJournal(mergerJournal: MergerJournal) {
+		const that = this;
+		this.mergerService.deleteMergerJournal({
+			id: mergerJournal.id,
+		} as MergerJournal).subscribe({
+			next(m) {
+				that.ngOnInit()
+			}
+		});
+	}
+
+	editMergerJournal(mergerJournal: MergerJournal) {
+		// This is not a server txn, we're just updating the ui edit box
+		this.entry = mergerJournal.entry
+		this.mergerJournalId = mergerJournal.id
+	}
+
+	clearMergerJournal() {
+		// This is not a server txn, we're just updating the ui edit box
+		this.entry = ""
+		this.mergerJournalId = 0
+	}
 }
 
 /*

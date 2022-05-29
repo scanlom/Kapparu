@@ -27,6 +27,7 @@ export class ProjectionsService {
       catchError(this.handleError<Projections>('addProjections'))
     );
   }
+  
   /** PUT: update projections on the server */
   updateProjections(projections: Projections): Observable<Projections> {
     return this.http.put<Projections>(this.projectionsUrl + "/" + projections.id, projections, this.httpOptions).pipe(
@@ -38,8 +39,24 @@ export class ProjectionsService {
   /** POST: add a projections journal on the server */
   addProjectionsJournal(projectionsJournal: ProjectionsJournal): Observable<ProjectionsJournal> {
     return this.http.post<ProjectionsJournal>(this.projectionsJournalUrl, projectionsJournal, this.httpOptions).pipe(
-      tap((newProjectionsJournal: ProjectionsJournal) => this.log(`updated projections journal w/ id=${newProjectionsJournal.id}`)),
+      tap((newProjectionsJournal: ProjectionsJournal) => this.log(`added projections journal w/ id=${newProjectionsJournal.id}`)),
       catchError(this.handleError<ProjectionsJournal>('addProjectionsJournal'))
+    );
+  }
+
+  /** PUT: update projections journal on the server */
+  updateProjectionsJournal(projectionsJournal: ProjectionsJournal): Observable<ProjectionsJournal> {
+    return this.http.put<ProjectionsJournal>(this.projectionsJournalUrl + "/" + projectionsJournal.id, projectionsJournal, this.httpOptions).pipe(
+      tap((newProjectionsJournal: ProjectionsJournal) => this.log(`updated projections journal w/ id=${newProjectionsJournal.id}`)),
+      catchError(this.handleError<ProjectionsJournal>('updateProjectionsJournal'))
+    );
+  }
+
+  /** DELETE: delete a projections journal on the server */
+  deleteProjectionsJournal(projectionsJournal: ProjectionsJournal): Observable<ProjectionsJournal> {
+    return this.http.delete<ProjectionsJournal>(this.projectionsJournalUrl + "/" + projectionsJournal.id).pipe(
+      tap(() => this.log(`deleted projections journal`)),
+      catchError(this.handleError<ProjectionsJournal>('deleteProjectionsJournal'))
     );
   }
 

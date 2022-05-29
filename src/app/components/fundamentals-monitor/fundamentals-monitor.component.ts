@@ -53,7 +53,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 	]
 
 	projectionsColumnDefs = [
-	    {headerName: 'Date', field: 'date', valueFormatter: this.dateFormatter},
+	    this.colUpdateDate,
         {headerName: 'EPS', field: 'eps', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
         {headerName: 'DPS', field: 'dps', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
         {headerName: 'Growth', field: 'growth', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},

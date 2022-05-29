@@ -22,7 +22,7 @@ export class WatchMonitorComponent extends KapparuGridComponent {
 
   columnDefs = [
     { headerName: 'ID', field: 'id', hide: true },
-    this.colProjectionsDate,
+    this.colUpdateDate,
     { headerName: 'Ticker', field: 'ticker', width: 70 },
     { headerName: 'Description', field: 'description', width: 200 },
     { headerName: 'Growth', field: 'growth', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },

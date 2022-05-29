@@ -70,6 +70,9 @@
 </p>
 <table>
   <tr>
+    <td>Jounral Entry: {{projectionsJournalId}}</td>
+  </tr>
+  <tr>
     <td>
       <mat-form-field appearance="outline" style="width:98vw">
         <textarea matInput [(ngModel)]="entry"></textarea>
@@ -78,14 +81,18 @@
   </tr>
   <tr>
     <td>
-      <button (click)="addProjectionsJournal()">Add Journal Entry</button>
+      <button (click)="addProjectionsJournal()">Update Journal Entry</button>
+      <button (click)="clearProjectionsJournal()">Clear</button>
     </td>
   </tr>
 </table>
 
 <div *ngFor="let projectionsJournal of projectionsJournals">
- <ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="[projectionsJournal]"
+ <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="[projectionsJournal]"
     [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
   </ag-grid-angular>
   <span style="display: inline-block; margin: 20px; white-space: pre-wrap;">{{projectionsJournal.entry}}</span>
+  <br>
+  <button (click)="deleteProjectionsJournal(projectionsJournal)">Delete</button>
+  <button (click)="editProjectionsJournal(projectionsJournal)">Edit...</button>
 </div>

@@ -41,6 +41,10 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
       positions => this.positions = positions
     );
   }
+
+  onPositionRowDoubleClicked(params) {
+    this.router.navigate(['/position-monitor', { positionId: params.data.id }]);
+  }
 }
 
 /*

@@ -4,10 +4,12 @@ import { FundamentalsMonitorComponent } from './components/fundamentals-monitor/
 import { MergersMonitorComponent } from './components/mergers-monitor/mergers-monitor.component';
 import { MergersEditorComponent } from './components/mergers-editor/mergers-editor.component';
 import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
-import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
+import { AdminEditorComponent } from './components/admin-editor/admin-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
 import { PortfoliosHistoryMonitorComponent } from './components/portfolios-history-monitor/portfolios-history-monitor.component';
+import { PositionMonitorComponent } from './components/position-monitor/position-monitor.component';
+import { TransactionsMonitorComponent } from './components/transactions-monitor/transactions-monitor.component';
 
 //This is my case 
 const routes: Routes = [
@@ -22,6 +24,10 @@ const routes: Routes = [
     {
         path: 'portfolio-monitor',
         component: PortfolioMonitorComponent
+    },
+    {
+        path: 'position-monitor',
+        component: PositionMonitorComponent
     },
     {
         path: 'watch-monitor',
@@ -40,6 +46,10 @@ const routes: Routes = [
         component: MergersEditorComponent
     },
     {
+        path: 'transactions-monitor',
+        component: TransactionsMonitorComponent
+    },
+    {
         path: 'portfolios-history-monitor',
         component: PortfoliosHistoryMonitorComponent,
         children: [
@@ -50,8 +60,8 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'ref-data-editor',
-        component: RefDataEditorComponent
+        path: 'admin-editor',
+        component: AdminEditorComponent
     }
 ];
 

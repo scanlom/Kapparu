@@ -20,6 +20,13 @@ export class KapparuGridComponent {
     params.columnApi.autoSizeColumns(allColIds);
   }
 
+  // Widths
+
+  percentWidth = 100;
+  dateWidth = 100;
+  tickerWidth = 100;
+  descriptionWidth = 200;
+
   // Columns
 
   colConfidence = {
@@ -53,7 +60,7 @@ export class KapparuGridComponent {
   }
 
   colMergersNetAnnualized = {
-    headerName: 'Annualized', field: 'marketNetReturnAnnualized', width: 100, cellStyle: params => {
+    headerName: 'Annualized', field: 'marketNetReturnAnnualized', width: this.percentWidth, cellStyle: params => {
       var color = "#F1948A"
       if (params.value < 0.04 && params.value >= 0.02) {
         color = "#FADBD8"
@@ -66,8 +73,8 @@ export class KapparuGridComponent {
     }, valueFormatter: this.percentFormatter
   }
 
-  colProjectionsDate = {
-    headerName: 'Date', field: 'date', cellStyle: params => {
+  colUpdateDate = {
+    headerName: 'Date', field: 'date', width: this.dateWidth, cellStyle: params => {
       var now = new Date()
       var date = new Date(params.value)
       var diff = Math.abs(date.getTime() - now.getTime());
@@ -80,6 +87,10 @@ export class KapparuGridComponent {
       }
       return null;
     }, valueFormatter: this.dateFormatter
+  }
+
+  colDate = {
+    headerName: 'Date', field: 'date', width: this.dateWidth, valueFormatter: this.dateFormatter
   }
 
   cellStyleReturns = params => {
@@ -136,6 +147,13 @@ export class KapparuGridComponent {
     });
   }
 
+  divisorFormatter(params) {
+    return params.value.toLocaleString('en-US', {
+      minimumFractionDigits: 8,
+      maximumFractionDigits: 8
+    });
+  }
+
   percentFormatter(params) {
     return String((params.value * 100).toFixed(2)) + "%";
   }
@@ -146,6 +164,40 @@ export class KapparuGridComponent {
 
   dateFormatter(params) {
     return moment(params.value).format('YYYY-MM-DD');
+  }
+
+  transactionTypeFormatter(params) {
+    switch (params.value) {
+      case 1:
+        return "Buy";
+      case 2:
+        return "Sell";
+      case 3:
+        return "Dividend";
+    }
+  }
+
+  portfolioIdFormatter(params) {
+    switch (params.value) {
+      case 1:
+        return "Total";
+      case 2:
+        return "Selfie";
+      case 3:
+        return "Oak";
+      case 4:
+        return "Managed";
+      case 5:
+        return "Risk Arb";
+      case 6:
+        return "Trade Fin";
+      case 7:
+        return "Quick";
+      case 8:
+        return "Portfolio";
+      case 99:
+        return "None";
+    }
   }
 }
 

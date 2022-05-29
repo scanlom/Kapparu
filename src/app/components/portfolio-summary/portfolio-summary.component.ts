@@ -59,7 +59,19 @@ export class PortfolioSummaryComponent extends KapparuGridComponent implements O
   }
 
   onPortfolioRowDoubleClicked(params) {
-    this.router.navigate(['/portfolio-monitor', { portfolioId: this.rowData[0].id }]);
+    if (this.historyMode) {
+      this.router.navigate(['/portfolio-monitor', { portfolioId: params.data.portfolioId }]);
+    } else {
+      this.router.navigate(['/portfolio-monitor', { portfolioId: params.data.id }]);
+    }
+  }
+
+  onPositionRowDoubleClicked(params) {
+    if (this.historyMode) {
+      this.router.navigate(['/position-monitor', { positionId: params.data.positionId }]);
+    } else {
+      this.router.navigate(['/position-monitor', { positionId: params.data.id }]);
+    }
   }
 }
 

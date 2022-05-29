@@ -1,5 +1,5 @@
 <input #ticker (keyup.enter)="onEnter(ticker.value)">
-<ag-grid-angular style="width: 100%; height: 70px;" class="ag-theme-alpine" [rowData]="rowData | async"
+<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="rowData | async"
   [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
 </ag-grid-angular>
 <table>
