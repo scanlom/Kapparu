@@ -23,6 +23,7 @@ export class KapparuGridComponent {
   // Widths
 
   percentWidth = 100;
+  valueWidth = 100;
   dateWidth = 100;
   tickerWidth = 100;
   descriptionWidth = 200;
@@ -141,17 +142,23 @@ export class KapparuGridComponent {
   }
 
   currencyFormatter(params) {
-    return params.value.toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
+    if(params != null && params.value != null) {
+      return params.value.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+    return "";
   }
 
   divisorFormatter(params) {
-    return params.value.toLocaleString('en-US', {
-      minimumFractionDigits: 8,
-      maximumFractionDigits: 8
-    });
+    if(params != null && params.value != null) {
+      return params.value.toLocaleString('en-US', {
+        minimumFractionDigits: 8,
+        maximumFractionDigits: 8
+      });
+    }
+    return "";
   }
 
   percentFormatter(params) {
@@ -174,6 +181,12 @@ export class KapparuGridComponent {
         return "Sell";
       case 3:
         return "Dividend";
+      case 4:
+        return "Cash Infusion";
+      case 5:
+        return "Debt Infusion";
+      case 6:
+        return "Interest";
     }
   }
 

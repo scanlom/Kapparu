@@ -11,17 +11,40 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export class TransactionsMonitorComponent extends KapparuGridComponent {
   txns: any[] = [];
 
+  defaultColDef = {
+    // set filtering on for all columns
+    filter: true,
+  };
+
   columnDefs = [
-    { headerName: 'Date', field: 'date', valueFormatter: this.dateFormatter },
-    { headerName: 'Type', field: 'type', valueFormatter: this.transactionTypeFormatter },
-    { headerName: 'Portfolio', field: 'portfolioId', valueFormatter: this.portfolioIdFormatter },
-    { headerName: 'Symbol', field: 'positionAfter.symbol' },
-    { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'CostBasis', field: 'positionAfter.costBasis', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'TotalCashInfusion', field: 'positionAfter.totalCashInfusion', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'CumDivs', field: 'positionAfter.accumulatedDividends', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'Index', field: 'positionAfter.index', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'Divisor', field: 'positionAfter.divisor', cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
+    { headerName: 'Date', field: 'date', width: this.dateWidth, valueFormatter: this.dateFormatter },
+    { headerName: 'Type', field: 'type', width: this.tickerWidth, valueFormatter: this.transactionTypeFormatter },
+    { headerName: 'Portfolio', field: 'portfolioId', width: this.tickerWidth, valueFormatter: this.portfolioIdFormatter },
+    { headerName: 'Symbol', field: 'positionAfter.symbol', width: this.tickerWidth },
+    { headerName: 'TxnQty', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'TxnValue', field: 'value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosBCostBasis', field: 'positionBefore.costBasis', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosBTCI', field: 'positionBefore.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosBCumDivs', field: 'positionBefore.accumulatedDividends', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosBQty', field: 'positionBefore.quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosBValue', field: 'positionBefore.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosBDivisor', field: 'positionBefore.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
+    { headerName: 'PosBIndex', field: 'positionBefore.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosACostBasis', field: 'positionAfter.costBasis', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosATCI', field: 'positionAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosACumDivs', field: 'positionAfter.accumulatedDividends', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosAQuantity', field: 'positionAfter.quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosAValue', field: 'positionAfter.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PosADivisor', field: 'positionAfter.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
+    { headerName: 'PosAIndex', field: 'positionAfter.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PortBTCI', field: 'portfolioAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PortBValue', field: 'portfolioBefore.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PortBDivisor', field: 'portfolioBefore.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
+    { headerName: 'PortBIndex', field: 'portfolioBefore.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PortATCI', field: 'portfolioAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PortAValue', field: 'portfolioAfter.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'PortADivisor', field: 'portfolioAfter.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
+    { headerName: 'PortAIndex', field: 'portfolioAfter.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ];
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {

@@ -13,11 +13,29 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export class PortfolioMonitorComponent extends KapparuGridComponent {
   portfolioId = 1;
   positions: any[] = [];
+  returns: any;
   @Input() rowData: any;
 
   columnDefs = [
     { headerName: 'Name', field: 'name' },
-    { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Value', field: 'value', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Model', field: 'model', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colActual('percentTotal'),
+    { headerName: 'Cash', field: 'cash', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: '%', field: 'percentCash', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+  ];
+
+  returnsColumnDefs = [
+    this.colReturns('Day', 'oneDay'),
+    this.colReturns('YTD', 'yearToDate'),
+    this.colReturns('Week', 'oneWeek'),
+    this.colReturns('Month', 'oneMonth'),
+    this.colReturns('3 Month', 'threeMonths'),
+    this.colReturns('Year', 'oneYear'),
+    this.colReturns('5 Year', 'fiveYears'),
+    this.colReturns('10 Year', 'tenYears'),
+    { headerName: 'Profit YTD', field: 'profitYearToDate', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Profit Lifetime', field: 'profitLifetime', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ];
 
   positionColumnDefs = [
@@ -37,6 +55,9 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
       map((receivedData: any) => {
         return Array.of(receivedData);
       }));
+    this.http.get<any>('http://localhost:8081/blue-lion/read/portfolio-returns/' + this.portfolioId).subscribe(
+      returns => this.returns = returns
+    );
     this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.portfolioId).subscribe(
       positions => this.positions = positions
     );
