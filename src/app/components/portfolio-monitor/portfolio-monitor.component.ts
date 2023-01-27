@@ -13,6 +13,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export class PortfolioMonitorComponent extends KapparuGridComponent {
   portfolioId = 1;
   positions: any[] = [];
+  txns: any[] = [];
   returns: any;
   @Input() rowData: any;
 
@@ -40,7 +41,19 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
 
   positionColumnDefs = [
     { headerName: 'Symbol', field: 'symbol' },
+    { headerName: 'Price', field: 'price', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Quantity', field: 'quantity', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
     { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Model', field: 'model', width: 70, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colActual('percentPortfolio'),
+  ];
+
+  txnColumnDefs = [
+    { headerName: 'Date', field: 'date', width: this.dateWidth, valueFormatter: this.dateFormatter },
+    { headerName: 'Type', field: 'type', width: this.tickerWidth, valueFormatter: this.transactionTypeFormatter },
+    { headerName: 'Symbol', field: 'positionAfter.symbol', width: this.tickerWidth },
+    { headerName: 'TxnQty', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'TxnValue', field: 'value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ];
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
@@ -60,6 +73,9 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
     );
     this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.portfolioId).subscribe(
       positions => this.positions = positions
+    );
+    this.http.get<any[]>('http://localhost:8081/blue-lion/read/transactions?portfolioId=' + this.portfolioId).subscribe(
+      txns => this.txns = txns
     );
   }
 
