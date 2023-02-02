@@ -29,7 +29,13 @@ export class AdminEditorComponent extends KapparuGridComponent {
     {
       headerName: 'Profit',
       field: 'profit',
-      valueGetter: params => params.data.value + params.data.accumulatedDividends - params.data.totalCashInfusion,
+      valueGetter: params => {
+        var ret = 0
+        if (params.data.divisor != 0) {
+          ret = params.data.value + params.data.accumulatedDividends - params.data.totalCashInfusion
+        }
+        return ret
+      },
       cellStyle: { textAlign: "right" }, 
       valueFormatter: this.currencyFormatter,
     },  
@@ -44,6 +50,10 @@ export class AdminEditorComponent extends KapparuGridComponent {
     this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions-all').subscribe(
       positions => this.positions = positions
     );
+  }
+
+  onPositionRowDoubleClicked(params) {
+    this.router.navigate(['/position-monitor', { positionId: params.data.id }]);
   }
 }
 

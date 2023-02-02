@@ -2,6 +2,9 @@
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 53px;" [rowData]="[ position ]"
         [columnDefs]="columnDefs">
     </ag-grid-angular>
+    <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 53px;" [rowData]="[ returns ]"
+        [columnDefs]="returnsColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    </ag-grid-angular>
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%;" domLayout="autoHeight" [rowData]="txns"
         [columnDefs]="txnsColumnDefs">
     </ag-grid-angular>

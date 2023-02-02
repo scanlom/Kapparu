@@ -49,11 +49,22 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
   ];
 
   txnColumnDefs = [
-    { headerName: 'Date', field: 'date', width: this.dateWidth, valueFormatter: this.dateFormatter },
-    { headerName: 'Type', field: 'type', width: this.tickerWidth, valueFormatter: this.transactionTypeFormatter },
-    { headerName: 'Symbol', field: 'positionAfter.symbol', width: this.tickerWidth },
-    { headerName: 'TxnQty', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'TxnValue', field: 'value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    this.colDate,
+    this.colTransactionType,
+    this.colValue,
+    { headerName: 'Before', field: 'portfolioBefore.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'After', field: 'portfolioAfter.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'TotalCashInfusion', field: 'portfolioAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    {
+      headerName: 'Profit',
+      field: 'profit',
+      width: this.valueWidth,
+      valueGetter: params => params.data.portfolioAfter.value - params.data.portfolioAfter.totalCashInfusion,
+      cellStyle: { textAlign: "right" }, 
+      valueFormatter: this.currencyFormatter,
+    },  
+    { headerName: 'Index', field: 'portfolioAfter.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'Divisor', field: 'portfolioAfter.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
   ];
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {

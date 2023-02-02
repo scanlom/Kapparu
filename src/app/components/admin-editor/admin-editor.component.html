@@ -1,5 +1,6 @@
 <app-ref-data-editor></app-ref-data-editor>
 <app-market-data-editor></app-market-data-editor>
 <ag-grid-angular class="ag-theme-alpine" style="width: 100%;" domLayout="autoHeight" 
-    [defaultColDef]="defaultColDef" [rowData]="positions" [columnDefs]="positionsColumnDefs">
+    [defaultColDef]="defaultColDef" [rowData]="positions" [columnDefs]="positionsColumnDefs"
+    (rowDoubleClicked)="onPositionRowDoubleClicked($event)">
 </ag-grid-angular>

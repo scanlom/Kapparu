@@ -23,12 +23,22 @@ export class KapparuGridComponent {
   // Widths
 
   percentWidth = 100;
+  percentShortWidth = 70;
   valueWidth = 100;
   dateWidth = 100;
   tickerWidth = 100;
   descriptionWidth = 200;
 
   // Columns
+
+  colSymbol = { headerName: 'Symbol', field: 'symbol', width: this.tickerWidth }
+  colPrice = { headerName: 'Price', field: 'price', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter }
+  colQuantity = { headerName: 'Quantity', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter }
+  colValue = { headerName: 'Value', field: 'value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter }
+  colModel = { headerName: 'Model', field: 'model', width: this.percentShortWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter }
+  colTransactionType = { headerName: 'Type', field: 'type', width: this.tickerWidth, valueFormatter: this.transactionTypeFormatter }
+  colTransactionSubType = { headerName: 'SubType', field: 'subType', width: this.tickerWidth, valueFormatter: this.transactionSubTypeFormatter }
+  colNote = { headerName: 'Note', field: 'note', width: this.descriptionWidth }
 
   colConfidence = {
     headerName: 'Confidence', field: 'confidence', cellStyle: params => {
@@ -187,6 +197,15 @@ export class KapparuGridComponent {
         return "Debt Infusion";
       case 6:
         return "Interest";
+    }
+  }
+
+  transactionSubTypeFormatter(params) {
+    switch (params.value) {
+      case 0:
+        return "";
+      case 1:
+        return "Premium";
     }
   }
 
