@@ -1,0 +1,23 @@
+<input #positionId (keyup.enter)="onEnter(positionId.value)">
+<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="rowData | async"
+  [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+</ag-grid-angular>
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>id</mat-label>
+        <input type="number" matInput [(ngModel)]="id">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>value</mat-label>
+        <input type="number" matInput [(ngModel)]="value">
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+<p>
+  <button (click)="updatePosition()">Update Position</button>
+</p>

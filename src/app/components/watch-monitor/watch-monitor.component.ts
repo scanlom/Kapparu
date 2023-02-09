@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { map } from 'rxjs';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -10,6 +10,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
   styleUrls: ['./watch-monitor.component.css']
 })
 export class WatchMonitorComponent extends KapparuGridComponent {
+  statsData: any;
   positionsData: any;
   positionsTotalData: any;
   watchData: any;
@@ -19,6 +20,23 @@ export class WatchMonitorComponent extends KapparuGridComponent {
     // set filtering on for all columns
     filter: true,
   };
+
+  statsColumnDefs = [
+    { headerName: 'Total', field: 'total', width: 100, cellStyle: { textAlign: "right" } },
+    {
+      headerName: '% Fresh',
+      width: this.valueWidth,
+      valueGetter: params => params.data.fresh / params.data.total,
+      cellStyle: { textAlign: "right" }, 
+      valueFormatter: this.percentFormatter,
+    }, 
+    { headerName: 'None', field: 'none', width: 100, cellStyle: { textAlign: "right" } },
+    { headerName: 'High', field: 'high', width: 100, cellStyle: { textAlign: "right" } },
+    { headerName: 'Medium', field: 'medium', width: 100, cellStyle: { textAlign: "right" } },
+    { headerName: 'Blah', field: 'blah', width: 100, cellStyle: { textAlign: "right" } },
+    { headerName: 'Low', field: 'low', width: 100, cellStyle: { textAlign: "right" } },
+    { headerName: 'PW1', field: 'pw1', width: 100, cellStyle: { textAlign: "right" } },
+  ];
 
   columnDefs = [
     { headerName: 'ID', field: 'id', hide: true },
@@ -42,10 +60,16 @@ export class WatchMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
+    this.statsData = this.http.get('http://localhost:8084/blue-lion/cache/projections-stats');
     this.positionsData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-positions');
     this.positionsTotalData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-positions-total');
     this.watchData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-watch');
     this.researchData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-research');
+
+    this.statsData = this.http.get<any>('http://localhost:8084/blue-lion/cache/projections-stats').pipe(
+      map((receivedData: any) => {
+        return Array.of(receivedData);
+      }));
   }
 
   onRowDoubleClicked(params) {

@@ -26,6 +26,7 @@ import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.
 import { AdminEditorComponent } from './components/admin-editor/admin-editor.component';
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
 import { MarketDataEditorComponent } from './components/market-data-editor/market-data-editor.component';
+import { PositionEditorComponent } from './components/position-editor/position-editor.component';
 import { PortfoliosMonitorComponent } from './components/portfolios-monitor/portfolios-monitor.component';
 import { PortfolioSummaryComponent } from './components/portfolio-summary/portfolio-summary.component';
 import { PortfolioMonitorComponent } from './components/portfolio-monitor/portfolio-monitor.component';
@@ -46,6 +47,7 @@ import { TransactionsMonitorComponent } from './components/transactions-monitor/
     AdminEditorComponent,
     RefDataEditorComponent,
     MarketDataEditorComponent,
+    PositionEditorComponent,
     PortfoliosMonitorComponent,
     PortfolioSummaryComponent,
     PortfolioMonitorComponent,
