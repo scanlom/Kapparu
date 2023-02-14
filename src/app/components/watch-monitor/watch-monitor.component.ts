@@ -23,8 +23,9 @@ export class WatchMonitorComponent extends KapparuGridComponent {
 
   statsColumnDefs = [
     { headerName: 'Total', field: 'total', width: 100, cellStyle: { textAlign: "right" } },
+    { headerName: 'Fresh', field: 'fresh', width: 100, cellStyle: { textAlign: "right" } },
     {
-      headerName: '% Fresh',
+      headerName: '%',
       width: this.valueWidth,
       valueGetter: params => params.data.fresh / params.data.total,
       cellStyle: { textAlign: "right" }, 
