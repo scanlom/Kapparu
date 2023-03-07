@@ -51,7 +51,17 @@ export class PortfolioSummaryComponent extends KapparuGridComponent implements O
         );
       } else {
         this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.rowData[0].id).subscribe(
-          positions => { this.positions = positions; this.cdr.detectChanges(); }
+          positions => { 
+            this.positions = positions;
+            if (this.positions.length > 0) {
+              this.positions.push({ 
+                'symbol': 'Total', 
+                'value': this.positions.reduce((sum, current) => sum + current.value, 0),
+                'model': this.positions.reduce((sum, current) => sum + current.model, 0), 
+                'percentPortfolio': this.positions.reduce((sum, current) => sum + current.percentPortfolio, 0) 
+              });
+            }
+            this.cdr.detectChanges(); }
         );
 
       }
