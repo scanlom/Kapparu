@@ -1,3 +1,4 @@
+<div class="main-header">
 <mat-toolbar color="primary">
     <mat-toolbar-row>
         <button mat-raised-button color="accent"
@@ -10,13 +11,18 @@
             (click)="this.currentDisplay = this.currentDisplayType.cashflow">Cashflow</button>
         <button mat-raised-button color="accent"
             (click)="this.currentDisplay = this.currentDisplayType.journal">Journal</button>
-        <mat-form-field appearance="outline">
-            <mat-label>Symbol</mat-label>
-            <input #ticker type="string" matInput (keyup.enter)="onEnter(ticker.value)">
-        </mat-form-field>
+        <span class="toolbar-spacer"></span>
+        <div style="font-size: 15px">
+            <mat-form-field appearance="outline">
+                <mat-label>Symbol</mat-label>
+                <input #ticker type="string" matInput (keyup.enter)="onEnter(ticker.value)">
+            </mat-form-field>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
+</div>
 
+<div class="main-content">
 <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
     [columnDefs]="headlineOneColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
 </ag-grid-angular>
@@ -45,3 +51,4 @@
 <app-projections-editor *ngIf="currentDisplay == currentDisplayType.journal"
     (changedEvent)="onProjectionsChanged($event)" [rowData]="projectionsRowData | async">
 </app-projections-editor>
+</div>

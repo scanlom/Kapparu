@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Projections } from 'src/app/services/projections';
 import { Headline } from 'src/app/services/headline';
 import * as moment from 'moment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 export enum CurrentDisplay {
@@ -21,7 +21,7 @@ export enum CurrentDisplay {
     styleUrls: ['./fundamentals-monitor.component.css']
 })
 export class FundamentalsMonitorComponent extends KapparuGridComponent {
-  currentDisplay = CurrentDisplay.summary;
+  currentDisplay = CurrentDisplay.journal;
   currentDisplayType = CurrentDisplay;
   currentTicker = "BKNG";
 
@@ -160,7 +160,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
     cashflowRowData: any;
     rowData: any;
 
-    constructor(private http: HttpClient, private route: ActivatedRoute) {
+    constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
         super()
     }
 
@@ -178,7 +178,11 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
         this.cashflowRowData = this.http.get('http://localhost:8081/blue-lion/read/cashflow?ticker=' + this.currentTicker);
     }
 
-	onEnter(value: string) { 
+	onEnter(value: string) {
+        // Change the url so on an update we come back to the right place
+        this.router.navigate(['/fundamentals-monitor', { ticker: value }]);
+
+        // Actually update the current screen
         this.currentTicker = value
 		this.rowData = this.http.get('http://localhost:8081/blue-lion/read/income?ticker=' + this.currentTicker);
         this.projectionsRowData = this.http.get<Projections>('http://localhost:8081/blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
