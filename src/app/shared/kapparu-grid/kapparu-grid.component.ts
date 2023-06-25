@@ -72,16 +72,19 @@ export class KapparuGridComponent {
 
   colMergersNetAnnualized = {
     headerName: 'Annualized', field: 'marketNetReturnAnnualized', width: this.percentWidth, cellStyle: params => {
-      var color = "#F1948A"
-      if (params.value < 0.04 && params.value >= 0.02) {
-        color = "#FADBD8"
-      } else if (params.value < 0.06 && params.value >= 0.04) {
-        color = "#D4EFDF"
-      } else if (params.value >= 0.06) {
-        color = "#7DCEA0"
+      var color = "#FFFFFF"
+      if (params.data['status'] == 'O') {
+        color = "#F1948A"
+        if (params.value < 0.04 && params.value >= 0.02) {
+          color = "#FADBD8"
+        } else if (params.value < 0.06 && params.value >= 0.04) {
+          color = "#D4EFDF"
+        } else if (params.value >= 0.06) {
+          color = "#7DCEA0"
+        }
       }
       return { textAlign: "right", backgroundColor: color };
-    }, valueFormatter: this.percentFormatter
+    }, valueFormatter: this.percentFormatterMerger
   }
 
   colUpdateDate = {
@@ -173,6 +176,13 @@ export class KapparuGridComponent {
 
   percentFormatter(params) {
     return String((params.value * 100).toFixed(2)) + "%";
+  }
+
+  percentFormatterMerger(params) {
+    if(params.data['status'] == 'O') {
+      return String((params.value * 100).toFixed(2)) + "%";
+    }
+    return "";
   }
 
   percentIntFormatter(params) {

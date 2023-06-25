@@ -28,11 +28,13 @@ export class MergersEditorComponent extends KapparuGridComponent {
   @Input() dealPrice: number;
   @Input() failPrice: number;
   @Input() breakPrice: number;
+  @Input() strikePrice: number;
   @Input() announceDate: string;
   @Input() meetingDate: string;
   @Input() closeDate: string;
   @Input() breakDate: string;
   @Input() confidence: number;
+  @Input() cash: number;
   @Input() dividends: number;
 
   columnDefs = [
@@ -82,10 +84,12 @@ export class MergersEditorComponent extends KapparuGridComponent {
         this.dealPrice = receivedData.dealPrice;
         this.failPrice = receivedData.failPrice;
         this.breakPrice = receivedData.breakPrice;
+        this.strikePrice = receivedData.strikePrice;
         this.announceDate = receivedData.announceDate;
         this.meetingDate = receivedData.meetingDate;
         this.closeDate = receivedData.closeDate;
         this.breakDate = receivedData.breakDate;
+        this.cash = receivedData.cash;
         this.dividends = receivedData.dividends;
         return Array.of(receivedData);
       }));
@@ -104,11 +108,13 @@ export class MergersEditorComponent extends KapparuGridComponent {
       dealPrice: this.dealPrice,
       failPrice: this.failPrice,
       breakPrice: this.breakPrice,
+      strikePrice: this.strikePrice,
       announceDate: this.announceDate,
       meetingDate: this.meetingDate,
       closeDate: this.closeDate,
       breakDate: this.breakDate,
       confidence: this.confidence,
+      cash: this.cash,
       dividends: this.dividends,
     } as Merger).subscribe({
       next(m) {

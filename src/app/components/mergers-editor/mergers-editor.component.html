@@ -10,22 +10,12 @@
     </td>
     <td>
       <mat-form-field appearance="outline">
+        <mat-label>cash</mat-label> <input type="number" matInput [(ngModel)]="cash">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
         <mat-label>dividends</mat-label> <input type="number" matInput [(ngModel)]="dividends">
-      </mat-form-field>
-    </td>
-    <td>
-      <mat-form-field appearance="outline">
-        <mat-label>closeDate</mat-label> <input type="string" matInput [(ngModel)]="closeDate">
-      </mat-form-field>
-    </td>
-    <td>
-      <mat-form-field appearance="outline">
-        <mat-label>breakPrice</mat-label> <input type="number" matInput [(ngModel)]="breakPrice">
-      </mat-form-field>
-    </td>
-    <td>
-      <mat-form-field appearance="outline">
-        <mat-label>breakDate</mat-label> <input type="string" matInput [(ngModel)]="breakDate">
       </mat-form-field>
     </td>
     <td>
@@ -40,7 +30,29 @@
     </td>
     <td>
       <mat-form-field appearance="outline">
+        <mat-label>strikePrice</mat-label> <input type="number" matInput [(ngModel)]="strikePrice">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>breakPrice</mat-label> <input type="number" matInput [(ngModel)]="breakPrice">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="outline">
         <mat-label>announceDate</mat-label> <input type="string" matInput [(ngModel)]="announceDate">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>closeDate</mat-label> <input type="string" matInput [(ngModel)]="closeDate">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>breakDate</mat-label> <input type="string" matInput [(ngModel)]="breakDate">
       </mat-form-field>
     </td>
     <td>

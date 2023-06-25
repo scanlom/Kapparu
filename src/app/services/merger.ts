@@ -6,11 +6,13 @@ export interface Merger {
 	dealPrice: number;
 	failPrice: number;
 	breakPrice: number;
+	strikePrice: number;
 	announceDate: string;
 	meetingDate: string;
 	closeDate: string;
 	breakDate: string;
 	confidence: number;
+	cash: number;
 	dividends: number;
 	acquirerTicker: string;
 	targetTicker: string;
