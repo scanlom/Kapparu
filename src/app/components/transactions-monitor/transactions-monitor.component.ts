@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
+import { Transaction } from 'src/app/services/transaction';
+import { TransactionService } from 'src/app/services/transaction.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -10,6 +13,14 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 })
 export class TransactionsMonitorComponent extends KapparuGridComponent {
   txns: any[] = [];
+  @Input() date = moment().format("YYYY-MM-DD");
+  @Input() type = 0;
+  @Input() subType = 0;
+  @Input() positionId = 0;
+  @Input() portfolioId = 0;
+  @Input() value = 0;
+  @Input() quantity = 0;
+  @Input() note = "";
 
   defaultColDef = {
     // set filtering on for all columns
@@ -47,7 +58,7 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
     { headerName: 'PortAIndex', field: 'portfolioAfter.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ];
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private transactionService: TransactionService) {
     super();
   }
 
@@ -56,6 +67,24 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
       txns => this.txns = txns
     );
   }
+
+  book() {
+		const that = this;
+		this.transactionService.bookTransaction({
+      date: this.date,
+      type: this.type,
+      subType: this.subType,
+      positionId: this.positionId,
+      portfolioId: this.portfolioId,
+      value: this.value,
+      quantity: this.quantity,
+      note: this.note,
+		} as Transaction).subscribe({
+			next(t) {
+				that.ngOnInit();
+			}
+		});
+	}
 }
 
 /*

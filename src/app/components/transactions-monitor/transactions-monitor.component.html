@@ -1,3 +1,71 @@
+<table>
+    <tr>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>date</mat-label> <input type="string" matInput [(ngModel)]="date">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>type</mat-label>
+                <mat-select [(ngModel)]="type" type="number">
+                    <mat-option value=1>Buy</mat-option>
+                    <mat-option value=2>Sell</mat-option>
+                    <mat-option value=3>Dividend</mat-option>
+                    <mat-option value=4>Cash Infusion</mat-option>
+                    <mat-option value=5>Debt Infusion</mat-option>
+                    <mat-option value=6>Interest</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>subType</mat-label> 
+                <mat-select [(ngModel)]="subType" type="number">
+                    <mat-option value=0>None</mat-option>
+                    <mat-option value=1>Premium</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>positionId</mat-label> <input matInput [(ngModel)]="positionId" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>portfolioId</mat-label> 
+                <mat-select [(ngModel)]="portfolioId" type="number">
+                    <mat-option value=1>Total</mat-option>
+                    <mat-option value=2>Selfie</mat-option>
+                    <mat-option value=3>Oak</mat-option>
+                    <mat-option value=4>Managed</mat-option>
+                    <mat-option value=5>Risk Arb</mat-option>
+                    <mat-option value=6>Trade Fin</mat-option>
+                    <mat-option value=7>Fixed Income</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>value</mat-label> <input matInput [(ngModel)]="value" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>quantity</mat-label> <input matInput [(ngModel)]="quantity" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>note</mat-label> <input type="string" matInput [(ngModel)]="note">
+            </mat-form-field>
+        </td>
+        <td>
+            <button mat-raised-button color="primary" (click)="book()">Book</button>
+        </td>
+    </tr>
+</table>
 <ag-grid-angular style="width: 100%;" domLayout="autoHeight" class="ag-theme-alpine" [rowData]="txns"
 [defaultColDef]="defaultColDef" [columnDefs]="columnDefs">
 </ag-grid-angular>

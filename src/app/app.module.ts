@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule} from '@angular/material/select';
 import { WatchMonitorComponent } from './components/watch-monitor/watch-monitor.component';
 import { AdminEditorComponent } from './components/admin-editor/admin-editor.component';
 import { RefDataEditorComponent } from './components/ref-data-editor/ref-data-editor.component';
@@ -69,6 +70,7 @@ import { TransactionsMonitorComponent } from './components/transactions-monitor/
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
   ],
