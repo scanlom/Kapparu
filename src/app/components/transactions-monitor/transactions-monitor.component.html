@@ -29,11 +29,6 @@
         </td>
         <td>
             <mat-form-field appearance="outline">
-                <mat-label>positionId</mat-label> <input matInput [(ngModel)]="positionId" type="number">
-            </mat-form-field>
-        </td>
-        <td>
-            <mat-form-field appearance="outline">
                 <mat-label>portfolioId</mat-label> 
                 <mat-select [(ngModel)]="portfolioId" type="number">
                     <mat-option value=1>Total</mat-option>
@@ -48,12 +43,17 @@
         </td>
         <td>
             <mat-form-field appearance="outline">
-                <mat-label>value</mat-label> <input matInput [(ngModel)]="value" type="number">
+                <mat-label>positionId</mat-label> <input matInput [(ngModel)]="positionId" type="number">
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
                 <mat-label>quantity</mat-label> <input matInput [(ngModel)]="quantity" type="number">
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field appearance="outline">
+                <mat-label>value</mat-label> <input matInput [(ngModel)]="value" type="number">
             </mat-form-field>
         </td>
         <td>

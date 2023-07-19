@@ -13,14 +13,14 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 })
 export class TransactionsMonitorComponent extends KapparuGridComponent {
   txns: any[] = [];
-  @Input() date = moment().format("YYYY-MM-DD");
-  @Input() type = 0;
-  @Input() subType = 0;
-  @Input() positionId = 0;
-  @Input() portfolioId = 0;
-  @Input() value = 0;
-  @Input() quantity = 0;
-  @Input() note = "";
+  @Input() date: string;
+  @Input() type: number;
+  @Input() subType: number;
+  @Input() positionId: number;
+  @Input() portfolioId: number;
+  @Input() value: number;
+  @Input() quantity: number;
+  @Input() note: string;
 
   defaultColDef = {
     // set filtering on for all columns
@@ -30,32 +30,16 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
   columnDefs = [
     { headerName: 'Date', field: 'date', width: this.dateWidth, valueFormatter: this.dateFormatter },
     { headerName: 'Type', field: 'type', width: this.tickerWidth, valueFormatter: this.transactionTypeFormatter },
+    this.colTransactionSubType,
     { headerName: 'Portfolio', field: 'portfolioId', width: this.tickerWidth, valueFormatter: this.portfolioIdFormatter },
     { headerName: 'Symbol', field: 'positionAfter.symbol', width: this.tickerWidth },
-    { headerName: 'TxnQty', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'TxnValue', field: 'value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosBCostBasis', field: 'positionBefore.costBasis', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosBTCI', field: 'positionBefore.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosBCumDivs', field: 'positionBefore.accumulatedDividends', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosBQty', field: 'positionBefore.quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosBValue', field: 'positionBefore.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosBDivisor', field: 'positionBefore.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
-    { headerName: 'PosBIndex', field: 'positionBefore.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosACostBasis', field: 'positionAfter.costBasis', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosATCI', field: 'positionAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosACumDivs', field: 'positionAfter.accumulatedDividends', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosAQuantity', field: 'positionAfter.quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosAValue', field: 'positionAfter.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PosADivisor', field: 'positionAfter.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
-    { headerName: 'PosAIndex', field: 'positionAfter.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PortBTCI', field: 'portfolioAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PortBValue', field: 'portfolioBefore.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PortBDivisor', field: 'portfolioBefore.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
-    { headerName: 'PortBIndex', field: 'portfolioBefore.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PortATCI', field: 'portfolioAfter.totalCashInfusion', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PortAValue', field: 'portfolioAfter.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
-    { headerName: 'PortADivisor', field: 'portfolioAfter.divisor', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.divisorFormatter },
-    { headerName: 'PortAIndex', field: 'portfolioAfter.index', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    this.colQuantity,
+    { headerName: 'Before', field: 'positionBefore.quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'After', field: 'positionAfter.quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    this.colValue,
+    { headerName: 'Before', field: 'positionBefore.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    { headerName: 'After', field: 'positionAfter.value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+    this.colNote,
   ];
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private transactionService: TransactionService) {
@@ -63,6 +47,9 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
+    this.date =  moment().format("YYYY-MM-DD");
+    this.note = "";
+
     this.http.get<any[]>('http://localhost:8081/blue-lion/read/transactions').subscribe(
       txns => this.txns = txns
     );
@@ -72,12 +59,12 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
 		const that = this;
 		this.transactionService.bookTransaction({
       date: this.date,
-      type: this.type,
-      subType: this.subType,
-      positionId: this.positionId,
-      portfolioId: this.portfolioId,
-      value: this.value,
-      quantity: this.quantity,
+      type: +this.type,
+      subType: +this.subType,
+      positionId: +this.positionId,
+      portfolioId: +this.portfolioId,
+      value: +this.value,
+      quantity: +this.quantity,
       note: this.note,
 		} as Transaction).subscribe({
 			next(t) {
