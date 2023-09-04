@@ -21,7 +21,6 @@ export class RefDataEditorComponent extends KapparuGridComponent {
   @Input() industry: string;
   @Input() sector: string;
   @Input() active: boolean;
-  @Input() focus: boolean;
 
   //@Input() ticker: string;
   columnDefs = [
@@ -32,7 +31,6 @@ export class RefDataEditorComponent extends KapparuGridComponent {
     { headerName: 'Sector', field: 'sector' },
     { headerName: 'Industry', field: 'industry' },
     { headerName: 'Active', field: 'active' },
-    { headerName: 'Focus', field: 'focus' },
   ]
 
   constructor(private http: HttpClient, private refDataService: RefDataService) {
@@ -56,7 +54,6 @@ export class RefDataEditorComponent extends KapparuGridComponent {
         this.sector = refData.sector;
         this.industry = refData.industry;
         this.active = refData.active;
-        this.focus = refData.focus;
         return Array.of(refData);
       }));
   }
@@ -71,7 +68,6 @@ export class RefDataEditorComponent extends KapparuGridComponent {
       sector: this.sector,
       industry: this.industry,
       active: this.active,
-      focus: this.focus,
     } as RefData).subscribe({
       next(m) {
         that.ngOnInit()
@@ -89,7 +85,6 @@ export class RefDataEditorComponent extends KapparuGridComponent {
       sector: this.sector,
       industry: this.industry,
       active: this.active,
-      focus: this.focus,
     } as RefData).subscribe({
       next(m) {
         that.ngOnInit()

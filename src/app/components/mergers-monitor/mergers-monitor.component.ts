@@ -46,7 +46,7 @@ export class MergersMonitorComponent extends KapparuGridComponent {
 
   columnDefsWatch = [
     { headerName: 'ID', field: 'id', hide: true },
-    this.colDate,
+    this.colUpdateDate,
     { headerName: 'Target', field: 'targetTicker', width: this.tickerWidth },
     { headerName: 'Description', field: 'targetDescription', width: this.descriptionWidth },
     { headerName: 'Acquirer', field: 'acquirerTicker', width: this.tickerWidth },
@@ -69,9 +69,9 @@ export class MergersMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.positionsData = this.http.get('http://localhost:8081/blue-lion/read/enriched-mergers-positions');
-    this.positionsTotalData = this.http.get('http://localhost:8081/blue-lion/read/enriched-mergers-positions-total');
-    this.researchData = this.http.get('http://localhost:8081/blue-lion/read/enriched-mergers-research');
+    this.positionsData = this.http.get('http://localhost:8086/blue-lion/gateway/enriched-mergers-positions');
+    this.positionsTotalData = this.http.get('http://localhost:8086/blue-lion/gateway/enriched-mergers-positions-total');
+    this.researchData = this.http.get('http://localhost:8086/blue-lion/gateway/enriched-mergers-research');
   }
 
   onRowDoubleClicked(params) {

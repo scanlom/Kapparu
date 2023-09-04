@@ -5,9 +5,18 @@
 <table>
   <tr>
     <td>
+      <mat-checkbox matInput [(ngModel)]="active">Active</mat-checkbox>
+    </td>
+    <td>
       <mat-form-field appearance="outline">
-        <mat-label>id</mat-label>
-        <input type="number" matInput [(ngModel)]="id">
+        <mat-label>portfolioId</mat-label>
+        <input type="number" matInput [(ngModel)]="portfolioId">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>refDataId</mat-label>
+        <input type="number" matInput [(ngModel)]="refDataId">
       </mat-form-field>
     </td>
     <td>
@@ -16,8 +25,17 @@
         <input type="number" matInput [(ngModel)]="value">
       </mat-form-field>
     </td>
+    <td>
+      <mat-form-field appearance="outline">
+        <mat-label>model</mat-label>
+        <input type="number" matInput [(ngModel)]="model">
+      </mat-form-field>
+    </td>
   </tr>
 </table>
 <p>
   <button (click)="updatePosition()">Update Position</button>
+</p>
+<p>
+  <button (click)="addPosition()">Add Position</button>
 </p>

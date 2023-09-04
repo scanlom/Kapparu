@@ -13,6 +13,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 })
 export class TransactionsMonitorComponent extends KapparuGridComponent {
   txns: any[] = [];
+  response = "Ready Player One!";
   @Input() date: string;
   @Input() type: number;
   @Input() subType: number;
@@ -58,6 +59,7 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
   book() {
 		const that = this;
 		this.transactionService.bookTransaction({
+      id: 0,
       date: this.date,
       type: +this.type,
       subType: +this.subType,
@@ -68,6 +70,11 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
       note: this.note,
 		} as Transaction).subscribe({
 			next(t) {
+        if (t.id > 0) {
+          that.response = "Success: Transaction " + t.id;
+        } else {
+          that.response = "Error: Please check console"
+        }
 				that.ngOnInit();
 			}
 		});

@@ -14,12 +14,19 @@ export class PositionEditorComponent extends KapparuGridComponent {
   rowData: any;
 
   @Input() id: number;
+  @Input() active: boolean;
+  @Input() refDataId: number;
+  @Input() portfolioId: number;
   @Input() value: number;
+  @Input() model: number;
   position: Position;
 
   columnDefs = [
     { headerName: 'ID', field: 'id' },
-    { headerName: 'Value', field: 'value' },
+    { headerName: 'Active', field: 'active' },
+    { headerName: 'Portfolio', field: 'portfolioId', width: this.tickerWidth, valueFormatter: this.portfolioIdFormatter },    
+    { headerName: 'Symbol', field: 'symbol' },
+    { headerName: 'Value', field: 'value', cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ]
 
   constructor(private http: HttpClient, private positionService: PositionService) {
@@ -27,6 +34,7 @@ export class PositionEditorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
+    this.active = true;
     if (this.id > 0) {
       this.rowData = this.http.get<Position>('http://localhost:8081/blue-lion/read/positions/' + this.id).pipe(
         map((receivedData: Position) => {
@@ -39,7 +47,11 @@ export class PositionEditorComponent extends KapparuGridComponent {
     this.rowData = this.http.get<Position>('http://localhost:8081/blue-lion/read/positions/' + value).pipe(
       map((position: Position) => {
         this.id = position.id;
+        this.active = position.active;
+        this.refDataId = position.refDataId;
+        this.portfolioId = position.portfolioId;
         this.value = position.value;
+        this.model = position.model;
         this.position = position;
         return Array.of(position);
       }));
@@ -47,9 +59,35 @@ export class PositionEditorComponent extends KapparuGridComponent {
 
   updatePosition() {
     const that = this;
-    this.position.value = this.value
+    this.position.active = this.active;
+    this.position.value = this.value;
+    this.position.model = this.model;
     this.positionService.updatePosition(this.position).subscribe({
       next(m) {
+        that.ngOnInit()
+      }
+    });
+  }
+
+  addPosition() {
+    const that = this;
+    this.positionService.addPosition({
+      id: 0,
+      refDataId: this.refDataId,
+      portfolioId: this.portfolioId,
+      quantity: 0,
+      price: 0,
+      value: 0,
+      index: 0,
+      divisor: 0,
+      costBasis: 0,
+      totalCashInfusion: 0,
+      accumulatedDividends: 0,
+      model: this.model,
+      pricingType: 1,
+      active: this.active,
+    } as Position).subscribe({
+      next(p) {
         that.ngOnInit()
       }
     });

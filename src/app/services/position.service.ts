@@ -17,6 +17,14 @@ export class PositionService {
     private http: HttpClient,
   ) { }
 
+  /** POST: add new position to the server */
+  addPosition(position: Position): Observable<Position> {
+    return this.http.post<Position>(this.positionUrl, position, this.httpOptions).pipe(
+      tap((newPosition: Position) => this.log(`added position w/ id=${newPosition.id}`)),
+      catchError(this.handleError<Position>('addPosition'))
+    );
+  }
+
   /** PUT: update position on the server */
   updatePosition(position: Position): Observable<Position> {
     console.log(position)

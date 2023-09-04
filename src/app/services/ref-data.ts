@@ -6,5 +6,4 @@ export interface RefData {
   sector: string;
   industry: string;
   active: boolean;
-  focus: boolean;
 }
