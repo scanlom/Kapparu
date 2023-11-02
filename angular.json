@@ -122,7 +122,6 @@
       }
     }
   },
-  "defaultProject": "Kapparu",
   "schematics": {
     "@schematics/angular:component": {
     }

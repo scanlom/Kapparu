@@ -17,6 +17,7 @@ export class KapparuGridComponent {
   onRowDataChanged(params) {
     var allColIds = params.columnApi.getAllColumns()
       .map(column => column.colId);
+    console.log("AutoSizeColumns");
     params.columnApi.autoSizeColumns(allColIds);
   }
 

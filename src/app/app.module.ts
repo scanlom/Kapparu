@@ -60,7 +60,7 @@ import { TransactionsMonitorComponent } from './components/transactions-monitor/
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AgGridModule.withComponents([]),
+    AgGridModule,
     BrowserAnimationsModule,
     MatMenuModule,
     MatToolbarModule,

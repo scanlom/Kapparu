@@ -89,7 +89,7 @@
 
 <div *ngFor="let projectionsJournal of projectionsJournals">
  <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="[projectionsJournal]"
-    [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
   </ag-grid-angular>
   <span style="display: inline-block; margin: 20px; white-space: pre-wrap;">{{projectionsJournal.entry}}</span>
   <br>

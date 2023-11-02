@@ -24,29 +24,29 @@
 
 <div class="main-content">
 <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
-    [columnDefs]="headlineOneColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    [columnDefs]="headlineOneColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
-    [columnDefs]="headlineTwoColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    [columnDefs]="headlineTwoColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
-    [columnDefs]="projectionsColumnDefs" (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    [columnDefs]="projectionsColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular *ngIf="currentDisplay == currentDisplayType.summary" style="width: 100%; height: 100%;"
     class="ag-theme-alpine" [rowData]="summaryRowData | async" [columnDefs]="summaryColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular *ngIf="currentDisplay == currentDisplayType.income" style="width: 100%; height: 100%;"
     class="ag-theme-alpine" [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
-    (rowDataChanged)="onRowDataChanged($event)">
+    (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular *ngIf="currentDisplay == currentDisplayType.balance" style="width: 100%; height: 100%;"
     class="ag-theme-alpine" [rowData]="balanceRowData | async" [columnDefs]="balanceColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular *ngIf="currentDisplay == currentDisplayType.cashflow" style="width: 100%; height: 100%;"
     class="ag-theme-alpine" [rowData]="cashflowRowData | async" [columnDefs]="cashflowColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataChanged)="onRowDataChanged($event)">
+    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <app-projections-editor *ngIf="currentDisplay == currentDisplayType.journal"
     (changedEvent)="onProjectionsChanged($event)" [rowData]="projectionsRowData | async">
