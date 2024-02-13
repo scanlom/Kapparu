@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Merger, MergerJournal } from 'src/app/services/merger';
 import * as moment from 'moment';
 import { MergerService } from 'src/app/services/merger.service';
@@ -75,7 +75,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.rowData = this.http.get<Merger>('http://localhost:8081/blue-lion/read/enriched-mergers/' + this.id).pipe(
+    this.rowData = this.http.get<Merger>(environment.api + '8081/blue-lion/read/enriched-mergers/' + this.id).pipe(
       map((receivedData: Merger) => {
         this.date = moment().format("YYYY-MM-DD");
         this.confidence = receivedData.confidence;
@@ -93,7 +93,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
         this.dividends = receivedData.dividends;
         return Array.of(receivedData);
       }));
-      this.http.get<MergerJournal[]>('http://localhost:8081/blue-lion/read/enriched-mergers-journal?mergerId=' + this.id).subscribe(
+      this.http.get<MergerJournal[]>(environment.api + '8081/blue-lion/read/enriched-mergers-journal?mergerId=' + this.id).subscribe(
         mergerJournals => this.mergerJournals = mergerJournals
         );
   }

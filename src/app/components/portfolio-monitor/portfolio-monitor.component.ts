@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -75,17 +75,17 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
     if (this.route.snapshot.paramMap.has('portfolioId')) {
       this.portfolioId = +this.route.snapshot.paramMap.get('portfolioId');
     }
-    this.rowData = this.http.get<any>('http://localhost:8081/blue-lion/read/enriched-portfolios/' + this.portfolioId).pipe(
+    this.rowData = this.http.get<any>(environment.api + '8081/blue-lion/read/enriched-portfolios/' + this.portfolioId).pipe(
       map((receivedData: any) => {
         return Array.of(receivedData);
       }));
-    this.http.get<any>('http://localhost:8081/blue-lion/read/portfolio-returns/' + this.portfolioId).subscribe(
+    this.http.get<any>(environment.api + '8081/blue-lion/read/portfolio-returns/' + this.portfolioId).subscribe(
       returns => this.returns = returns
     );
-    this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.portfolioId).subscribe(
+    this.http.get<any[]>(environment.api + '8081/blue-lion/read/enriched-positions?portfolioId=' + this.portfolioId).subscribe(
       positions => this.positions = positions
     );
-    this.http.get<any[]>('http://localhost:8081/blue-lion/read/transactions?portfolioId=' + this.portfolioId).subscribe(
+    this.http.get<any[]>(environment.api + '8081/blue-lion/read/transactions?portfolioId=' + this.portfolioId).subscribe(
       txns => this.txns = txns
     );
   }

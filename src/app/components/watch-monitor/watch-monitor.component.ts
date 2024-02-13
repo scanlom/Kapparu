@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -61,13 +62,13 @@ export class WatchMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.statsData = this.http.get('http://localhost:8084/blue-lion/cache/projections-stats');
-    this.positionsData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-positions');
-    this.positionsTotalData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-positions-total');
-    this.watchData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-watch');
-    this.researchData = this.http.get('http://localhost:8084/blue-lion/cache/enriched-projections-research');
+    this.statsData = this.http.get(environment.api + '8084/blue-lion/cache/projections-stats');
+    this.positionsData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-positions');
+    this.positionsTotalData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-positions-total');
+    this.watchData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-watch');
+    this.researchData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-research');
 
-    this.statsData = this.http.get<any>('http://localhost:8084/blue-lion/cache/projections-stats').pipe(
+    this.statsData = this.http.get<any>(environment.api + '8084/blue-lion/cache/projections-stats').pipe(
       map((receivedData: any) => {
         return Array.of(receivedData);
       }));

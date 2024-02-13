@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 import { Transaction } from 'src/app/services/transaction';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -51,7 +52,7 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
     this.date =  moment().format("YYYY-MM-DD");
     this.note = "";
 
-    this.http.get<any[]>('http://localhost:8081/blue-lion/read/transactions').subscribe(
+    this.http.get<any[]>(environment.api + '8081/blue-lion/read/transactions').subscribe(
       txns => this.txns = txns
     );
   }

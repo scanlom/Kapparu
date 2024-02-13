@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
-
+import { environment } from 'src/environments/environment';
 import { Projections, ProjectionsJournal } from 'src/app/services/projections';
 import { ProjectionsService } from 'src/app/services/projections.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -77,7 +76,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 			this.confidence = this.rowData[0].confidence;
 			this.watch = this.rowData[0].watch;
 
-			this.http.get<ProjectionsJournal[]>('http://localhost:8081/blue-lion/read/enriched-projections-journal?projectionsId=' + this.id).subscribe(
+			this.http.get<ProjectionsJournal[]>(environment.api + '8081/blue-lion/read/enriched-projections-journal?projectionsId=' + this.id).subscribe(
 				projectionsJournals => this.projectionsJournals = projectionsJournals
 			);
 		}

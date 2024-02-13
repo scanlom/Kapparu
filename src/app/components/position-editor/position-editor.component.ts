@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 import { Position } from 'src/app/services/position';
 import { PositionService } from 'src/app/services/position.service';
@@ -36,7 +37,7 @@ export class PositionEditorComponent extends KapparuGridComponent {
   ngOnInit() {
     this.active = true;
     if (this.id > 0) {
-      this.rowData = this.http.get<Position>('http://localhost:8081/blue-lion/read/positions/' + this.id).pipe(
+      this.rowData = this.http.get<Position>(environment.api + '8081/blue-lion/read/positions/' + this.id).pipe(
         map((receivedData: Position) => {
           return Array.of(receivedData);
         }));
@@ -44,7 +45,7 @@ export class PositionEditorComponent extends KapparuGridComponent {
   }
 
   onEnter(value: number) {
-    this.rowData = this.http.get<Position>('http://localhost:8081/blue-lion/read/positions/' + value).pipe(
+    this.rowData = this.http.get<Position>(environment.api + '8081/blue-lion/read/positions/' + value).pipe(
       map((position: Position) => {
         this.id = position.id;
         this.active = position.active;

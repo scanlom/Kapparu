@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 import { Merger } from 'src/app/services/merger';
 import { MergerService } from 'src/app/services/merger.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -69,9 +70,9 @@ export class MergersMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.positionsData = this.http.get('http://localhost:8086/blue-lion/gateway/enriched-mergers-positions');
-    this.positionsTotalData = this.http.get('http://localhost:8086/blue-lion/gateway/enriched-mergers-positions-total');
-    this.researchData = this.http.get('http://localhost:8086/blue-lion/gateway/enriched-mergers-research');
+    this.positionsData = this.http.get(environment.api + '8086/blue-lion/gateway/enriched-mergers-positions');
+    this.positionsTotalData = this.http.get(environment.api + '8086/blue-lion/gateway/enriched-mergers-positions-total');
+    this.researchData = this.http.get(environment.api + '8086/blue-lion/gateway/enriched-mergers-research');
   }
 
   onRowDoubleClicked(params) {

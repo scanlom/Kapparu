@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { MarketData } from './market-data';
 
 @Injectable({ providedIn: 'root' })
 export class MarketDataService {
 
-  private marketDataUrl = 'http://localhost:8083/blue-lion/write/market-data';
+  private marketDataUrl = environment.api + '8083/blue-lion/write/market-data';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

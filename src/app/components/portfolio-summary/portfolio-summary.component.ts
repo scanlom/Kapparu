@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -46,11 +46,11 @@ export class PortfolioSummaryComponent extends KapparuGridComponent implements O
   ngOnChanges(changes: SimpleChanges) {
     if (changes.rowData && changes.rowData.currentValue) {
       if (this.historyMode) {
-        this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions-history?portfolioId=' + this.rowData[0].portfolioId + '&date=' + this.rowData[0].date).subscribe(
+        this.http.get<any[]>(environment.api + '8081/blue-lion/read/enriched-positions-history?portfolioId=' + this.rowData[0].portfolioId + '&date=' + this.rowData[0].date).subscribe(
           positions => { this.positions = positions; this.cdr.detectChanges(); }
         );
       } else {
-        this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions?portfolioId=' + this.rowData[0].id).subscribe(
+        this.http.get<any[]>(environment.api + '8081/blue-lion/read/enriched-positions?portfolioId=' + this.rowData[0].id).subscribe(
           positions => { 
             this.positions = positions;
             if (this.positions.length > 0) {

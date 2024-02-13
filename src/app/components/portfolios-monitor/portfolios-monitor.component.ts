@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -37,19 +37,19 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
       this.historyMode = true;
       this.route.paramMap.subscribe(paramMap => {
         this.date = paramMap.get('date');
-        this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolios-history?date=' + this.date).subscribe(
+        this.http.get<any[]>(environment.api + '8081/blue-lion/read/portfolios-history?date=' + this.date).subscribe(
           portfolios => { this.portfolios = portfolios; this.cdr.detectChanges(); }
         );
-        this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolio-returns?date=' + this.date).subscribe(
+        this.http.get<any[]>(environment.api + '8081/blue-lion/read/portfolio-returns?date=' + this.date).subscribe(
           returns => { this.returns = returns; this.cdr.detectChanges(); }
         );
       });
     }
     else {
-      this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-portfolios').subscribe(
+      this.http.get<any[]>(environment.api + '8081/blue-lion/read/enriched-portfolios').subscribe(
         portfolios => { this.portfolios = portfolios; this.cdr.detectChanges(); }
       );
-      this.http.get<any[]>('http://localhost:8081/blue-lion/read/portfolio-returns').subscribe(
+      this.http.get<any[]>(environment.api + '8081/blue-lion/read/portfolio-returns').subscribe(
         returns => { this.returns = returns; this.cdr.detectChanges(); }
       );
     }

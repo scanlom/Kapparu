@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RefDataEditorComponent } from 'src/app/components/ref-data-editor/ref-data-editor.component';
-import { MarketDataEditorComponent } from 'src/app/components/market-data-editor/market-data-editor.component';
+import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
@@ -47,7 +46,7 @@ export class AdminEditorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.http.get<any[]>('http://localhost:8081/blue-lion/read/enriched-positions-all').subscribe(
+    this.http.get<any[]>(environment.api + '8081/blue-lion/read/enriched-positions-all').subscribe(
       positions => this.positions = positions
     );
   }

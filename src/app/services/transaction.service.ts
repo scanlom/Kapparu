@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Transaction } from './transaction';
 
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
 
-  private transactionUrl = 'http://localhost:8085/blue-lion/run/execute-book-transaction';
+  private transactionUrl = environment.api + '8085/blue-lion/run/execute-book-transaction';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

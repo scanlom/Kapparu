@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { RefData } from './ref-data';
 
 @Injectable({ providedIn: 'root' })
 export class RefDataService {
 
-  private refDataUrl = 'http://localhost:8083/blue-lion/write/ref-data';
+  private refDataUrl = environment.api + '8083/blue-lion/write/ref-data';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

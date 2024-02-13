@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Merger, MergerJournal } from './merger';
 
 @Injectable({ providedIn: 'root' })
 export class MergerService {
 
-  private mergerUrl = 'http://localhost:8083/blue-lion/write/mergers/';
-  private enrichedMergerUrl = 'http://localhost:8083/blue-lion/write/enriched-mergers';
-  private mergerJournalUrl = 'http://localhost:8083/blue-lion/write/enriched-mergers-journal';
+  private mergerUrl = environment.api + '8083/blue-lion/write/mergers/';
+  private enrichedMergerUrl = environment.api + '8083/blue-lion/write/enriched-mergers';
+  private mergerJournalUrl = environment.api + '8083/blue-lion/write/enriched-mergers-journal';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-portfolios-history-monitor',
@@ -14,7 +15,7 @@ export class PortfoliosHistoryMonitorComponent {
   }
 
   ngOnInit() {
-    this.http.get<any>('http://localhost:8081/blue-lion/read/portfolios-history-max-date').subscribe(
+    this.http.get<any>(environment.api + '8081/blue-lion/read/portfolios-history-max-date').subscribe(
       params => { 
         this.date = new Date(params.value);
         this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route});
