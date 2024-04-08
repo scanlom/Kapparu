@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://scanlom.ddns.net:'
+  api: 'https://scanlom.net/'
 };
 
 /*

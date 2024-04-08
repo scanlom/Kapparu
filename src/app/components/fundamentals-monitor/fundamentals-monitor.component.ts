@@ -167,14 +167,14 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
         if(this.route.snapshot.paramMap.has('ticker')) { 
             this.currentTicker = this.route.snapshot.paramMap.get('ticker');
         }
-        this.rowData = this.http.get(environment.api + '8081/blue-lion/read/income?ticker=' + this.currentTicker);
-        this.projectionsRowData = this.http.get<Projections>(environment.api + '8081/blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
+        this.rowData = this.http.get(environment.api + 'blue-lion/read/income?ticker=' + this.currentTicker);
+        this.projectionsRowData = this.http.get<Projections>(environment.api + 'blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
-        this.summaryRowData = this.http.get(environment.api + '8081/blue-lion/read/summary?ticker=' + this.currentTicker);
-        this.balanceRowData = this.http.get(environment.api + '8081/blue-lion/read/balance?ticker=' + this.currentTicker);
-        this.cashflowRowData = this.http.get(environment.api + '8081/blue-lion/read/cashflow?ticker=' + this.currentTicker);
+        this.summaryRowData = this.http.get(environment.api + 'blue-lion/read/summary?ticker=' + this.currentTicker);
+        this.balanceRowData = this.http.get(environment.api + 'blue-lion/read/balance?ticker=' + this.currentTicker);
+        this.cashflowRowData = this.http.get(environment.api + 'blue-lion/read/cashflow?ticker=' + this.currentTicker);
     }
 
 	onEnter(value: string) {
@@ -183,14 +183,14 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 
         // Actually update the current screen
         this.currentTicker = value
-		this.rowData = this.http.get(environment.api + '8081/blue-lion/read/income?ticker=' + this.currentTicker);
-        this.projectionsRowData = this.http.get<Projections>(environment.api + '8081/blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
+		this.rowData = this.http.get(environment.api + 'blue-lion/read/income?ticker=' + this.currentTicker);
+        this.projectionsRowData = this.http.get<Projections>(environment.api + 'blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
-        this.summaryRowData = this.http.get(environment.api + '8081/blue-lion/read/summary?ticker=' + this.currentTicker);
-        this.balanceRowData = this.http.get(environment.api + '8081/blue-lion/read/balance?ticker=' + this.currentTicker);
-        this.cashflowRowData = this.http.get(environment.api + '8081/blue-lion/read/cashflow?ticker=' + this.currentTicker);
+        this.summaryRowData = this.http.get(environment.api + 'blue-lion/read/summary?ticker=' + this.currentTicker);
+        this.balanceRowData = this.http.get(environment.api + 'blue-lion/read/balance?ticker=' + this.currentTicker);
+        this.cashflowRowData = this.http.get(environment.api + 'blue-lion/read/cashflow?ticker=' + this.currentTicker);
  	}
 
     onProjectionsChanged(params){

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://scanlom.ddns.net:'
+  api: 'https://scanlom.net/'
 };

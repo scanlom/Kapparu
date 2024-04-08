@@ -8,9 +8,9 @@ import { Merger, MergerJournal } from './merger';
 @Injectable({ providedIn: 'root' })
 export class MergerService {
 
-  private mergerUrl = environment.api + '8083/blue-lion/write/mergers/';
-  private enrichedMergerUrl = environment.api + '8083/blue-lion/write/enriched-mergers';
-  private mergerJournalUrl = environment.api + '8083/blue-lion/write/enriched-mergers-journal';
+  private mergerUrl = environment.api + 'blue-lion/write/mergers/';
+  private enrichedMergerUrl = environment.api + 'blue-lion/write/enriched-mergers';
+  private mergerJournalUrl = environment.api + 'blue-lion/write/enriched-mergers-journal';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

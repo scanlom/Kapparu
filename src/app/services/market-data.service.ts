@@ -8,7 +8,7 @@ import { MarketData } from './market-data';
 @Injectable({ providedIn: 'root' })
 export class MarketDataService {
 
-  private marketDataUrl = environment.api + '8083/blue-lion/write/market-data';
+  private marketDataUrl = environment.api + 'blue-lion/write/market-data';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

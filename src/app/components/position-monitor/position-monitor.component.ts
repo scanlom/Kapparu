@@ -69,13 +69,13 @@ export class PositionMonitorComponent extends KapparuGridComponent {
     if (this.route.snapshot.paramMap.has('positionId')) {
       this.positionId = +this.route.snapshot.paramMap.get('positionId');
     }
-    this.http.get<any>(environment.api + '8081/blue-lion/read/enriched-positions/' + this.positionId).subscribe(
+    this.http.get<any>(environment.api + 'blue-lion/read/enriched-positions/' + this.positionId).subscribe(
       position => this.position = position
     );
-    this.http.get<any>(environment.api + '8081/blue-lion/read/position-returns/' + this.positionId).subscribe(
+    this.http.get<any>(environment.api + 'blue-lion/read/position-returns/' + this.positionId).subscribe(
       returns => this.returns = returns
     );
-    this.http.get<any[]>(environment.api + '8081/blue-lion/read/transactions?positionId=' + this.positionId).subscribe(
+    this.http.get<any[]>(environment.api + 'blue-lion/read/transactions?positionId=' + this.positionId).subscribe(
       txns => this.txns = txns
     );
   }

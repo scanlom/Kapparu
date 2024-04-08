@@ -32,14 +32,14 @@ export class MarketDataEditorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.rowData = this.http.get<MarketData>(environment.api + '8081/blue-lion/read/market-data?symbol=' + this.symbol).pipe(
+    this.rowData = this.http.get<MarketData>(environment.api + 'blue-lion/read/market-data?symbol=' + this.symbol).pipe(
       map((receivedData: MarketData) => {
         return Array.of(receivedData);
       }));
   }
 
   onEnter(value: string) {
-    this.rowData = this.http.get<MarketData>(environment.api + '8081/blue-lion/read/market-data?symbol=' + value).pipe(
+    this.rowData = this.http.get<MarketData>(environment.api + 'blue-lion/read/market-data?symbol=' + value).pipe(
       map((marketData: MarketData) => {
         this.id = marketData.id;
         this.refDataId = marketData.refDataId;

@@ -38,14 +38,14 @@ export class RefDataEditorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.rowData = this.http.get<RefData>(environment.api + '8081/blue-lion/read/ref-data?symbol=' + this.symbol).pipe(
+    this.rowData = this.http.get<RefData>(environment.api + 'blue-lion/read/ref-data?symbol=' + this.symbol).pipe(
       map((receivedData: RefData) => {
         return Array.of(receivedData);
       }));
   }
 
   onEnter(value: string) {
-    this.rowData = this.http.get<RefData>(environment.api + '8081/blue-lion/read/ref-data?symbol=' + value).pipe(
+    this.rowData = this.http.get<RefData>(environment.api + 'blue-lion/read/ref-data?symbol=' + value).pipe(
       map((refData: RefData) => {
         this.id = refData.id;
         this.symbol = refData.symbol;

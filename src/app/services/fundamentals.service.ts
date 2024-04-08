@@ -10,9 +10,9 @@ import { Cashflow } from './fundamentals';
 @Injectable({ providedIn: 'root' })
 export class FundamentalsService {
 
-  private incomeUrl = environment.api + '8083/blue-lion/write/simfin-income';
-  private balanceUrl = environment.api + '8083/blue-lion/write/simfin-balance';
-  private cashflowUrl = environment.api + '8083/blue-lion/write/simfin-cashflow';
+  private incomeUrl = environment.api + 'blue-lion/write/simfin-income';
+  private balanceUrl = environment.api + 'blue-lion/write/simfin-balance';
+  private cashflowUrl = environment.api + 'blue-lion/write/simfin-cashflow';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

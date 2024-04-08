@@ -76,7 +76,7 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 			this.confidence = this.rowData[0].confidence;
 			this.watch = this.rowData[0].watch;
 
-			this.http.get<ProjectionsJournal[]>(environment.api + '8081/blue-lion/read/enriched-projections-journal?projectionsId=' + this.id).subscribe(
+			this.http.get<ProjectionsJournal[]>(environment.api + 'blue-lion/read/enriched-projections-journal?projectionsId=' + this.id).subscribe(
 				projectionsJournals => this.projectionsJournals = projectionsJournals
 			);
 		}

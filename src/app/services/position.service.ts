@@ -8,7 +8,7 @@ import { Position } from './position';
 @Injectable({ providedIn: 'root' })
 export class PositionService {
 
-  private positionUrl = environment.api + '8083/blue-lion/write/positions';
+  private positionUrl = environment.api + 'blue-lion/write/positions';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

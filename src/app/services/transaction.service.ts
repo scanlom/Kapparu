@@ -8,7 +8,7 @@ import { Transaction } from './transaction';
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
 
-  private transactionUrl = environment.api + '8085/blue-lion/run/execute-book-transaction';
+  private transactionUrl = environment.api + 'blue-lion/run/execute-book-transaction';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

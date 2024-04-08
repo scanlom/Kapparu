@@ -8,7 +8,7 @@ import { RefData } from './ref-data';
 @Injectable({ providedIn: 'root' })
 export class RefDataService {
 
-  private refDataUrl = environment.api + '8083/blue-lion/write/ref-data';
+  private refDataUrl = environment.api + 'blue-lion/write/ref-data';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

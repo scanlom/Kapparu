@@ -70,9 +70,9 @@ export class MergersMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.positionsData = this.http.get(environment.api + '8086/blue-lion/gateway/enriched-mergers-positions');
-    this.positionsTotalData = this.http.get(environment.api + '8086/blue-lion/gateway/enriched-mergers-positions-total');
-    this.researchData = this.http.get(environment.api + '8086/blue-lion/gateway/enriched-mergers-research');
+    this.positionsData = this.http.get(environment.api + 'blue-lion/gateway/enriched-mergers-positions');
+    this.positionsTotalData = this.http.get(environment.api + 'blue-lion/gateway/enriched-mergers-positions-total');
+    this.researchData = this.http.get(environment.api + 'blue-lion/gateway/enriched-mergers-research');
   }
 
   onRowDoubleClicked(params) {

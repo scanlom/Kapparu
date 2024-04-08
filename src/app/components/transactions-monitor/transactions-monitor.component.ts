@@ -52,7 +52,7 @@ export class TransactionsMonitorComponent extends KapparuGridComponent {
     this.date =  moment().format("YYYY-MM-DD");
     this.note = "";
 
-    this.http.get<any[]>(environment.api + '8081/blue-lion/read/transactions').subscribe(
+    this.http.get<any[]>(environment.api + 'blue-lion/read/transactions').subscribe(
       txns => this.txns = txns
     );
   }

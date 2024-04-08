@@ -46,7 +46,7 @@ export class AdminEditorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.http.get<any[]>(environment.api + '8081/blue-lion/read/enriched-positions-all').subscribe(
+    this.http.get<any[]>(environment.api + 'blue-lion/read/enriched-positions-all').subscribe(
       positions => this.positions = positions
     );
   }

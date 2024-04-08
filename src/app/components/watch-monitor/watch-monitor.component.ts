@@ -62,13 +62,13 @@ export class WatchMonitorComponent extends KapparuGridComponent {
   }
 
   ngOnInit() {
-    this.statsData = this.http.get(environment.api + '8084/blue-lion/cache/projections-stats');
-    this.positionsData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-positions');
-    this.positionsTotalData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-positions-total');
-    this.watchData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-watch');
-    this.researchData = this.http.get(environment.api + '8084/blue-lion/cache/enriched-projections-research');
+    this.statsData = this.http.get(environment.api + 'blue-lion/cache/projections-stats');
+    this.positionsData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-positions');
+    this.positionsTotalData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-positions-total');
+    this.watchData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-watch');
+    this.researchData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-research');
 
-    this.statsData = this.http.get<any>(environment.api + '8084/blue-lion/cache/projections-stats').pipe(
+    this.statsData = this.http.get<any>(environment.api + 'blue-lion/cache/projections-stats').pipe(
       map((receivedData: any) => {
         return Array.of(receivedData);
       }));
