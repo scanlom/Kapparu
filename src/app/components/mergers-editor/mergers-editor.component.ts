@@ -36,10 +36,11 @@ export class MergersEditorComponent extends KapparuGridComponent {
   @Input() confidence: number;
   @Input() cash: number;
   @Input() dividends: number;
+  @Input() active: boolean;
 
   columnDefs = [
     { headerName: 'ID', field: 'id', hide: true },
-    this.colUpdateDate,
+    this.colMergersUpdateDate,
     { headerName: 'Target', field: 'targetTicker' },
     { headerName: 'Description', field: 'targetDescription' },
     { headerName: 'Acquirer', field: 'acquirerTicker' },
@@ -91,6 +92,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
         this.breakDate = receivedData.breakDate;
         this.cash = receivedData.cash;
         this.dividends = receivedData.dividends;
+        this.active = receivedData.active;
         return Array.of(receivedData);
       }));
       this.http.get<MergerJournal[]>(environment.api + 'blue-lion/read/enriched-mergers-journal?mergerId=' + this.id).subscribe(
@@ -116,6 +118,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
       confidence: this.confidence,
       cash: this.cash,
       dividends: this.dividends,
+      active: this.active,
     } as Merger).subscribe({
       next(m) {
         that.ngOnInit()

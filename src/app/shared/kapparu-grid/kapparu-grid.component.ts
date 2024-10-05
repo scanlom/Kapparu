@@ -74,7 +74,9 @@ export class KapparuGridComponent {
   colMergersNetAnnualized = {
     headerName: 'Annualized', field: 'marketNetReturnAnnualized', width: this.percentWidth, cellStyle: params => {
       var color = "#FFFFFF"
-      if (params.data['status'] == 'O') {
+      if (params.data['active'] == false) {
+        color = "#D3D3D3"
+      } else if (params.data['status'] == 'O') {
         color = "#F1948A"
         if (params.value < 0.04 && params.value >= 0.02) {
           color = "#FADBD8"
@@ -90,6 +92,25 @@ export class KapparuGridComponent {
 
   colUpdateDate = {
     headerName: 'Date', field: 'date', width: this.dateWidth, cellStyle: params => {
+      var now = new Date()
+      var date = new Date(params.value)
+      var diff = Math.abs(date.getTime() - now.getTime());
+      var diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+      if (diffDays >= 90) {
+        return { backgroundColor: "#F1948A" };
+      }
+      if (diffDays >= 30) {
+        return { backgroundColor: "#F7DC6F" };
+      }
+      return null;
+    }, valueFormatter: this.dateFormatter
+  }
+
+  colMergersUpdateDate = {
+    headerName: 'Date', field: 'date', width: this.dateWidth, cellStyle: params => {
+      if (params.data['active'] == false) {
+        return null;
+      }
       var now = new Date()
       var date = new Date(params.value)
       var diff = Math.abs(date.getTime() - now.getTime());

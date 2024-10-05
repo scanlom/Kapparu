@@ -16,6 +16,7 @@ export interface Merger {
 	dividends: number;
 	acquirerTicker: string;
 	targetTicker: string;
+	active: boolean;
 }
 
 export interface MergerJournal extends Merger {

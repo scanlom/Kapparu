@@ -4,6 +4,8 @@
         <button mat-raised-button color="accent"
             (click)="this.currentDisplay = this.currentDisplayType.summary">Summary</button>
         <button mat-raised-button color="accent"
+            (click)="this.currentDisplay = this.currentDisplayType.factors">Factors</button>
+        <button mat-raised-button color="accent"
             (click)="this.currentDisplay = this.currentDisplayType.income">Income</button>
         <button mat-raised-button color="accent"
             (click)="this.currentDisplay = this.currentDisplayType.balance">Balance</button>
@@ -34,6 +36,10 @@
 </ag-grid-angular>
 <ag-grid-angular *ngIf="currentDisplay == currentDisplayType.summary" style="width: 100%; height: 100%;"
     class="ag-theme-alpine" [rowData]="summaryRowData | async" [columnDefs]="summaryColumnDefs"
+    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+</ag-grid-angular>
+<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.factors" style="width: 100%; height: 100%;"
+    class="ag-theme-alpine" [rowData]="factorsRowData | async" [columnDefs]="factorsColumnDefs"
     (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
 </ag-grid-angular>
 <ag-grid-angular *ngIf="currentDisplay == currentDisplayType.income" style="width: 100%; height: 100%;"

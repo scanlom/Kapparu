@@ -27,7 +27,7 @@ export class MergersMonitorComponent extends KapparuGridComponent {
 
   columnDefsPortfolio = [
     { headerName: 'ID', field: 'id', hide: true },
-    this.colUpdateDate,
+    this.colMergersUpdateDate,
     { headerName: 'Target', field: 'targetTicker', width: this.tickerWidth },
     { headerName: 'Description', field: 'targetDescription', width: this.descriptionWidth },
     { headerName: 'Acquirer', field: 'acquirerTicker', width: this.tickerWidth },
@@ -45,9 +45,29 @@ export class MergersMonitorComponent extends KapparuGridComponent {
     { headerName: 'Profit', field: 'profitLifetime', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
   ];
 
+  columnDefsTotal = [
+    { headerName: 'ID', field: 'id', hide: true },
+    { headerName: 'Date', field: 'date', width: this.dateWidth },
+    { headerName: 'Target', field: 'targetTicker', width: this.tickerWidth },
+    { headerName: 'Description', field: 'targetDescription', width: this.descriptionWidth },
+    { headerName: 'Acquirer', field: 'acquirerTicker', width: this.tickerWidth },
+    { headerName: 'Description', field: 'acquirerDescription', width: this.descriptionWidth },
+    { headerName: 'Net', field: 'marketNetReturn', width: this.percentShortWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatterMerger},
+    this.colMergersNetAnnualized,
+    { headerName: 'Positive', field: 'marketPositiveReturn', width: this.percentShortWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatterMerger},
+    { headerName: 'Annualized', field: 'marketPositiveReturnAnnualized', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatterMerger},
+    { headerName: 'Confidence', field: 'confidence', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+    { headerName: 'Close', field: 'closeDate', width: this.dateWidth },
+    { headerName: '% Portfolio', field: 'percentPortfolio', width: this.percentWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Strike', field: 'strikeReturn', width: this.percentShortWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+    { headerName: 'Annualized', field: 'strikeReturnAnnualized', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+    { headerName: 'Return', field: 'positionReturn', width: this.percentShortWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'Profit', field: 'profitLifetime', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter },
+  ];
+
   columnDefsWatch = [
     { headerName: 'ID', field: 'id', hide: true },
-    this.colUpdateDate,
+    this.colMergersUpdateDate,
     { headerName: 'Target', field: 'targetTicker', width: this.tickerWidth },
     { headerName: 'Description', field: 'targetDescription', width: this.descriptionWidth },
     { headerName: 'Acquirer', field: 'acquirerTicker', width: this.tickerWidth },
