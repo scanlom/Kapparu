@@ -113,6 +113,7 @@ export class MergersMonitorComponent extends KapparuGridComponent {
       meetingDate: "1900-01-01",
       confidence: this.confidence,
       dividends: this.dividends,
+      active: true,
 		} as Merger).subscribe({
 			next(m) {
 				that.ngOnInit();
