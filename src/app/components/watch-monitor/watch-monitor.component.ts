@@ -57,18 +57,35 @@ export class WatchMonitorComponent extends KapparuGridComponent {
     { headerName: '% Selfie', field: 'percentPortfolio', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
   ];
 
+  columnDefsTotal = [
+    { headerName: 'ID', field: 'id', hide: true },
+    { headerName: 'Date', field: 'date', width: this.dateWidth },
+    { headerName: 'Ticker', field: 'ticker', width: 70 },
+    { headerName: 'Description', field: 'description', width: 200 },
+    { headerName: 'Growth', field: 'growth', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'DivPlusGrowth', field: 'divPlusGrowth', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'EYield', field: 'epsYield', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'DYield', field: 'dpsYield', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colCAGR5yr,
+    { headerName: 'CAGR10yr', field: 'cagr10yr', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'CROE5Yr', field: 'croe5yr', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    { headerName: 'CROE10yr', field: 'croe10yr', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+    this.colConfidence,
+    { headerName: '% Selfie', field: 'percentPortfolio', width: 100, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter },
+  ];
+
   constructor(private http: HttpClient, private router: Router) {
     super();
   }
 
   ngOnInit() {
-    this.statsData = this.http.get(environment.api + 'blue-lion/cache/projections-stats');
-    this.positionsData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-positions');
-    this.positionsTotalData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-positions-total');
-    this.watchData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-watch');
-    this.researchData = this.http.get(environment.api + 'blue-lion/cache/enriched-projections-research');
+    this.statsData = this.http.get(environment.api + 'blue-lion/gateway/projections-stats');
+    this.positionsData = this.http.get(environment.api + 'blue-lion/gateway/enriched-projections-positions');
+    this.positionsTotalData = this.http.get(environment.api + 'blue-lion/gateway/enriched-projections-positions-total');
+    this.watchData = this.http.get(environment.api + 'blue-lion/gateway/enriched-projections-watch');
+    this.researchData = this.http.get(environment.api + 'blue-lion/gateway/enriched-projections-research');
 
-    this.statsData = this.http.get<any>(environment.api + 'blue-lion/cache/projections-stats').pipe(
+    this.statsData = this.http.get<any>(environment.api + 'blue-lion/gateway/projections-stats').pipe(
       map((receivedData: any) => {
         return Array.of(receivedData);
       }));
