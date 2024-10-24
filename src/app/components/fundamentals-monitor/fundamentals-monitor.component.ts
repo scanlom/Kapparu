@@ -183,7 +183,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
             this.currentTicker = this.route.snapshot.paramMap.get('ticker');
         }
         this.rowData = this.http.get(environment.api + 'blue-lion/read/income?ticker=' + this.currentTicker);
-        this.projectionsRowData = this.http.get<Projections>(environment.api + 'blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
+        this.projectionsRowData = this.http.get<Projections>(environment.api + 'blue-lion/gateway/enriched-projections?symbol=' + this.currentTicker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
@@ -200,7 +200,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
         // Actually update the current screen
         this.currentTicker = value
 		this.rowData = this.http.get(environment.api + 'blue-lion/read/income?ticker=' + this.currentTicker);
-        this.projectionsRowData = this.http.get<Projections>(environment.api + 'blue-lion/read/enriched-projections?symbol=' + this.currentTicker).pipe(
+        this.projectionsRowData = this.http.get<Projections>(environment.api + 'blue-lion/gateway/enriched-projections?symbol=' + this.currentTicker).pipe(
 		    map((receivedData: Projections) => {
 		        return Array.of( receivedData );
 		    }));
