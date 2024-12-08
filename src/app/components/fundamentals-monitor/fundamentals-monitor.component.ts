@@ -9,10 +9,11 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export enum CurrentDisplay {
     summary = 1,
     factors = 2,
-	income = 3,
-    balance = 4,
-    cashflow = 5,
-    journal = 6,
+    conversion = 3,
+	income = 4,
+    balance = 5,
+    cashflow = 6,
+    journal = 7,
 }
 
 @Component({
@@ -96,6 +97,16 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
         {headerName: 'EPSCagr', field: 'epsCagr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
 	]
 
+    conversionColumnDefs = [
+        {headerName: 'ReportDate', field: 'reportDate', valueFormatter: this.dateFormatter},
+        {headerName: 'NetCashOps', field: 'netCashOps', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetChgCash', field: 'netChgCash', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetCashInv', field: 'netCashInv', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'DividendsPaid', field: 'dividendsPaid', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CashRepayDebt', field: 'cashRepayDebt', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CashRepurchaseEquity', field: 'cashRepurchaseEquity', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+	]
+
     columnDefs = [
         {headerName: 'ReportDate', field: 'reportDate', valueFormatter: this.dateFormatter},
         {headerName: 'EPS', field: 'eps', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
@@ -170,6 +181,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 	projectionsRowData: any;
     summaryRowData: any;
     factorsRowData: any;
+    conversionRowData: any;
     balanceRowData: any;
     cashflowRowData: any;
     rowData: any;
@@ -189,6 +201,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 		    }));
         this.summaryRowData = this.http.get(environment.api + 'blue-lion/read/summary?ticker=' + this.currentTicker);
         this.factorsRowData = this.http.get(environment.api + 'blue-lion/read/factors?ticker=' + this.currentTicker);
+        this.conversionRowData = this.http.get(environment.api + 'blue-lion/read/conversion?ticker=' + this.currentTicker);
         this.balanceRowData = this.http.get(environment.api + 'blue-lion/read/balance?ticker=' + this.currentTicker);
         this.cashflowRowData = this.http.get(environment.api + 'blue-lion/read/cashflow?ticker=' + this.currentTicker);
     }
@@ -206,6 +219,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 		    }));
         this.summaryRowData = this.http.get(environment.api + 'blue-lion/read/summary?ticker=' + this.currentTicker);
         this.factorsRowData = this.http.get(environment.api + 'blue-lion/read/factors?ticker=' + this.currentTicker);
+        this.conversionRowData = this.http.get(environment.api + 'blue-lion/read/conversion?ticker=' + this.currentTicker);
         this.balanceRowData = this.http.get(environment.api + 'blue-lion/read/balance?ticker=' + this.currentTicker);
         this.cashflowRowData = this.http.get(environment.api + 'blue-lion/read/cashflow?ticker=' + this.currentTicker);
  	}
