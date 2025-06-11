@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Merger, MergerJournal } from 'src/app/services/merger';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MergerService } from 'src/app/services/merger.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
