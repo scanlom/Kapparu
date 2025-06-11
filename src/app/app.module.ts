@@ -12,7 +12,7 @@ import { MergersMonitorComponent } from './components/mergers-monitor/mergers-mo
 import { MergersEditorComponent } from './components/mergers-editor/mergers-editor.component';
 
 import { AgGridModule } from 'ag-grid-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -35,47 +35,41 @@ import { PortfoliosHistoryMonitorComponent } from './components/portfolios-histo
 import { PositionMonitorComponent } from './components/position-monitor/position-monitor.component';
 import { TransactionsMonitorComponent } from './components/transactions-monitor/transactions-monitor.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    FundamentalsEditorComponent,
-    FundamentalsMiniEditorComponent,
-    ProjectionsEditorComponent,
-    FundamentalsMonitorComponent,
-    MergersMonitorComponent,
-    MergersEditorComponent,
-    WatchMonitorComponent,
-    AdminEditorComponent,
-    RefDataEditorComponent,
-    MarketDataEditorComponent,
-    PositionEditorComponent,
-    PortfoliosMonitorComponent,
-    PortfolioSummaryComponent,
-    PortfolioMonitorComponent,
-    PortfoliosHistoryMonitorComponent,
-    PositionMonitorComponent,
-    TransactionsMonitorComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AgGridModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  providers: [
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        FundamentalsEditorComponent,
+        FundamentalsMiniEditorComponent,
+        ProjectionsEditorComponent,
+        FundamentalsMonitorComponent,
+        MergersMonitorComponent,
+        MergersEditorComponent,
+        WatchMonitorComponent,
+        AdminEditorComponent,
+        RefDataEditorComponent,
+        MarketDataEditorComponent,
+        PositionEditorComponent,
+        PortfoliosMonitorComponent,
+        PortfolioSummaryComponent,
+        PortfolioMonitorComponent,
+        PortfoliosHistoryMonitorComponent,
+        PositionMonitorComponent,
+        TransactionsMonitorComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        AgGridModule,
+        BrowserAnimationsModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule], providers: [
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
