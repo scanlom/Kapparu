@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import moment from 'moment';
 
 @Component({
-  selector: 'app-kapparu-grid',
-  templateUrl: './kapparu-grid.component.html',
+    selector: 'app-kapparu-grid',
+    templateUrl: './kapparu-grid.component.html',
+    standalone: false
 })
 export class KapparuGridComponent {
   constructor() {

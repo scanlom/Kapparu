@@ -9,9 +9,10 @@ import { MergerService } from 'src/app/services/merger.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-mergers-editor',
-  templateUrl: './mergers-editor.component.html',
-  styleUrls: ['./mergers-editor.component.css']
+    selector: 'app-mergers-editor',
+    templateUrl: './mergers-editor.component.html',
+    styleUrls: ['./mergers-editor.component.css'],
+    standalone: false
 })
 export class MergersEditorComponent extends KapparuGridComponent {
 

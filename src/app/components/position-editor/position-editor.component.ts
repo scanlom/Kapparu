@@ -7,9 +7,10 @@ import { Position } from 'src/app/services/position';
 import { PositionService } from 'src/app/services/position.service';
 
 @Component({
-  selector: 'app-position-editor',
-  templateUrl: './position-editor.component.html',
-  styleUrls: ['./position-editor.component.css']
+    selector: 'app-position-editor',
+    templateUrl: './position-editor.component.html',
+    styleUrls: ['./position-editor.component.css'],
+    standalone: false
 })
 export class PositionEditorComponent extends KapparuGridComponent {
   rowData: any;

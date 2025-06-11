@@ -5,9 +5,10 @@ import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-admin-editor',
-  templateUrl: './admin-editor.component.html',
-  styleUrls: ['./admin-editor.component.css']
+    selector: 'app-admin-editor',
+    templateUrl: './admin-editor.component.html',
+    styleUrls: ['./admin-editor.component.css'],
+    standalone: false
 })
 export class AdminEditorComponent extends KapparuGridComponent {
   positions: any[] = [];

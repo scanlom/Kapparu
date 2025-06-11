@@ -7,9 +7,10 @@ import { Cashflow } from 'src/app/services/fundamentals';
 import { FundamentalsService } from 'src/app/services/fundamentals.service';
 
 @Component({
-  selector: 'app-fundamentals-editor',
-  templateUrl: './fundamentals-editor.component.html',
-  styleUrls: ['./fundamentals-editor.component.css']
+    selector: 'app-fundamentals-editor',
+    templateUrl: './fundamentals-editor.component.html',
+    styleUrls: ['./fundamentals-editor.component.css'],
+    standalone: false
 })
 export class FundamentalsEditorComponent {
   @Input() ticker: string;

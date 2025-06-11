@@ -7,9 +7,10 @@ import { RefData } from 'src/app/services/ref-data';
 import { RefDataService } from 'src/app/services/ref-data.service';
 
 @Component({
-  selector: 'app-ref-data-editor',
-  templateUrl: './ref-data-editor.component.html',
-  styleUrls: ['./ref-data-editor.component.css']
+    selector: 'app-ref-data-editor',
+    templateUrl: './ref-data-editor.component.html',
+    styleUrls: ['./ref-data-editor.component.css'],
+    standalone: false
 })
 export class RefDataEditorComponent extends KapparuGridComponent {
   rowData: any;

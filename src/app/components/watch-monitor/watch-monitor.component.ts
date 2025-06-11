@@ -6,9 +6,10 @@ import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-watch-monitor',
-  templateUrl: './watch-monitor.component.html',
-  styleUrls: ['./watch-monitor.component.css']
+    selector: 'app-watch-monitor',
+    templateUrl: './watch-monitor.component.html',
+    styleUrls: ['./watch-monitor.component.css'],
+    standalone: false
 })
 export class WatchMonitorComponent extends KapparuGridComponent {
   statsData: any;

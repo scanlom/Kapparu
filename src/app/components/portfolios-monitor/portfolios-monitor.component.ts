@@ -5,10 +5,11 @@ import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-portfolios-monitor',
-  templateUrl: './portfolios-monitor.component.html',
-  styleUrls: ['./portfolios-monitor.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-portfolios-monitor',
+    templateUrl: './portfolios-monitor.component.html',
+    styleUrls: ['./portfolios-monitor.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PortfoliosMonitorComponent extends KapparuGridComponent {
   historyMode = false;

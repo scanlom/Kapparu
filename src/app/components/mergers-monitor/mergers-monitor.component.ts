@@ -8,9 +8,10 @@ import { MergerService } from 'src/app/services/merger.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-mergers-monitor',
-  templateUrl: './mergers-monitor.component.html',
-  styleUrls: ['./mergers-monitor.component.css']
+    selector: 'app-mergers-monitor',
+    templateUrl: './mergers-monitor.component.html',
+    styleUrls: ['./mergers-monitor.component.css'],
+    standalone: false
 })
 export class MergersMonitorComponent extends KapparuGridComponent {
   positionsData: any;

@@ -19,7 +19,8 @@ export enum CurrentDisplay {
 @Component({
     selector: 'app-fundamentals-monitor',
     templateUrl: './fundamentals-monitor.component.html',
-    styleUrls: ['./fundamentals-monitor.component.css']
+    styleUrls: ['./fundamentals-monitor.component.css'],
+    standalone: false
 })
 export class FundamentalsMonitorComponent extends KapparuGridComponent {
   currentDisplay = CurrentDisplay.journal;

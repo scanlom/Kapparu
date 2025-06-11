@@ -7,9 +7,10 @@ import { ProjectionsService } from 'src/app/services/projections.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-	selector: 'app-projections-editor',
-	templateUrl: './projections-editor.component.html',
-	styleUrls: ['./projections-editor.component.css']
+    selector: 'app-projections-editor',
+    templateUrl: './projections-editor.component.html',
+    styleUrls: ['./projections-editor.component.css'],
+    standalone: false
 })
 export class ProjectionsEditorComponent extends KapparuGridComponent implements OnChanges {
 	projectionsJournals: ProjectionsJournal[] = [];

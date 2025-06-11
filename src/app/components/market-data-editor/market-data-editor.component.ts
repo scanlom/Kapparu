@@ -7,9 +7,10 @@ import { MarketData } from 'src/app/services/market-data';
 import { MarketDataService } from 'src/app/services/market-data.service';
 
 @Component({
-  selector: 'app-market-data-editor',
-  templateUrl: './market-data-editor.component.html',
-  styleUrls: ['./market-data-editor.component.css']
+    selector: 'app-market-data-editor',
+    templateUrl: './market-data-editor.component.html',
+    styleUrls: ['./market-data-editor.component.css'],
+    standalone: false
 })
 export class MarketDataEditorComponent extends KapparuGridComponent {
   rowData: any;

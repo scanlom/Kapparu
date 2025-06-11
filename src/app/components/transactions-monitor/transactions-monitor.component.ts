@@ -8,9 +8,10 @@ import { TransactionService } from 'src/app/services/transaction.service';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-transactions-monitor',
-  templateUrl: './transactions-monitor.component.html',
-  styleUrls: ['./transactions-monitor.component.css']
+    selector: 'app-transactions-monitor',
+    templateUrl: './transactions-monitor.component.html',
+    styleUrls: ['./transactions-monitor.component.css'],
+    standalone: false
 })
 export class TransactionsMonitorComponent extends KapparuGridComponent {
   txns: any[] = [];

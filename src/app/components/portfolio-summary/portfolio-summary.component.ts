@@ -5,10 +5,11 @@ import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-portfolio-summary',
-  templateUrl: './portfolio-summary.component.html',
-  styleUrls: ['./portfolio-summary.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-portfolio-summary',
+    templateUrl: './portfolio-summary.component.html',
+    styleUrls: ['./portfolio-summary.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PortfolioSummaryComponent extends KapparuGridComponent implements OnChanges {
   @Input() historyMode = false;

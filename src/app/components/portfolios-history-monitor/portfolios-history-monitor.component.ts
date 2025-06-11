@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-portfolios-history-monitor',
-  templateUrl: './portfolios-history-monitor.component.html',
-  styleUrls: ['./portfolios-history-monitor.component.css'],
+    selector: 'app-portfolios-history-monitor',
+    templateUrl: './portfolios-history-monitor.component.html',
+    styleUrls: ['./portfolios-history-monitor.component.css'],
+    standalone: false
 })
 export class PortfoliosHistoryMonitorComponent {
   @Input() date: Date;

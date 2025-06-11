@@ -6,9 +6,10 @@ import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-portfolio-monitor',
-  templateUrl: './portfolio-monitor.component.html',
-  styleUrls: ['./portfolio-monitor.component.css']
+    selector: 'app-portfolio-monitor',
+    templateUrl: './portfolio-monitor.component.html',
+    styleUrls: ['./portfolio-monitor.component.css'],
+    standalone: false
 })
 export class PortfolioMonitorComponent extends KapparuGridComponent {
   portfolioId = 1;

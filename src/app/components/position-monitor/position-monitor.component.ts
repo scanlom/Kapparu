@@ -5,9 +5,10 @@ import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
 
 @Component({
-  selector: 'app-position-monitor',
-  templateUrl: './position-monitor.component.html',
-  styleUrls: ['./position-monitor.component.css']
+    selector: 'app-position-monitor',
+    templateUrl: './position-monitor.component.html',
+    styleUrls: ['./position-monitor.component.css'],
+    standalone: false
 })
 export class PositionMonitorComponent extends KapparuGridComponent {
   positionId: number;
