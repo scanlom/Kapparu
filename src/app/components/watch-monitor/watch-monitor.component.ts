@@ -93,7 +93,7 @@ export class WatchMonitorComponent extends KapparuGridComponent {
   }
 
   onRowDoubleClicked(params) {
-    this.router.navigate(['/fundamentals-monitor', { ticker: params.data.ticker }]);
+    this.router.navigate(['/fundamentals-monitor', { ticker: params.data.ticker }], { queryParamsHandling: 'merge' });
   }
 }
 

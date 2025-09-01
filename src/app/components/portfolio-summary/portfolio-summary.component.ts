@@ -64,24 +64,23 @@ export class PortfolioSummaryComponent extends KapparuGridComponent implements O
             }
             this.cdr.detectChanges(); }
         );
-
       }
     }
   }
 
   onPortfolioRowDoubleClicked(params) {
     if (this.historyMode) {
-      this.router.navigate(['/portfolio-monitor', { portfolioId: params.data.portfolioId }]);
+      this.router.navigate(['/portfolio-monitor', { portfolioId: params.data.portfolioId }], { queryParamsHandling: 'merge' });
     } else {
-      this.router.navigate(['/portfolio-monitor', { portfolioId: params.data.id }]);
+      this.router.navigate(['/portfolio-monitor', { portfolioId: params.data.id }], { queryParamsHandling: 'merge' });
     }
   }
 
   onPositionRowDoubleClicked(params) {
     if (this.historyMode) {
-      this.router.navigate(['/position-monitor', { positionId: params.data.positionId }]);
+      this.router.navigate(['/position-monitor', { positionId: params.data.positionId }], { queryParamsHandling: 'merge' });
     } else {
-      this.router.navigate(['/position-monitor', { positionId: params.data.id }]);
+      this.router.navigate(['/position-monitor', { positionId: params.data.id }], { queryParamsHandling: 'merge' });
     }
   }
 }

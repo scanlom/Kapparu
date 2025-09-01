@@ -28,43 +28,43 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
   currentTicker = "BKNG";
 
 	headlineOneColumnDefs = [
-        {headerName: 'Ticker', field: 'ticker'},
-        {headerName: 'Description', field: 'description'},
-        {headerName: 'Sector', field: 'sector'},
-        {headerName: 'Industry', field: 'industry'},
-        {headerName: 'Price', field: 'price', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
-        {headerName: 'PE', field: 'pe', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
-        {headerName: 'DivPlusGrowth', field: 'divPlusGrowth', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'EPSYield', field: 'epsYield', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'DPSYield', field: 'dpsYield', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'Ticker', field: 'ticker', width: this.tickerWidth},
+        {headerName: 'Description', field: 'description', width: this.descriptionWidth},
+        {headerName: 'Sector', field: 'sector', width: this.tickerWidth},
+        {headerName: 'Industry', field: 'industry', width: this.tickerWidth},
+        {headerName: 'Price', field: 'price', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'PE', field: 'pe', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'DivPlusGrowth', field: 'divPlusGrowth', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'EPSYield', field: 'epsYield', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'DPSYield', field: 'dpsYield', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
         this.colCAGR5yr,
-        {headerName: 'CAGR10yr', field: 'cagr10yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'CROE5yr', field: 'croe5yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'CROE10yr', field: 'croe10yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CAGR10yr', field: 'cagr10yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CROE5yr', field: 'croe5yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CROE10yr', field: 'croe10yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
 	]
 
 	headlineTwoColumnDefs = [
-        {headerName: 'PEHighMMO5yr', field: 'peHighMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
-        {headerName: 'PELowMMO5yr', field: 'peLowMmo5yr', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
-        {headerName: 'EPSCagr5yr', field: 'epsCagr5yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'EPSCagr10yr', field: 'epsCagr10yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'EPSCagr2yr', field: 'epsCagr2yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'EPSCagr7yr', field: 'epsCagr7yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'ROE5yr', field: 'roe5yr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'Magic', field: 'magic', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter, headerTooltip: 'cagr5yr'},
+        {headerName: 'PEHighMMO5yr', field: 'peHighMmo5yr', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: 'PELowMMO5yr', field: 'peLowMmo5yr', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: 'EPSCagr5yr', field: 'epsCagr5yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'EPSCagr10yr', field: 'epsCagr10yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'EPSCagr2yr', field: 'epsCagr2yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'EPSCagr7yr', field: 'epsCagr7yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'ROE5yr', field: 'roe5yr', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'Magic', field: 'magic', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter, headerTooltip: 'cagr5yr'},
 	]
 
 	projectionsColumnDefs = [
 	    this.colUpdateDate,
-        {headerName: 'EPS', field: 'eps', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
-        {headerName: 'DPS', field: 'dps', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
-        {headerName: 'Growth', field: 'growth', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'PETerminal', field: 'peTerminal', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
-        {headerName: 'Payout', field: 'payout', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'Book', field: 'book', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
-        {headerName: 'ROE', field: 'roe', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'EPSYr1', field: 'epsYr1', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
-        {headerName: 'EPSYr2', field: 'epsYr2', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'EPS', field: 'eps', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'DPS', field: 'dps', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'Growth', field: 'growth', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'PETerminal', field: 'peTerminal', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: 'Payout', field: 'payout', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'Book', field: 'book', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'ROE', field: 'roe', width: this.percentWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'EPSYr1', field: 'epsYr1', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'EPSYr2', field: 'epsYr2', width: this.valueWidth, cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
         this.colConfidence,
 	]
 
@@ -209,7 +209,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 
 	onEnter(value: string) {
         // Change the url so on an update we come back to the right place
-        this.router.navigate(['/fundamentals-monitor', { ticker: value }]);
+        this.router.navigate(['/fundamentals-monitor', { ticker: value }], { queryParamsHandling: 'merge' });
 
         // Actually update the current screen
         this.currentTicker = value

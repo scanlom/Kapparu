@@ -97,7 +97,7 @@ export class MergersMonitorComponent extends KapparuGridComponent {
   }
 
   onRowDoubleClicked(params) {
-    this.router.navigate(['/mergers-editor', { id: params.data.id } ]);
+    this.router.navigate(['/mergers-editor', { id: params.data.id } ], { queryParamsHandling: 'merge' });
   }
 
   addMerger() {

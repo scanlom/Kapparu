@@ -19,27 +19,27 @@ export class PortfoliosHistoryMonitorComponent {
     this.http.get<any>(environment.api + 'blue-lion/read/portfolios-history-max-date').subscribe(
       params => { 
         this.date = new Date(params.value);
-        this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route});
+        this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route, queryParamsHandling: 'merge' });
       }
     );
   }
 
   onDateChange(event) {
-    this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route});
+    this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route, queryParamsHandling: 'merge' });
   }
 
   onClickDownOneDay(event) {
     var foo = new Date(this.date)
     foo.setDate(this.date.getDate() - 1)
     this.date = foo
-    this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route});
+    this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route, queryParamsHandling: 'merge' });
   }
 
   onClickUpOneDay(event) {
     var foo = new Date(this.date)
     foo.setDate(this.date.getDate() + 1)
     this.date = foo
-    this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route});
+    this.router.navigate(['portfolios-monitor', { date: this.date.toLocaleDateString('en-CA').slice(0, 10) }], {relativeTo: this.route, queryParamsHandling: 'merge' });
   }
 }
 

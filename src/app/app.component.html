@@ -2,14 +2,14 @@
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <span> Kapparu </span>
-            <button mat-raised-button color="accent" [routerLink]="'/portfolios-monitor'">Home</button>
-            <button mat-raised-button color="accent" [routerLink]="'/watch-monitor'">Watch</button>
-            <button mat-raised-button color="accent" [routerLink]="'/mergers-monitor'">Mergers</button>
-            <button mat-raised-button color="accent" [routerLink]="'/fundamentals-monitor'">Fundamentals</button>
+            <button mat-raised-button color="accent" queryParamsHandling="merge" [routerLink]="'/portfolios-monitor'">Home</button>
+            <button mat-raised-button color="accent" queryParamsHandling="merge" [routerLink]="'/watch-monitor'">Watch</button>
+            <button mat-raised-button color="accent" queryParamsHandling="merge" [routerLink]="'/mergers-monitor'">Mergers</button>
+            <button mat-raised-button color="accent" queryParamsHandling="merge" [routerLink]="'/fundamentals-monitor'">Fundamentals</button>
             <span class="toolbar-spacer"></span>
-            <button mat-raised-button color="primary" [routerLink]="'/transactions-monitor'">Booking</button>
-            <button mat-raised-button color="primary" [routerLink]="'/portfolios-history-monitor'">History</button>
-            <button mat-raised-button color="primary" [routerLink]="'/admin-editor'">Admin</button>
+            <button mat-raised-button color="primary" queryParamsHandling="merge" [routerLink]="'/transactions-monitor'">Booking</button>
+            <button mat-raised-button color="primary" queryParamsHandling="merge" [routerLink]="'/portfolios-history-monitor'">History</button>
+            <button mat-raised-button color="primary" queryParamsHandling="merge" [routerLink]="'/admin-editor'">Admin</button>
         </mat-toolbar-row>
     </mat-toolbar>
 </div>

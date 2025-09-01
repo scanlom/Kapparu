@@ -16,6 +16,7 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
   date = "";
   @Input() portfolios: any[] = [];
   @Input() returns: any[] = [];
+  @Input() userId?: number;
 
   columnDefs = [
     { headerName: 'Name', field: 'name', width: 150 },
@@ -46,11 +47,11 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
         );
       });
     }
-    else {
-      this.http.get<any[]>(environment.api + 'blue-lion/read/enriched-portfolios').subscribe(
+    else if (this.userId != undefined) {
+      this.http.get<any[]>(environment.api + 'blue-lion/read/enriched-portfolios?userId=' + this.userId).subscribe(
         portfolios => { this.portfolios = portfolios; this.cdr.detectChanges(); }
       );
-      this.http.get<any[]>(environment.api + 'blue-lion/read/portfolio-returns').subscribe(
+      this.http.get<any[]>(environment.api + 'blue-lion/read/portfolio-returns?userId=' + this.userId).subscribe(
         returns => { this.returns = returns; this.cdr.detectChanges(); }
       );
     }

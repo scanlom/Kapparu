@@ -92,7 +92,7 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
   }
 
   onPositionRowDoubleClicked(params) {
-    this.router.navigate(['/position-monitor', { positionId: params.data.id }]);
+    this.router.navigate(['/position-monitor', { positionId: params.data.id }], { queryParamsHandling: 'merge' });
   }
 }
 

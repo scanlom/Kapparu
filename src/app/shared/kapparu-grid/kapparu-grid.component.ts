@@ -16,10 +16,10 @@ export class KapparuGridComponent {
   }
 
   onRowDataChanged(params) {
-    var allColIds = params.columnApi.getAllColumns()
+    var allColIds = params.api.getAllGridColumns()
       .map(column => column.colId);
-    console.log("AutoSizeColumns");
-    params.columnApi.autoSizeColumns(allColIds);
+
+    params.api.autoSizeColumns(allColIds);
   }
 
   // Widths
@@ -43,7 +43,7 @@ export class KapparuGridComponent {
   colNote = { headerName: 'Note', field: 'note', width: this.descriptionWidth }
 
   colConfidence = {
-    headerName: 'Confidence', field: 'confidence', cellStyle: params => {
+    headerName: 'Confidence', field: 'confidence', width: this.tickerWidth, cellStyle: params => {
       switch (params.value) {
         case 'H':
           return { backgroundColor: '#7DCEA0' };
@@ -257,9 +257,11 @@ export class KapparuGridComponent {
       case 6:
         return "Trade Fin";
       case 7:
-        return "Quick";
+        return "HQLA";
       case 8:
         return "Portfolio";
+      case 9:
+        return "Annuity";
       case 99:
         return "None";
     }
