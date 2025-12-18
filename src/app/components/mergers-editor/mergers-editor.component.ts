@@ -79,6 +79,8 @@ export class MergersEditorComponent extends KapparuGridComponent {
     this.id = this.route.snapshot.paramMap.get('id');
     this.rowData = this.http.get<Merger>(environment.api + 'blue-lion/read/enriched-mergers/' + this.id).pipe(
       map((receivedData: Merger) => {
+        this.entry = ""
+		    this.mergerJournalId = 0
         this.date = moment().format("YYYY-MM-DD");
         this.confidence = receivedData.confidence;
         this.acquirerRefDataId = receivedData.acquirerRefDataId;
