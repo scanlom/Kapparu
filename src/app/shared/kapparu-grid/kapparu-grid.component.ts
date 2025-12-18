@@ -34,8 +34,8 @@ export class KapparuGridComponent {
   // Columns
 
   colSymbol = { headerName: 'Symbol', field: 'symbol', width: this.tickerWidth }
-  colPrice = { headerName: 'Price', field: 'price', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter }
-  colQuantity = { headerName: 'Quantity', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter }
+  colPrice = { headerName: 'Price', field: 'price', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyDetailFormatter }
+  colQuantity = { headerName: 'Quantity', field: 'quantity', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyDetailFormatter }
   colValue = { headerName: 'Value', field: 'value', width: this.valueWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.currencyFormatter }
   colModel = { headerName: 'Model', field: 'model', width: this.percentShortWidth, cellStyle: { textAlign: "right" }, valueFormatter: this.percentFormatter }
   colTransactionType = { headerName: 'Type', field: 'type', width: this.tickerWidth, valueFormatter: this.transactionTypeFormatter }
@@ -182,6 +182,16 @@ export class KapparuGridComponent {
       return params.value.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
+      });
+    }
+    return "";
+  }
+
+  currencyDetailFormatter(params) {
+    if(params != null && params.value != null) {
+      return params.value.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4
       });
     }
     return "";
