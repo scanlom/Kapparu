@@ -272,6 +272,16 @@ export class KapparuGridComponent {
         return "Portfolio";
       case 9:
         return "Annuity";
+      case 10:
+        return "Erin";
+      case 11:
+        return "Selfie";
+      case 12:
+        return "Kenshin";
+      case 14:
+        return "Selfie";
+      case 15:
+        return "MJ";
       case 99:
         return "None";
     }
