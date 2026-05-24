@@ -104,12 +104,22 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 
     conversionColumnDefs = [
         {headerName: 'ReportDate', field: 'reportDate', valueFormatter: this.dateFormatter},
-        {headerName: 'NetCashOps', field: 'netCashOps', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'NetChgCash', field: 'netChgCash', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'NetCashInv', field: 'netCashInv', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'DividendsPaid', field: 'dividendsPaid', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'CashRepayDebt', field: 'cashRepayDebt', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
-        {headerName: 'CashRepurchaseEquity', field: 'cashRepurchaseEquity', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetIncomeStart', field: 'netIncomeStart', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: 'NetCashOps', field: 'netCashOps', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'netCashOpsPct', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetCashInv', field: 'netCashInv', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'netCashInvPct', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetCashFin', field: 'netCashFin', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'netCashFinPct', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetChgCash', field: 'netChgCash', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'netChgCashPct', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'DividendsPaid', field: 'dividendsPaid', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'dividendsPaidYield', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CashRepayDebt', field: 'cashRepayDebt', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'cashRepayDebtYield', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'CashRepurchaseEquity', field: 'cashRepurchaseEquity', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
+        {headerName: '%', field: 'cashRepurchaseEquityYield', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'MarketCap', field: 'marketCap', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
 	]
 
     columnDefs = [
