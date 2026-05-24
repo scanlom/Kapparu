@@ -81,6 +81,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
         {headerName: 'NetMgn', field: 'netMgn', cellStyle: {textAlign: "right"}, valueFormatter: this.percentIntFormatter},
         {headerName: 'LTDRatio', field: 'ltdRatio', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
         {headerName: 'IntCov', field: 'intCov', cellStyle: {textAlign: "right"}, valueFormatter: this.currencyFormatter},
+        {headerName: 'Revenue', field: 'revenue', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
         {headerName: 'MarketCap', field: 'marketCap', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
         {headerName: 'SharesDiluted', field: 'sharesDiluted', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
 	]
@@ -90,6 +91,9 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
         {headerName: 'Revenue', field: 'revenue', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
         {headerName: 'RevenueGrowth', field: 'revenueGrowth', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
         {headerName: 'RevenueCagr', field: 'revenueCagr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetMgn', field: 'netMgn', cellStyle: {textAlign: "right"}, valueFormatter: this.percentIntFormatter},
+        {headerName: 'NetMgnGrowth', field: 'netMgnGrowth', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
+        {headerName: 'NetMgnCagr', field: 'netMgnCagr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
         {headerName: 'Shares', field: 'sharesDiluted', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
         {headerName: 'SharesGrowth', field: 'sharesDilutedGrowth', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
         {headerName: 'SharesCagr', field: 'sharesDilutedCagr', cellStyle: {textAlign: "right"}, valueFormatter: this.percentFormatter},
