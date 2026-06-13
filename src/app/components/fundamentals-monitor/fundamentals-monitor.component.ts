@@ -26,7 +26,6 @@ export enum CurrentDisplay {
 export class FundamentalsMonitorComponent extends KapparuGridComponent {
   currentDisplay = CurrentDisplay.journal;
   currentDisplayType = CurrentDisplay;
-  currentTicker = "BKNG";
 
 	headlineOneColumnDefs = [
         {headerName: 'Ticker', field: 'ticker', width: this.tickerWidth},
@@ -194,6 +193,7 @@ export class FundamentalsMonitorComponent extends KapparuGridComponent {
 		{headerName: 'NetChgCash', field: 'netChgCash', cellStyle: {textAlign: "right"}, valueFormatter: this.numberFormatter},
     ];
 
+    currentTicker: any;
 	projectionsRowData: any;
     summaryRowData: any;
     factorsRowData: any;

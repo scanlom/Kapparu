@@ -16,13 +16,13 @@ import { PositionService } from 'src/app/services/position.service';
 export class PositionEditorComponent extends KapparuGridComponent {
   rowData: any;
 
-  @Input() id: number;
-  @Input() active: boolean;
-  @Input() refDataId: number;
-  @Input() portfolioId: number;
-  @Input() value: number;
-  @Input() model: number;
-  position: Position;
+  @Input() id!: number;
+  @Input() active!: boolean;
+  @Input() refDataId!: number;
+  @Input() portfolioId!: number;
+  @Input() value!: number;
+  @Input() model!: number;
+  position!: Position;
 
   columnDefs = [
     { headerName: 'ID', field: 'id' },

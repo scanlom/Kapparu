@@ -17,14 +17,14 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 export class TransactionsMonitorComponent extends KapparuGridComponent {
   txns: any[] = [];
   response = "Ready Player One!";
-  @Input() date: string;
-  @Input() type: number;
-  @Input() subType: number;
-  @Input() positionId: number;
-  @Input() portfolioId: number;
-  @Input() value: number;
-  @Input() quantity: number;
-  @Input() note: string;
+  @Input() date!: string;
+  @Input() type!: number;
+  @Input() subType!: number;
+  @Input() positionId!: number;
+  @Input() portfolioId!: number;
+  @Input() value!: number;
+  @Input() quantity!: number;
+  @Input() note!: string;
 
   defaultColDef = {
     // set filtering on for all columns

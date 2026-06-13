@@ -18,14 +18,14 @@ export class MergersMonitorComponent extends KapparuGridComponent {
   positionsData: any;
   positionsTotalData: any;
   researchData: any;
-  @Input() acquirerTicker: string;
-  @Input() targetTicker: string;
-  @Input() dealPrice: number;
-  @Input() failPrice: number;
-  @Input() announceDate: string;
-  @Input() closeDate: string;
-  @Input() confidence: number;
-  @Input() dividends: number;
+  @Input() acquirerTicker!: string;
+  @Input() targetTicker!: string;
+  @Input() dealPrice!: number;
+  @Input() failPrice!: number;
+  @Input() announceDate!: string;
+  @Input() closeDate!: string;
+  @Input() confidence!: number;
+  @Input() dividends!: number;
 
   columnDefsPortfolio = [
     { headerName: 'ID', field: 'id', hide: true },

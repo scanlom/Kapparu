@@ -18,21 +18,21 @@ export class ProjectionsEditorComponent extends KapparuGridComponent implements 
 
 	@Input() projectionsJournalId: number = 0;
 	@Input() entry: string = "";
-	@Input() id: number;
-	@Input() rowData: any;
-	@Input() refDataId: number;
-	@Input() date: string;
-	@Input() eps: number;
-	@Input() dps: number;
-	@Input() growth: number;
-	@Input() peTerminal: number;
-	@Input() payout: number;
-	@Input() book: number;
-	@Input() roe: number;
-	@Input() epsYr1: number;
-	@Input() epsYr2: number;
-	@Input() confidence: string;
-	@Input() watch: boolean;
+	@Input() id!: number;
+	@Input() rowData!: any;
+	@Input() refDataId!: number;
+	@Input() date!: string;
+	@Input() eps!: number;
+	@Input() dps!: number;
+	@Input() growth!: number;
+	@Input() peTerminal!: number;
+	@Input() payout!: number;
+	@Input() book!: number;
+	@Input() roe!: number;
+	@Input() epsYr1!: number;
+	@Input() epsYr2!: number;
+	@Input() confidence!: string;
+	@Input() watch!: boolean;
 
 	@Output() changedEvent = new EventEmitter();
 

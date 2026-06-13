@@ -38,7 +38,7 @@ export class PortfoliosMonitorComponent extends KapparuGridComponent {
     if (this.route.snapshot.paramMap.has('date')) {
       this.historyMode = true;
       this.route.paramMap.subscribe(paramMap => {
-        this.date = paramMap.get('date');
+        this.date = paramMap.get('date')!;
         this.http.get<any[]>(environment.api + 'blue-lion/read/portfolios-history?date=' + this.date).subscribe(
           portfolios => { this.portfolios = portfolios; this.cdr.detectChanges(); }
         );

@@ -16,13 +16,13 @@ import { RefDataService } from 'src/app/services/ref-data.service';
 export class RefDataEditorComponent extends KapparuGridComponent {
   rowData: any;
 
-  @Input() id: number;
+  @Input() id!: number;
   @Input() symbol = 'BKNG';
-  @Input() symbolAlphaVantage: string;
-  @Input() description: string;
-  @Input() industry: string;
-  @Input() sector: string;
-  @Input() active: boolean;
+  @Input() symbolAlphaVantage!: string;
+  @Input() description!: string;
+  @Input() industry!: string;
+  @Input() sector!: string;
+  @Input() active!: boolean;
 
   //@Input() ticker: string;
   columnDefs = [

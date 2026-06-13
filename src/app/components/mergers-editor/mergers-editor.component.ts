@@ -17,28 +17,28 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
 })
 export class MergersEditorComponent extends KapparuGridComponent {
 
-  id: string;
+  id!: string | null;
   rowData: any;
   mergerJournals: MergerJournal[] = [];
 
   // Inputs
   @Input() mergerJournalId: number = 0;
   @Input() entry: string = "";
-  @Input() date: string;
-  @Input() acquirerRefDataId: number;
-  @Input() targetRefDataId: number;
-  @Input() dealPrice: number;
-  @Input() failPrice: number;
-  @Input() breakPrice: number;
-  @Input() strikePrice: number;
-  @Input() announceDate: string;
-  @Input() meetingDate: string;
-  @Input() closeDate: string;
-  @Input() breakDate: string;
-  @Input() confidence: number;
-  @Input() cash: number;
-  @Input() dividends: number;
-  @Input() active: boolean;
+  @Input() date!: string;
+  @Input() acquirerRefDataId!: number;
+  @Input() targetRefDataId!: number;
+  @Input() dealPrice!: number;
+  @Input() failPrice!: number;
+  @Input() breakPrice!: number;
+  @Input() strikePrice!: number;
+  @Input() announceDate!: string;
+  @Input() meetingDate!: string;
+  @Input() closeDate!: string;
+  @Input() breakDate!: string;
+  @Input() confidence!: number;
+  @Input() cash!: number;
+  @Input() dividends!: number;
+  @Input() active!: boolean;
 
   columnDefs = [
     { headerName: 'ID', field: 'id', hide: true },
@@ -107,7 +107,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
   updateMerger() {
     const that = this;
     this.mergerService.updateMerger({
-      id: +this.id,
+      id: +this.id!,
       date: this.date,
       acquirerRefDataId: this.acquirerRefDataId,
       targetRefDataId: this.targetRefDataId,
@@ -134,7 +134,7 @@ export class MergersEditorComponent extends KapparuGridComponent {
     const that = this;
     if (this.mergerJournalId == 0) {
       this.mergerService.addMergerJournal({
-        mergerId: +this.id,
+        mergerId: +this.id!,
         date: this.date,
         entry: this.entry,
       } as MergerJournal).subscribe({

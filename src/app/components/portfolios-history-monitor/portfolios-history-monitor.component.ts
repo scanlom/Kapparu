@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
     standalone: false
 })
 export class PortfoliosHistoryMonitorComponent {
-  @Input() date: Date;
+  @Input() date!: Date;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
   }

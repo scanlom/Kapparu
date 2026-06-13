@@ -75,7 +75,7 @@ export class PortfolioMonitorComponent extends KapparuGridComponent {
 
   ngOnInit() {
     if (this.route.snapshot.paramMap.has('portfolioId')) {
-      this.portfolioId = +this.route.snapshot.paramMap.get('portfolioId');
+      this.portfolioId = +this.route.snapshot.paramMap.get('portfolioId')!;
     }
     this.rowData = this.http.get<any>(environment.api + 'blue-lion/read/enriched-portfolios/' + this.portfolioId).pipe(
       map((receivedData: any) => {

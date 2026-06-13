@@ -12,10 +12,10 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
     standalone: false
 })
 export class PositionMonitorComponent extends KapparuGridComponent {
-  positionId: number;
+  positionId!: number;
   returns: any;
   txns: any[] = [];
-  @Input() position: any;
+  @Input() position!: any;
 
   columnDefs = [
     this.colSymbol,
@@ -69,7 +69,7 @@ export class PositionMonitorComponent extends KapparuGridComponent {
 
   ngOnInit() {
     if (this.route.snapshot.paramMap.has('positionId')) {
-      this.positionId = +this.route.snapshot.paramMap.get('positionId');
+      this.positionId = +this.route.snapshot.paramMap.get('positionId')!;
     }
     this.http.get<any>(environment.api + 'blue-lion/read/enriched-positions/' + this.positionId).subscribe(
       position => this.position = position

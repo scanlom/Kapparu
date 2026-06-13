@@ -16,10 +16,10 @@ import { MarketDataService } from 'src/app/services/market-data.service';
 export class MarketDataEditorComponent extends KapparuGridComponent {
   rowData: any;
 
-  @Input() id: number;
+  @Input() id!: number;
   @Input() symbol = 'BKNG';
-  @Input() refDataId: number;
-  @Input() last: number;
+  @Input() refDataId!: number;
+  @Input() last!: number;
 
   //@Input() ticker: string;
   columnDefs = [
