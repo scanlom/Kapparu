@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -20,6 +20,7 @@ export enum CurrentDisplay {
     selector: 'app-fundamentals-monitor',
     templateUrl: './fundamentals-monitor.component.html',
     styleUrls: ['./fundamentals-monitor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FundamentalsMonitorComponent extends KapparuGridComponent {

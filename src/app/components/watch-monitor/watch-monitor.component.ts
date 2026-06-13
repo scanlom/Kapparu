@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,6 +9,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
     selector: 'app-watch-monitor',
     templateUrl: './watch-monitor.component.html',
     styleUrls: ['./watch-monitor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WatchMonitorComponent extends KapparuGridComponent {

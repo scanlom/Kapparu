@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
     selector: 'app-mergers-monitor',
     templateUrl: './mergers-monitor.component.html',
     styleUrls: ['./mergers-monitor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MergersMonitorComponent extends KapparuGridComponent {

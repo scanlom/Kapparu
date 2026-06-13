@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -10,6 +10,7 @@ import { MarketDataService } from 'src/app/services/market-data.service';
     selector: 'app-market-data-editor',
     templateUrl: './market-data-editor.component.html',
     styleUrls: ['./market-data-editor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class MarketDataEditorComponent extends KapparuGridComponent {

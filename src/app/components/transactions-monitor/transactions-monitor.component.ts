@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
     selector: 'app-transactions-monitor',
     templateUrl: './transactions-monitor.component.html',
     styleUrls: ['./transactions-monitor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TransactionsMonitorComponent extends KapparuGridComponent {

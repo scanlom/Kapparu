@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -8,6 +8,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
     selector: 'app-admin-editor',
     templateUrl: './admin-editor.component.html',
     styleUrls: ['./admin-editor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AdminEditorComponent extends KapparuGridComponent {

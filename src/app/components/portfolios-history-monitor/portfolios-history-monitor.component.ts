@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
     selector: 'app-portfolios-history-monitor',
     templateUrl: './portfolios-history-monitor.component.html',
     styleUrls: ['./portfolios-history-monitor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PortfoliosHistoryMonitorComponent {

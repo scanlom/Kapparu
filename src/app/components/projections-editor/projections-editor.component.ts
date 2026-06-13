@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { Projections, ProjectionsJournal } from 'src/app/services/projections';
@@ -10,6 +10,7 @@ import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.c
     selector: 'app-projections-editor',
     templateUrl: './projections-editor.component.html',
     styleUrls: ['./projections-editor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProjectionsEditorComponent extends KapparuGridComponent implements OnChanges {

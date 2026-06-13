@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { KapparuGridComponent } from 'src/app/shared/kapparu-grid/kapparu-grid.component';
@@ -10,6 +10,7 @@ import { PositionService } from 'src/app/services/position.service';
     selector: 'app-position-editor',
     templateUrl: './position-editor.component.html',
     styleUrls: ['./position-editor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PositionEditorComponent extends KapparuGridComponent {

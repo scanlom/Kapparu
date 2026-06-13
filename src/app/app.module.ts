@@ -12,7 +12,7 @@ import { MergersMonitorComponent } from './components/mergers-monitor/mergers-mo
 import { MergersEditorComponent } from './components/mergers-editor/mergers-editor.component';
 
 import { AgGridModule } from 'ag-grid-angular';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -70,6 +70,6 @@ import { TransactionsMonitorComponent } from './components/transactions-monitor/
         MatSelectModule,
         FormsModule,
         ReactiveFormsModule], providers: [
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
     ] })
 export class AppModule { }

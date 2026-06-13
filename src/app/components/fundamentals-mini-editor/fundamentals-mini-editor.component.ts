@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Income } from 'src/app/services/fundamentals';
@@ -10,6 +10,7 @@ import { FundamentalsService } from 'src/app/services/fundamentals.service';
     selector: 'app-fundamentals-mini-editor',
     templateUrl: './fundamentals-mini-editor.component.html',
     styleUrls: ['./fundamentals-mini-editor.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FundamentalsMiniEditorComponent {
