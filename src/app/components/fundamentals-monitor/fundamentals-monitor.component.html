@@ -1,66 +1,80 @@
 <div class="main-header">
-<mat-toolbar color="primary">
+  <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.summary">Summary</button>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.factors">Factors</button>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.conversion">Conversion</button>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.income">Income</button>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.balance">Balance</button>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.cashflow">Cashflow</button>
-        <button mat-raised-button color="accent"
-            (click)="this.currentDisplay = this.currentDisplayType.journal">Journal</button>
-        <span class="toolbar-spacer"></span>
-        <div style="font-size: 15px">
-            <mat-form-field appearance="outline">
-                <mat-label>Symbol</mat-label>
-                <input #ticker type="string" matInput (keyup.enter)="onEnter(ticker.value)">
-            </mat-form-field>
-        </div>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.summary">Summary</button>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.factors">Factors</button>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.conversion">Conversion</button>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.income">Income</button>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.balance">Balance</button>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.cashflow">Cashflow</button>
+      <button mat-raised-button color="accent"
+      (click)="this.currentDisplay = this.currentDisplayType.journal">Journal</button>
+      <span class="toolbar-spacer"></span>
+      <div style="font-size: 15px">
+        <mat-form-field appearance="outline">
+          <mat-label>Symbol</mat-label>
+          <input #ticker type="string" matInput (keyup.enter)="onEnter(ticker.value)">
+        </mat-form-field>
+      </div>
     </mat-toolbar-row>
-</mat-toolbar>
+  </mat-toolbar>
 </div>
 
 <div class="main-content">
-<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
+  <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
     [columnDefs]="headlineOneColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
+  </ag-grid-angular>
+  <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
     [columnDefs]="headlineTwoColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
+  </ag-grid-angular>
+  <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="projectionsRowData | async"
     [columnDefs]="projectionsColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.summary" style="width: 100%; height: 100%;"
-    class="ag-theme-alpine" [rowData]="summaryRowData | async" [columnDefs]="summaryColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.factors" style="width: 100%; height: 100%;"
-    class="ag-theme-alpine" [rowData]="factorsRowData | async" [columnDefs]="factorsColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.conversion" style="width: 100%; height: 100%;"
-    class="ag-theme-alpine" [rowData]="conversionRowData | async" [columnDefs]="conversionColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.income" style="width: 100%; height: 100%;"
-    class="ag-theme-alpine" [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
-    (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.balance" style="width: 100%; height: 100%;"
-    class="ag-theme-alpine" [rowData]="balanceRowData | async" [columnDefs]="balanceColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<ag-grid-angular *ngIf="currentDisplay == currentDisplayType.cashflow" style="width: 100%; height: 100%;"
-    class="ag-theme-alpine" [rowData]="cashflowRowData | async" [columnDefs]="cashflowColumnDefs"
-    (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-</ag-grid-angular>
-<app-projections-editor *ngIf="currentDisplay == currentDisplayType.journal"
-    (changedEvent)="onProjectionsChanged($event)" [rowData]="projectionsRowData | async">
-</app-projections-editor>
+  </ag-grid-angular>
+  @if (currentDisplay == currentDisplayType.summary) {
+    <ag-grid-angular style="width: 100%; height: 100%;"
+      class="ag-theme-alpine" [rowData]="summaryRowData | async" [columnDefs]="summaryColumnDefs"
+      (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+  }
+  @if (currentDisplay == currentDisplayType.factors) {
+    <ag-grid-angular style="width: 100%; height: 100%;"
+      class="ag-theme-alpine" [rowData]="factorsRowData | async" [columnDefs]="factorsColumnDefs"
+      (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+  }
+  @if (currentDisplay == currentDisplayType.conversion) {
+    <ag-grid-angular style="width: 100%; height: 100%;"
+      class="ag-theme-alpine" [rowData]="conversionRowData | async" [columnDefs]="conversionColumnDefs"
+      (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+  }
+  @if (currentDisplay == currentDisplayType.income) {
+    <ag-grid-angular style="width: 100%; height: 100%;"
+      class="ag-theme-alpine" [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)"
+      (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+  }
+  @if (currentDisplay == currentDisplayType.balance) {
+    <ag-grid-angular style="width: 100%; height: 100%;"
+      class="ag-theme-alpine" [rowData]="balanceRowData | async" [columnDefs]="balanceColumnDefs"
+      (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+  }
+  @if (currentDisplay == currentDisplayType.cashflow) {
+    <ag-grid-angular style="width: 100%; height: 100%;"
+      class="ag-theme-alpine" [rowData]="cashflowRowData | async" [columnDefs]="cashflowColumnDefs"
+      (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+  }
+  @if (currentDisplay == currentDisplayType.journal) {
+    <app-projections-editor
+      (changedEvent)="onProjectionsChanged($event)" [rowData]="projectionsRowData | async">
+    </app-projections-editor>
+  }
 </div>

@@ -1,11 +1,13 @@
-<div *ngIf="!!position">
+@if (!!position) {
+  <div>
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 53px;" [rowData]="[ position ]"
-        [columnDefs]="columnDefs">
+      [columnDefs]="columnDefs">
     </ag-grid-angular>
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 53px;" [rowData]="[ returns ]"
-        [columnDefs]="returnsColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+      [columnDefs]="returnsColumnDefs" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
     </ag-grid-angular>
     <ag-grid-angular class="ag-theme-alpine" style="width: 100%;" domLayout="autoHeight" [rowData]="txns"
-        [columnDefs]="txnsColumnDefs">
+      [columnDefs]="txnsColumnDefs">
     </ag-grid-angular>
-</div>
+  </div>
+}

@@ -89,12 +89,14 @@
   </tr>
 </table>
 
-<div *ngFor="let mergerJournal of mergerJournals">
-  <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="[mergerJournal]"
-    [columnDefs]="columnDefsJournal" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
-  </ag-grid-angular>
-  <span style="display: inline-block; margin: 20px; white-space: pre-wrap;">{{mergerJournal.entry}}</span>
-  <br>
-  <button (click)="deleteMergerJournal(mergerJournal)">Delete</button>
-  <button (click)="editMergerJournal(mergerJournal)">Edit...</button>
-</div>
+@for (mergerJournal of mergerJournals; track mergerJournal) {
+  <div>
+    <ag-grid-angular style="width: 100%; height: 53px;" class="ag-theme-alpine" [rowData]="[mergerJournal]"
+      [columnDefs]="columnDefsJournal" (gridReady)="onGridReady($event)" (rowDataUpdated)="onRowDataChanged($event)">
+    </ag-grid-angular>
+    <span style="display: inline-block; margin: 20px; white-space: pre-wrap;">{{mergerJournal.entry}}</span>
+    <br>
+      <button (click)="deleteMergerJournal(mergerJournal)">Delete</button>
+      <button (click)="editMergerJournal(mergerJournal)">Edit...</button>
+    </div>
+  }
