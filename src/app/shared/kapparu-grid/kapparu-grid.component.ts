@@ -283,6 +283,8 @@ export class KapparuGridComponent {
         return "Selfie";
       case 15:
         return "MJ";
+      case 16:
+        return "FI";
       case 99:
         return "None";
     }

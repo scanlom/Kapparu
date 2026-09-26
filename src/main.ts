@@ -4,6 +4,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+import { AllCommunityModule, ModuleRegistry, provideGlobalGridOptions } from 'ag-grid-community';
+ModuleRegistry.registerModules([AllCommunityModule]);
+provideGlobalGridOptions({ theme: "legacy" });
+
 if (environment.production) {
   enableProdMode();
 }

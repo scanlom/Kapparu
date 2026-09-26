@@ -10,8 +10,7 @@ import { ProjectionsEditorComponent } from './components/projections-editor/proj
 import { FundamentalsMonitorComponent } from './components/fundamentals-monitor/fundamentals-monitor.component';
 import { MergersMonitorComponent } from './components/mergers-monitor/mergers-monitor.component';
 import { MergersEditorComponent } from './components/mergers-editor/mergers-editor.component';
-
-import { AgGridModule } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
@@ -57,7 +56,7 @@ import { TransactionsMonitorComponent } from './components/transactions-monitor/
     ],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
-        AgGridModule,
+        AgGridAngular,
         BrowserAnimationsModule,
         MatMenuModule,
         MatToolbarModule,
