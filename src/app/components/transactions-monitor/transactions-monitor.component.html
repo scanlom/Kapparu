@@ -8,68 +8,66 @@
         <td>
             <mat-form-field appearance="outline">
                 <mat-label>type</mat-label>
-                <mat-select [(ngModel)]="type" type="number">
-                    <mat-option value=1>Buy</mat-option>
-                    <mat-option value=2>Sell</mat-option>
-                    <mat-option value=3>Dividend</mat-option>
-                    <mat-option value=4>Cash Infusion</mat-option>
-                    <mat-option value=5>Debt Infusion</mat-option>
-                    <mat-option value=6>Interest</mat-option>
+                <mat-select [(ngModel)]="type" (ngModelChange)="onTypeUpdate($event)">
+                    <mat-option [value]="1">Buy</mat-option>
+                    <mat-option [value]="2">Sell</mat-option>
+                    <mat-option [value]="3">Dividend</mat-option>
+                    <mat-option [value]="4">Cash Infusion</mat-option>
+                    <mat-option [value]="5">Debt Infusion</mat-option>
+                    <mat-option [value]="6">Interest</mat-option>
                 </mat-select>
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
                 <mat-label>subType</mat-label> 
-                <mat-select [(ngModel)]="subType" type="number">
-                    <mat-option value=0>None</mat-option>
-                    <mat-option value=1>Premium</mat-option>
+                <mat-select [(ngModel)]="subType" [disabled]="!isSubTypeEnabled">
+                    <mat-option [value]="0">None</mat-option>
+                    <mat-option [value]="1">Premium</mat-option>
                 </mat-select>
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
                 <mat-label>portfolioId</mat-label> 
-                <mat-select [(ngModel)]="portfolioId" type="number">
-                    <mat-option value=1>Total</mat-option>
-                    <mat-option value=2>Selfie</mat-option>
-                    <mat-option value=3>Oak</mat-option>
-                    <mat-option value=4>Managed</mat-option>
-                    <mat-option value=9>Annuity</mat-option>
-                    <mat-option value=5>Risk Arb</mat-option>
-                    <mat-option value=6>Trade Fin</mat-option>
-                    <mat-option value=7>HQLA</mat-option>
-                    <mat-option value=16>FI</mat-option>
-                    <mat-option value=15>MJ</mat-option>
-                    <mat-option value=10>Erin</mat-option>
-                    <mat-option value=11>Selfie</mat-option>
-                    <mat-option value=12>Kenshin</mat-option>
-                    <mat-option value=14>Selfie</mat-option>
+                <mat-select [(ngModel)]="portfolioId" (ngModelChange)="onPortfolioIdUpdate($event)" [disabled]="!isPortfolioIdEnabled">
+                    @for (p of portfolios; track p.id) {
+                        <mat-option [value]="p.id">
+                            {{ p.name }}
+                        </mat-option>
+                    }
                 </mat-select>
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
-                <mat-label>positionId</mat-label> <input matInput [(ngModel)]="positionId" type="number">
+                <mat-label>positionId</mat-label> 
+                <mat-select [(ngModel)]="positionId" (ngModelChange)="onPositionIdUpdate($event)" [disabled]="!isPositionIdEnabled">
+                    @for (p of positions; track p.id) {
+                        <mat-option [value]="p.id">
+                            {{ p.symbol }}
+                        </mat-option>
+                    }
+                </mat-select>
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
-                <mat-label>quantity</mat-label> <input matInput [(ngModel)]="quantity" type="number">
+                <mat-label>quantity</mat-label> <input matInput type="number" [(ngModel)]="quantity" [disabled]="!isQuantityEnabled">
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
-                <mat-label>value</mat-label> <input matInput [(ngModel)]="value" type="number">
+                <mat-label>value</mat-label> <input matInput type="number" [(ngModel)]="value" (ngModelChange)="onValueUpdate($event)">
             </mat-form-field>
         </td>
         <td>
             <mat-form-field appearance="outline">
-                <mat-label>note</mat-label> <input type="string" matInput [(ngModel)]="note">
+                <mat-label>note</mat-label> <input matInput [(ngModel)]="note">
             </mat-form-field>
         </td>
         <td>
-            <button mat-raised-button color="primary" (click)="book()">Book</button>
+            <button mat-raised-button color="primary" [disabled]="!isBookEnabled" (click)="book()">Book</button>
         </td>
     </tr>
 </table>
